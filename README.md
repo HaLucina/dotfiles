@@ -1,1 +1,8 @@
 # dotfiles
+vimを自動起動する
+vim起動時に自動でしておきたいこと
+netwrの使い方
+vimでターミナルを使う方法
+dotfileをgithubで管理
+管理と公開を両立するならGistじゃなくGist-itを使えばok
+自作ショートコードをhugoの記事に追加（adsenceとgistit）
