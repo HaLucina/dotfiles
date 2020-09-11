@@ -29,8 +29,11 @@ let &t_SI .= "\e[3 q"
 let &t_EI .= "\e[1 q"
 set autoindent
 set smartindent
-let g:netrw_liststyle=1
+let g:netrw_browse_split = 3
+let g:netrw_liststyle=3
 let g:netrw_banner=0
+let g:netrw_winsize = 180
+let g:netrw_altv = 1
 let g:netrw_sizestyle="H"
 let g:netrw_timefmt="%Y/%m/%d(%a) %H:%M:%S"
 let g:netrw_preview=1
