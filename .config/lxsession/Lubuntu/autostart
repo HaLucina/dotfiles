@@ -1,0 +1,9 @@
+@lxterminal -e vim . -c term
+@synclient TapAndDragGesture=0 
+@synclient MaxTapTime=0 
+@syndaemon -d -t -k
+
+Name=Synclient
+Exec=synclient AreaLeftEdge=400 AreaRightEdge=2500 AreaTopEdge=200
+Type=Application
+
