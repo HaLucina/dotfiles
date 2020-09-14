@@ -30,13 +30,17 @@ let &t_EI .= "\e[1 q"
 set autoindent
 set smartindent
 let g:netrw_browse_split = 3
-let g:netrw_liststyle=3
+let g:netrw_liststyle=1
 let g:netrw_banner=0
 let g:netrw_winsize = 180
 let g:netrw_altv = 1
 let g:netrw_sizestyle="H"
 let g:netrw_timefmt="%Y/%m/%d(%a) %H:%M:%S"
 let g:netrw_preview=1
+let twitvim_enable_python = 1 
+let twitvim_browser_cmd = 'firefox' 
+let twitvim_force_ssl = 1 
+let twitvim_count = 40
 
 au BufRead,BufNewFile *.md set filetype=markdown " MarkDown設定
 
@@ -85,6 +89,8 @@ augroup highlightIdegraphicSpace
   autocmd!
   autocmd Colorscheme * highlight IdeographicSpace term=underline ctermbg=DarkGreen guibg=DarkGreen
   autocmd VimEnter,WinEnter * match IdeographicSpace /　/ 
+
+
 augroup END
 colorscheme default 
 
@@ -142,7 +148,7 @@ NeoBundle 'MrPeterLee/VimWordpress'
 NeoBundle 'Shougo/neocomplete.vim' "http://engineerspirit.com/2016/12/03/post-216/
 NeoBundle 'tpope/vim-markdown'
 NeoBundle 'w0ng/vim-hybrid'
-NeoBundle 'TwitVim'
+NeoBundle 'twitvim/twitvim'
 NeoBundle 'dhruvasagar/vim-table-mode'
 
 call neobundle#end()
