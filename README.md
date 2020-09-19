@@ -9,8 +9,7 @@ https://qiita.com/Lambda34/items/7d24ebe6f7bde5bedddc
 https://qiita.com/magicant/items/d3bb7ea1192e63fba850
 http://fohte.hateblo.jp/entry/2017/01/04/222137
 
-1. 管理と公開を両立するならGistじゃなくGist-itを使えばok
-
+@bash /home/halucina/bin/VimAndTerm
 
 1. dotfileをgithubで管理
 http://www.office-matsunaga.biz/linuxcommand/description.php?id=5
