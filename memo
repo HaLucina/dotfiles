@@ -1,4 +1,5 @@
-path通せ
+シンボリックリンクを呼んでくれないのはdotfiles/binのpathを通してないからじゃね？
+てことでpath通せ
 https://swfz.hatenablog.com/entry/2019/12/06/142134
 
 マネしたいdotfiles
