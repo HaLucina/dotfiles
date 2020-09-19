@@ -7,6 +7,7 @@ https://www.softel.co.jp/blogs/tech/archives/3569
 http://ciguwerao.jugem.jp/?eid=535
 https://qiita.com/Lambda34/items/7d24ebe6f7bde5bedddc
 https://qiita.com/magicant/items/d3bb7ea1192e63fba850
+http://fohte.hateblo.jp/entry/2017/01/04/222137
 
 1. 管理と公開を両立するならGistじゃなくGist-itを使えばok
 
@@ -19,7 +20,7 @@ https://qiita.com/ogaaryo/items/6fa6ba9b7a81687092a5
 1. Lubuntuのaoutstartはシンボリックリンクで運用できない
 https://udemy.benesse.co.jp/development/web/shellscript.html
 
-1. Githubで管理しつつ公開したいコードの表示はgiet-itを使う方がいい
+1. Githubで管理しつつ公開したいコードの表示はgiet-itを使えばOK
 https://sun0range.com/information-technology/gist-it
 https://gist-it.appspot.com/
 
@@ -57,4 +58,4 @@ http://atomiyama.com/linux/page/vim-tab-sousa/
 
 1. その他コマンドライン
 https://knowledge.sakura.ad.jp/22488/
-
+https://www.atmarkit.co.jp/ait/articles/1706/02/news017.html
