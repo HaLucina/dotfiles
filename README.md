@@ -1,6 +1,7 @@
 ## いろいろ 
 1. vimの読み込み
 https://blog.tiqwab.com/2017/01/15/understand-vim-plugin-management.html
+https://wakame.hatenablog.jp/entry/2014/09/05/085345#fn-e8293d7d
 
 1. dotfileをgithubで管理
 http://www.office-matsunaga.biz/linuxcommand/description.php?id=5
