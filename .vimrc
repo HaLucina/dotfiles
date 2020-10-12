@@ -1,7 +1,7 @@
 " Reference
 " https://qiita.com/ykyk1218/items/ab1c89c4eb6a2f90333a
 " MyVImCommand
-source ~/.vim/mycommand.vim
+source ~/mygits/dotfiles/.vim/mycommand.vim
 
 " 1LienSetting
 filetype plugin indent on
@@ -41,6 +41,7 @@ let twitvim_enable_python = 1
 let twitvim_browser_cmd = 'firefox' 
 let twitvim_force_ssl = 1 
 let twitvim_count = 40
+let g:netrw_keepdir=0
 
 au BufRead,BufNewFile *.md set filetype=markdown " MarkDown設定
 
@@ -148,8 +149,13 @@ NeoBundle 'MrPeterLee/VimWordpress'
 NeoBundle 'Shougo/neocomplete.vim' "http://engineerspirit.com/2016/12/03/post-216/
 NeoBundle 'tpope/vim-markdown'
 NeoBundle 'w0ng/vim-hybrid'
-NeoBundle 'twitvim/twitvim'
 NeoBundle 'dhruvasagar/vim-table-mode'
+NeoBundle 'basyura/TweetVim'
+NeoBundle 'mattn/webapi-vim'
+NeoBundle 'basyura/twibill.vim'
+NeoBundle 'h1mesuke/unite-outline'
+NeoBundle 'basyura/bitly.vim'
+NeoBundle 'Shougo/unite.vim'
 
 call neobundle#end()
 filetype plugin indent on

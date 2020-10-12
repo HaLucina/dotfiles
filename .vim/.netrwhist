@@ -1,0 +1,5 @@
+let g:netrw_dirhistmax  =10
+let g:netrw_dirhist_cnt =3
+let g:netrw_dirhist_1='/home/halucina/blog/content/post/pc_related'
+let g:netrw_dirhist_2='/home/halucina/blog/content/post/pc_related/20'
+let g:netrw_dirhist_3='/home/halucina/blog/.git'

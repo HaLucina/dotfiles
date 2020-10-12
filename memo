@@ -1,9 +1,0 @@
-シンボリックリンクを呼んでくれないのはdotfiles/binのpathを通してないからじゃね？
-てことでpath通せ
-https://swfz.hatenablog.com/entry/2019/12/06/142134
-
-マネしたいdotfiles
-https://qiita.com/b4b4r07/items/24872cdcbec964ce2178
-
-ここを参考に.bash_profileとか移動しておくこと
-https://qiita.com/massy22/items/5bdb97f8d6e93517f916

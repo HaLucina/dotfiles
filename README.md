@@ -1,15 +1,6 @@
 ## いろいろ 
-1. Githubで新規リポジトリ作成とpush出来ない時の対策
-https://note.com/koushikagawa/n/nfccf06fa845b
-https://www.softel.co.jp/blogs/tech/archives/3569
-
-1. LubunutuでPC起動時にvimなどを自動起動する
-http://ciguwerao.jugem.jp/?eid=535
-https://qiita.com/Lambda34/items/7d24ebe6f7bde5bedddc
-https://qiita.com/magicant/items/d3bb7ea1192e63fba850
-http://fohte.hateblo.jp/entry/2017/01/04/222137
-
-@bash /home/halucina/bin/VimAndTerm
+1. vimの読み込み
+https://blog.tiqwab.com/2017/01/15/understand-vim-plugin-management.html
 
 1. dotfileをgithubで管理
 http://www.office-matsunaga.biz/linuxcommand/description.php?id=5
@@ -29,10 +20,6 @@ gistitは作ったので
 のテストで書いたやつを作ること
 
 ## Linuxコマンド
-1. Github作成とrejectされた時の対処法備忘録
-https://note.com/koushikagawa/n/nfccf06fa845b
-https://www.softel.co.jp/blogs/tech/archives/3569
-
 1. シンボリックリンク
 http://www.office-matsunaga.biz/linuxcommand/description.php?id=5
 https://kazmax.zpp.jp/linux_beginner/symbolic_link.html
