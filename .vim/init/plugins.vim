@@ -1,1 +1,1 @@
-#test
+"プラグインのロード NeoBundle設定
