@@ -1,2 +1,60 @@
 [[plugins]]
-repo = 'fatih/vim-go'
+repo = 'Shougo/neocomplcache'
+
+[[plugins]]
+repo = 'tpope/vim-fugitive'
+
+[[plugins]]
+repo = 'gregsexton/gitv'
+
+[[plugins]]
+repo = 'vim-scripts/sudo.vim'
+
+[[plugins]]
+repo = 'open-browser.vim'
+
+[[plugins]]
+repo = 'plasticboy/vim-markdown'
+
+[[plugins]]
+repo = 'kannokanno/previm'
+
+[[plugins]]
+repo = 'tyru/open-browser.vim'
+
+[[plugins]]
+repo = 'thinca/vim-quickrun'
+
+[[plugins]]
+repo = 'MrPeterLee/VimWordpress'
+
+[[plugins]]
+repo = 'Shougo/neocomplete.vim' "http://engineerspirit.com/2016/12/03/post-216/"
+
+[[plugins]]
+repo = 'tpope/vim-markdown'
+
+[[plugins]]
+repo = 'w0ng/vim-hybrid'
+
+[[plugins]]
+repo = 'dhruvasagar/vim-table-mode'
+
+[[plugins]]
+repo = 'basyura/TweetVim'
+
+[[plugins]]
+repo = 'mattn/webapi-vim'
+
+[[plugins]]
+repo = 'basyura/twibill.vim'
+
+[[plugins]]
+repo = 'h1mesuke/unite-outline'
+
+[[plugins]]
+repo = 'basyura/bitly.vim'
+
+[[plugins]]
+repo = 'Shougo/unite.vim'
+
