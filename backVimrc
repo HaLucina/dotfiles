@@ -17,7 +17,6 @@ set statusline=%F%m%h%w\ %<[ENC=%{&fenc!=''?&fenc:&enc}]\ [FMT=%{&ff}]\ [TYPE=%Y
 set laststatus=2 "ステータス行を常に表示
 set showcmd "ウィンドウの右下にまだ実行していない入力中のコマンドを表示
 set title
-set nofoldenable
 set clipboard=unnamedplus
 set hlsearch
 set ruler
@@ -131,6 +130,40 @@ autocmd InsertLeave * call Fcitx2en()
 set nocompatible 
 filetype off 
 
+if has('vim_starting')
+"" neobudle.vimの関数を呼ぶためにインストールしたディレクトリを指定
+  set runtimepath+=~/.vim/bundle/neobundle.vim/
+endif
+
+call neobundle#begin(expand('~/.vim/bundle/'))
+NeoBundleFetch 'Shougo/neobundle.vim'
+
+"" 管理するプラグイン
+NeoBundle 'Shougo/neocomplcache'
+NeoBundle 'tpope/vim-fugitive'
+NeoBundle 'gregsexton/gitv'
+NeoBundle 'vim-scripts/sudo.vim'
+NeoBundle 'open-browser.vim'
+NeoBundle 'plasticboy/vim-markdown'
+NeoBundle 'kannokanno/previm'
+NeoBundle 'tyru/open-browser.vim'
+NeoBundle 'thinca/vim-quickrun'
+NeoBundle 'MrPeterLee/VimWordpress'
+NeoBundle 'Shougo/neocomplete.vim' "http://engineerspirit.com/2016/12/03/post-216/
+NeoBundle 'tpope/vim-markdown'
+NeoBundle 'w0ng/vim-hybrid'
+NeoBundle 'dhruvasagar/vim-table-mode'
+NeoBundle 'basyura/TweetVim'
+NeoBundle 'mattn/webapi-vim'
+NeoBundle 'basyura/twibill.vim'
+NeoBundle 'h1mesuke/unite-outline'
+NeoBundle 'basyura/bitly.vim'
+NeoBundle 'Shougo/unite.vim'
+
+call neobundle#end()
+filetype plugin indent on
+NeoBundleCheck
+
 set background=dark
 colorscheme hybrid
 
@@ -175,6 +208,7 @@ let g:neocomplcache_enable_smart_case = 1
 
 " _(アンダースコア)区切りの補完を有効化
 let g:neocomplcache_enable_underbar_completion = 1
+
 let g:neocomplcache_enable_camel_case_completion  =  1
 
 " 最初の補完候補を選択状態にする
@@ -202,52 +236,3 @@ command! -nargs=0 Hello call Hello()
 function! Hello()
   echo "Hello!!"
 endfunction
-
-" dein.vim settings {{{
-" install dir {{{
-let s:dein_dir = expand('~/.cache/dein')
-let s:dein_repo_dir = s:dein_dir . '/repos/github.com/Shougo/dein.vim'
-" }}}
-
-" dein installation check {{{
-if &runtimepath !~# '/dein.vim'
-  if !isdirectory(s:dein_repo_dir)
-    execute '!git clone https://github.com/Shougo/dein.vim' s:dein_repo_dir
-  endif
-  execute 'set runtimepath^=' . s:dein_repo_dir
-endif
-" }}}
-
-" begin settings {{{
-if dein#load_state(s:dein_dir)
-  call dein#begin(s:dein_dir)
-
-  " .toml file
-  let s:rc_dir = expand('~/.vim')
-  if !isdirectory(s:rc_dir)
-    call mkdir(s:rc_dir, 'p')
-  endif
-  let s:toml = '~/mygits/dotfiles/.vim/dein.toml'
-
-  " read toml and cache
-  call dein#load_toml(s:toml, {'lazy': 0})
-
-  " end settings
-  call dein#end()
-  call dein#save_state()
-endif
-" }}}
-
-" plugin installation check {{{
-if dein#check_install()
-  call dein#install()
-endif
-" }}}
-
-" plugin remove check {{{
-let s:removed_plugins = dein#check_clean()
-if len(s:removed_plugins) > 0
-  call map(s:removed_plugins, "delete(v:val, 'rf')")
-  call dein#recache_runtimepath()
-endif
-" }}}

@@ -11,7 +11,7 @@ repo = 'gregsexton/gitv'
 repo = 'vim-scripts/sudo.vim'
 
 [[plugins]]
-repo = 'open-browser.vim'
+repo = 'tyru/open-browser.vim'
 
 [[plugins]]
 repo = 'plasticboy/vim-markdown'
@@ -20,17 +20,13 @@ repo = 'plasticboy/vim-markdown'
 repo = 'kannokanno/previm'
 
 [[plugins]]
-repo = 'tyru/open-browser.vim'
-
-[[plugins]]
 repo = 'thinca/vim-quickrun'
 
 [[plugins]]
 repo = 'MrPeterLee/VimWordpress'
 
-"http://engineerspirit.com/2016/12/03/post-216/"
 [[plugins]]
-repo = 'Shougo/neocomplete.vim' 
+repo = 'Shougo/neocomplete.vim' # http://engineerspirit.com/2016/12/03/post-216/"
 
 [[plugins]]
 repo = 'tpope/vim-markdown'
