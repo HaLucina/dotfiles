@@ -28,8 +28,9 @@ repo = 'thinca/vim-quickrun'
 [[plugins]]
 repo = 'MrPeterLee/VimWordpress'
 
+"http://engineerspirit.com/2016/12/03/post-216/"
 [[plugins]]
-repo = 'Shougo/neocomplete.vim' "http://engineerspirit.com/2016/12/03/post-216/"
+repo = 'Shougo/neocomplete.vim' 
 
 [[plugins]]
 repo = 'tpope/vim-markdown'
