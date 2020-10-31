@@ -1,2 +1,5 @@
-hoge
-huga
+{{< tweet num >}}
+{{< blogcard url="" >}}
+{{< adsense_contents >}}
+{{< gistit "" >}}
+{{< youtube num >}}
