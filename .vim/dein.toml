@@ -14,9 +14,6 @@ repo = 'vim-scripts/sudo.vim'
 repo = 'tyru/open-browser.vim'
 
 [[plugins]]
-repo = 'plasticboy/vim-markdown'
-
-[[plugins]]
 repo = 'kannokanno/previm'
 
 [[plugins]]
