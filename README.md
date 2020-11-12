@@ -46,3 +46,5 @@ http://atomiyama.com/linux/page/vim-tab-sousa/
 1. その他コマンドライン
 https://knowledge.sakura.ad.jp/22488/
 https://www.atmarkit.co.jp/ait/articles/1706/02/news017.html
+
+C:\Users\gs-keibi.cross\AppData\Local\Google\Chrome\User Data
