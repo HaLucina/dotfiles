@@ -4,8 +4,7 @@
 " source ~/mygits/dotfiles/.vim/mycommand.vim
 
 runtime! .vim/init/*.vim
-
-"runtime! $HOME/mygits/dotfiles/.vim/init/color.vim
+runtime! .vim/plugins/*.vim
 "runtime! $HOME/mygits/dotfiles/.vim/plugins/*.vim
 
 
