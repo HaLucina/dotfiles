@@ -133,8 +133,6 @@ set nocompatible
 filetype off 
 
 set background=dark
-colorscheme hybrid
-
 
 " open-browser 設定
 " [https://easyramble.com/open-url-with-browser-from-vim.html]
