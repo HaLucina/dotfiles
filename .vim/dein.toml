@@ -28,7 +28,7 @@ repo = 'Shougo/neocomplete.vim' # http://engineerspirit.com/2016/12/03/post-216/
 [[plugins]]
 repo = 'tpope/vim-markdown'
 
-[[plugins]] # カラースキーマ
+[[plugins]] # カラースキーマ 参考：https://qiita.com/kawaz/items/ee725f6214f91337b42b
 repo = 'w0ng/vim-hybrid'
 hook_add = '''
   set background=dark
