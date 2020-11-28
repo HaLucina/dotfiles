@@ -1,0 +1,11 @@
+vim
+salmon
+linux
+twitter
+git
+c-sharp
+hugo
+python
+c
+go
+spl2
