@@ -13,3 +13,5 @@ noremap j gj
 noremap k gk
 
 vnoremap <S-l>   $h" auto reload .vimrc
+
+let g:mapleader = "\<Space>"
