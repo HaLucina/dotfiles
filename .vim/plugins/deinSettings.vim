@@ -22,7 +22,7 @@ if dein#load_state(s:dein_dir)
   if !isdirectory(s:rc_dir)
     call mkdir(s:rc_dir, 'p')
   endif
-  let s:toml = '~/mygits/dotfiles/.vim/dein.toml'
+  let s:toml = '~/.vim/.vim/dein.toml'
 
   " read toml and cache
   call dein#load_toml(s:toml, {'lazy': 0})
