@@ -1,17 +1,16 @@
-# set number, wrapscan など ネイティブvimのExコマンド系
-# 1行で済んでいる設定をまとめたもの
-# Exコマンド一覧：https://vim-jp.org/vimdoc-ja/vimindex.html#ex-cmd-index
+" set number, wrapscan など ネイティブvimのExコマンド系
+" 1行で済んでいる設定をまとめたもの
+" Exコマンド一覧：https://vim-jp.org/vimdoc-ja/vimindex.html"ex-cmd-index
 
-###### various Area ######
+"""""" various Area """"""
 filetype plugin indent on
-syntax on
 au BufRead,BufNewFile *.md set filetype=markdown " MarkDown設定
-###### various End ######
+"""""" various End """"""
 
 
-###### set Area ######
+"""""" set Area """"""
 set autoindent
-set background=dark
+"set background=dark
 set clipboard=unnamedplus
 set cursorline
 set hlsearch
@@ -31,11 +30,11 @@ set wildmenu wildmode=list:full
 set encoding=utf-8
 set fileencodings=utf-8
 set ambiwidth=double "全角文字が重ならないようにする設定[https://www.softel.co.jp/blogs/tech/archives/5890]
-###### set End ######
+"""""" set End """"""
 
 
 
-###### let Area ###### 
+"""""" let Area """""" 
 let loaded_matchparen = 1 "反対側の括弧をハイライトしない
 let &t_EI .= "\e[1 q" "カーソル形状を箱型で点滅状態にする
 let &t_SI .= "\e[3 q" "カーソル形状を下線で点滅状態にする
@@ -53,4 +52,4 @@ let twitvim_browser_cmd = 'firefox'
 let twitvim_count = 40
 let twitvim_enable_python = 1 
 let twitvim_force_ssl = 1 
-###### let End ######
+"""""" let End """"""
