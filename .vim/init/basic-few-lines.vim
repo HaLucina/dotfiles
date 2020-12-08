@@ -34,13 +34,14 @@ augroup END
 
 
 """""" 全角スペースのハイライト設定
-" [https://oki2a24.com/2019/02/22/attention-when-visualizing-double-byte-space-with-vim-and-error-when-failing/]
+" 参考[https://oki2a24.com/2019/02/22/attention-when-visualizing-double-byte-space-with-vim-and-error-when-failing/]
 scriptencoding utf-8
 augroup highlightIdegraphicSpace
   au!
   au Colorscheme * highlight IdeographicSpace term=underline ctermbg=DarkGreen guibg=DarkGreen
   au VimEnter,WinEnter * match IdeographicSpace /　/ 
 augroup END
+colorscheme default
 """"""""""""
 
 

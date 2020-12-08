@@ -1,0 +1,10 @@
+<!-- <keyboard> -->
+  <keybind key = "W-f">
+    <keybind key = "x">
+      <action name = "ToggleMaximizeFull" />
+    </keybind>
+    <keybind key = "s">
+      <action name = "ToggleShade" />
+    </keybind>
+  </keybind>
+<!-- </keyboard> -->

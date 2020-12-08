@@ -1,3 +1,2 @@
 #!/bin/bash
-#echo "Hello world！"
-lxterminal
+echo "Hello world！"

@@ -10,7 +10,6 @@ au BufRead,BufNewFile *.md set filetype=markdown " MarkDown設定
 
 """""" set Area """"""
 set autoindent
-"set background=dark
 set clipboard=unnamedplus
 set cursorline
 set hlsearch
