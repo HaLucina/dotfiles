@@ -19,6 +19,7 @@ function! s:TemplateFrom(files)
   return ''
 endfunction
 
-inoremap <F5> <C-R>=<SID>TemplateFrom(["$HOME/mygits/dotfiles/.vim/init/hugodict.txt"])<CR><C-P>
-nnoremap <F5> i<C-R>=<SID>TemplateFrom(["$HOME/mygits/dotfiles/.vim/init/hugodict.txt"])<CR><C-P>
-
+inoremap <F5>h <C-R>=<SID>TemplateFrom(["$HOME/mygits/dotfiles/.vim/init/hugoDict.txt"])<CR><C-P>
+nnoremap <F5>h i<C-R>=<SID>TemplateFrom(["$HOME/mygits/dotfiles/.vim/init/hugoDict.txt"])<CR><C-P>
+inoremap <F5>h <C-R>=<SID>TemplateFrom(["$HOME/mygits/dotfiles/.vim/init/hugoThumbnailDict.txt"])<CR><C-P>
+nnoremap <F5>h i<C-R>=<SID>TemplateFrom(["$HOME/mygits/dotfiles/.vim/init/hugoThumbnailDict.txt"])<CR><C-P>
