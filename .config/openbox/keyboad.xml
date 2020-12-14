@@ -141,9 +141,7 @@
       Lubuntu specific.
       Keybindings for window tiling
   -->
-  <!-- 
-      # HalfLeftScreen
-  -->
+  <!--  # HalfLeftScreen -->
   <keybind key="W-Left">
     <action name="UnmaximizeFull"/>
     <action name="MoveResizeTo">
@@ -153,9 +151,7 @@
       <width>50%</width>
     </action>
   </keybind>
-  <!-- 
-      # HalfRightScreen
-  -->
+  <!-- # HalfRightScreen -->
   <keybind key="W-Right">
     <action name="UnmaximizeFull"/>
     <action name="MoveResizeTo">
@@ -167,7 +163,6 @@
   </keybind>
   <!-- 
       # HalfUpperScreen
-  -->
   <keybind key="W-Up">
     <action name="UnmaximizeFull"/>
     <action name="MoveResizeTo">
@@ -177,9 +172,8 @@
       <height>50%</height>
     </action>
   </keybind>
-  <!-- 
-      # HalfLowerScreen
-  -->
+
+      # HalfLowerScreen  
   <keybind key="W-Down">
     <action name="UnmaximizeFull"/>
     <action name="MoveResizeTo">
@@ -189,6 +183,7 @@
       <height>50%</height>
     </action>
   </keybind>
+  -->
   <!--  Lubuntu specific : Keybindings -->
   <!-- Keybindings for running applications on Home + E -->
   <keybind key="W-e">
