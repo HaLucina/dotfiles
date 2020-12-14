@@ -1,11 +1,10 @@
 <keyboard>
-  <keybind key = "W-f">
-    <keybind key = "x">
-      <action name = "ToggleMaximizeFull" />
-    </keybind>
-    <keybind key = "s">
-      <action name = "ToggleShade" />
-    </keybind>
+  <!-- # http://qastack.jp/ubuntu/305767/how-i-can-create-a-shortcut-to-maximize-minimize-windows-in-lubuntu -->
+  <keybind key="W-Up">
+    <action name="ToggleMaximize"/>
+  </keybind>
+  <keybind key="W-Down">
+    <action name="Iconify"/>
   </keybind>
   <chainQuitKey>C-g</chainQuitKey>
   <!-- Keybindings for desktop switching -->
@@ -150,9 +149,7 @@
       Lubuntu specific.
       Keybindings for window tiling
   -->
-  <!-- 
-      # HalfLeftScreen
-  -->
+  <!--  # HalfLeftScreen -->
   <keybind key="W-Left">
     <action name="UnmaximizeFull"/>
     <action name="MoveResizeTo">
@@ -162,9 +159,7 @@
       <width>50%</width>
     </action>
   </keybind>
-  <!-- 
-      # HalfRightScreen
-  -->
+  <!-- # HalfRightScreen -->
   <keybind key="W-Right">
     <action name="UnmaximizeFull"/>
     <action name="MoveResizeTo">
@@ -174,9 +169,8 @@
       <width>50%</width>
     </action>
   </keybind>
-  <!-- 
+  <!-- Unused because it is used in my-keybind.xml
       # HalfUpperScreen
-  -->
   <keybind key="W-Up">
     <action name="UnmaximizeFull"/>
     <action name="MoveResizeTo">
@@ -186,9 +180,8 @@
       <height>50%</height>
     </action>
   </keybind>
-  <!-- 
-      # HalfLowerScreen
-  -->
+
+      # HalfLowerScreen  
   <keybind key="W-Down">
     <action name="UnmaximizeFull"/>
     <action name="MoveResizeTo">
@@ -198,6 +191,7 @@
       <height>50%</height>
     </action>
   </keybind>
+  -->
   <!--  Lubuntu specific : Keybindings -->
   <!-- Keybindings for running applications on Home + E -->
   <keybind key="W-e">
@@ -318,7 +312,9 @@
       <command>xbacklight -inc 10</command>
     </action>
   </keybind>
-  <!-- Take a screenshot of the current window with scrot when Alt+Print are pressed -->
+  <!--
+    Take a screenshot of the current window with scrot when Alt+Print are pressed 
+-->
   <keybind key="Print">
     <action name="Execute">
       <command>scrot -e 'mv $f ~/Pictures/'</command>

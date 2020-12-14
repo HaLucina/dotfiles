@@ -5,7 +5,7 @@
 
 nnoremap <CR> A<CR><ESC>
 nnoremap <Esc><Esc> :nohlsearch<CR>
-nnoremap x "_x
+"nnoremap x "_x
 
 noremap <S-h>   0
 noremap <S-j>   }
@@ -28,9 +28,10 @@ nnoremap <silent> p p`]
 
 vnoremap <S-l>   $h" auto reload .vimrc
 
-" :term設定
-set termkey=<A-w>
-tnoremap <Esc> <A-w><S-n>
+" :term設定 「 E21: 'modifiable'がオフなので、変更できません」の回避>https://translate.google.com/translate?hl=ja&sl=en&u=https://github.com/vim/vim/issues/2216&prev=search&pto=aue
+set termkey=<C-g>
+tnoremap <Esc><Esc> <C-g><S-n>
+
 
 " Leader設定
 " https://qiita.com/r12tkmt/items/b89df403f587216802f1
