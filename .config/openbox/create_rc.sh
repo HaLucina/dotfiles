@@ -1,3 +1,3 @@
-echo "<keyboad>" keys.xml
-cat hoge.xml keyboad.xml >> keys.xml
-echo "</keyboad>" keys.xml
+echo "<keyboard>" > keys.xml
+cat hoge.xml keyboard.xml >> keys.xml
+echo "</keyboard>" >> keys.xml
