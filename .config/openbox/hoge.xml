@@ -1,8 +1,6 @@
-  <keybind key = "W-f">
-    <keybind key = "x">
-      <action name = "ToggleMaximizeFull" />
-    </keybind>
-    <keybind key = "s">
-      <action name = "ToggleShade" />
-    </keybind>
-  </keybind>
+<keybind key="W-Up">        # Maximize
+  <action name="ToggleMaximize"/>
+</keybind>
+<keybind key="W-Down">      # Minimize
+  <action name="Iconify"/>
+</keybind>
