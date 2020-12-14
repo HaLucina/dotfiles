@@ -1,3 +1,5 @@
-echo "<keyboard>" > element-keyboard.xml
-cat hoge.xml keyboard.xml >> element-keyboard.xml
-echo "</keyboard>" >> element-keyboard.xml
+mergeXml="element-keyboard.xml"
+
+echo "<keyboard>" > mergeXml
+cat hoge.xml keyboard.xml >> mergeXml
+echo "</keyboard>" >> mergeXml
