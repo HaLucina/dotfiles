@@ -1,3 +1,4 @@
+# http://qastack.jp/ubuntu/305767/how-i-can-create-a-shortcut-to-maximize-minimize-windows-in-lubuntu
 <keybind key="W-Up">        # Maximize
   <action name="ToggleMaximize"/>
 </keybind>
