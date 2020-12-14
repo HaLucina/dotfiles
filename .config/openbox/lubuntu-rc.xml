@@ -186,7 +186,7 @@
     <!-- 'Left', 'Middle', 'Right' -->
   </dock>
   <!-- Keybindings for desktop switching -->
-  <xi:include href="keys.xml"/>
+  <xi:include href="element-keyboard.xml"/>
   <mouse>
     <!--
       Lubuntu specific : Specific mouse settings 
