@@ -1,4 +1,5 @@
 #参考：https://qiita.com/GenUchiyama/items/aeef89acd511b4db370c
+#参考：https://qiita.com/ahiruman5/items/4f3c845500c172a02935#:~:text=neocomplete%E3%81%AF%E3%82%B3%E3%83%BC%E3%83%89%E3%81%AE%E8%87%AA%E5%8B%95%E8%A3%9C%E5%AE%8C%E3%82%92%E8%A1%8C%E3%81%86Vim%E3%83%97%E3%83%A9%E3%82%B0%E3%82%A4%E3%83%B3%E3%81%A7%E3%81%99%E3%80%82&text=neosnippet%E3%81%A8%E3%81%AF%E3%80%81%E3%82%B9%E3%83%8B%E3%83%9A%E3%83%83%E3%83%88%E8%A3%9C%E5%AE%8C,%E3%81%8F%E3%82%8C%E3%82%8BVim%E3%83%97%E3%83%A9%E3%82%B0%E3%82%A4%E3%83%B3%E3%81%A7%E3%81%99%E3%80%82
 [[plugins]]
 repo = 'Shougo/neocomplete.vim'
 hook_add = '''
