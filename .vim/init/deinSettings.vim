@@ -22,6 +22,7 @@ if dein#load_state(s:dein_dir)
   if !isdirectory(s:rc_dir)
     call mkdir(s:rc_dir, 'p')
   endif
+  " set .vim symbolic from my dotfiles
   let s:toml = '~/.vim/.vim/dein.toml'
 
   " read toml and cache
