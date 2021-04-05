@@ -8,10 +8,6 @@ let g:neocomplete#sources#syntax#min_keyword_length = 3
 
 [[plugins]]
 repo = 'Shougo/neosnippet'
-hook_add = '''
-imap <C-k>     <Plug>(neosnippet_expand_or_jump)
-smap <C-k>     <Plug>(neosnippet_expand_or_jump)
-'''
 
 [[plugins]]
 repo = 'Shougo/neosnippet-snippets'

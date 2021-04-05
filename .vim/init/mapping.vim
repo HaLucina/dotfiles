@@ -3,8 +3,9 @@
 " http://deris.hatenablog.jp/entry/2013/05/02/192415
 " https://easyramble.com/vim-leader-space-vimrc.html
 
-nnoremap <CR> A<CR><ESC>
-nnoremap <Esc><Esc> :nohlsearch<CR>
+nnoremap <CR> i<CR><Esc>
+nnoremap <Esc><Esc> :nohlsearch<CR><Esc>
+nnoremap <C-w> :q!<CR>
 "nnoremap x "_x
 
 noremap <S-h>   0
@@ -31,6 +32,13 @@ vnoremap <S-l>   $h" auto reload .vimrc
 " :term設定 「 E21: 'modifiable'がオフなので、変更できません」の回避>https://translate.google.com/translate?hl=ja&sl=en&u=https://github.com/vim/vim/issues/2216&prev=search&pto=aue
 set termkey=<C-g>
 tnoremap <Esc><Esc> <C-g><S-n>
+tnoremap <Esc><Esc> <C-g><S-n>:q!<CR>
+tnoremap <C-w> <C-g><S-n>:q!<CR>
+
+" エンターキーで補完候補の確定. スニペットの展開もエンターキーで確定
+inoremap <expr><CR> neosnippet#expandable() ? "<Plug>(neosnippet_expand_or_jump)" : pumvisible() ? "<C-y>" : "<CR>"
+" タブキーで補完候補の選択. スニペット内のジャンプもタブキーでジャンプ
+inoremap <expr><TAB> pumvisible() ? "<C-n>" : neosnippet#jumpable() ? "<Plug>(neosnippet_expand_or_jump)" : "<TAB>"
 
 
 " Leader設定
