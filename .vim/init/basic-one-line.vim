@@ -2,7 +2,7 @@
 " 1行で済んでいる設定をまとめたもの
 " Exコマンド一覧：https://vim-jp.org/vimdoc-ja/vimindex.html"ex-cmd-index
 
-"""""" various Area """"""
+"""""" other Area """"""
 filetype plugin indent on
 au BufRead,BufNewFile *.md set filetype=markdown " MarkDown設定
 """""" various End """"""
@@ -10,7 +10,7 @@ au BufRead,BufNewFile *.md set filetype=markdown " MarkDown設定
 
 """""" set Area """"""
 set autoindent
-set clipboard=unnamedplus
+"set clipboard=unnamedplus
 set cursorline
 set hlsearch
 set incsearch
@@ -30,7 +30,6 @@ set encoding=utf-8
 set fileencodings=utf-8
 set ambiwidth=double "全角文字が重ならないようにする設定[https://www.softel.co.jp/blogs/tech/archives/5890]
 """""" set End """"""
-
 
 
 """""" let Area """""" 

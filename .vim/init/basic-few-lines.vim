@@ -5,15 +5,6 @@ set completeopt=menuone,noinsert
 inoremap <expr><CR>  pumvisible() ? "<C-y>" : "<CR>"
 """""""""""" 補完ウィンドウの設定 End
 
-""""""
-augroup source-vimrc
-  au!
-  au BufWritePost *vimrc source $MYVIMRC
-  au BufWritePost *gvimrc if has('gui_running') source $MYGVIMRC
-augroup END
-""""""""""""
-
-
 """""" auto comment off
 augroup auto_comment_off
   au!
@@ -21,7 +12,6 @@ augroup auto_comment_off
   au BufEnter * setlocal formatoptions-=o
 augroup END
 """"""""""""
-
 
 """""" HTML/XML閉じタグ自動補完
 augroup MyXML
@@ -57,4 +47,17 @@ endfunction
  
 set timeout timeoutlen=3000 ttimeoutlen=100 "元々は set ttimeoutlen=150
 au InsertLeave * call Fcitx2en()
+""""""""""""
+
+""""""""""""
+" vp doesn't replace paste buffer
+function! RestoreRegister()
+  let @" = s:restore_reg
+  return ''
+endfunction
+function! s:Repl()
+  let s:restore_reg = @"
+  return "p@=RestoreRegister()\<cr>"
+endfunction
+vmap <silent> <expr> p <sid>Repl()
 """"""""""""

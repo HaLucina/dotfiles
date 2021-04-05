@@ -2,6 +2,7 @@
 
 syntax on
 
+" dein.tomlのhookで実行させる
 augroup SetHybrid
 	au!
 	let g:hybrid_use_iTerm_colorg = 1
