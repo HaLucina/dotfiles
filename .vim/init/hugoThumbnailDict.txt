@@ -4,7 +4,9 @@ git
 go
 hugo
 linux
+monhanrise
 python
 salmon
 spl2twitter
+switch
 vim
