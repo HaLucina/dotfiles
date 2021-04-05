@@ -1,3 +1,27 @@
+#参考：https://qiita.com/GenUchiyama/items/aeef89acd511b4db370c
+[[plugins]]
+repo = 'Shougo/neocomplete.vim'
+hook_add = '''
+let g:neocomplete#enable_at_startup = 1
+let g:neocomplete#sources#syntax#min_keyword_length = 3
+'''
+
+[[plugins]]
+repo = 'Shougo/neosnippet'
+hook_add = '''
+imap <C-k>     <Plug>(neosnippet_expand_or_jump)
+smap <C-k>     <Plug>(neosnippet_expand_or_jump)
+'''
+
+[[plugins]]
+repo = 'Shougo/neosnippet-snippets'
+hook_add = '''
+let g:neosnippet#snippets_directory = [
+\   $HOME . '/.cache/dein/repos/github.com/Shougo/neosnippet-snippets/neosnippets/',
+\   $HOME . '/.vim/snippets/',
+\]
+'''
+
 [[plugins]]
 repo = 'tpope/vim-fugitive'
 
