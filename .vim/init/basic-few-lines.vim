@@ -61,3 +61,21 @@ function! s:Repl()
 endfunction
 vmap <silent> <expr> p <sid>Repl()
 """"""""""""
+
+
+"""""" すでに起動している :terminal があればその :terminal のバッファを開く
+function! s:open(args) abort
+    if empty(term_list())
+        execute "terminal" a:args
+    else
+        let bufnr = term_list()[0]
+        execute term_getsize(bufnr)[0] . "new"
+        execute "buffer + " bufnr
+    endif
+endfunction
+
+
+" すでに :terminal が存在していればその :terminal を使用する
+command! -nargs=*
+\   Terminal call s:open(<q-args>)
+""""""""""""

@@ -12,8 +12,8 @@ nnoremap <CR> A<CR><Esc>
 nnoremap <silent><Esc><Esc> :nohlsearch<CR><Esc>
 " デフォルトのLinuxでは<C-s>と<C-q>を割り当てることは出来ない。
 " .bashrcの設定をいじった。
-nnoremap <Leader>s :w<CR>
-nnoremap <Leader>w :q!<CR>
+nnoremap <C-s> :w<CR>
+nnoremap <C-w> :q!<CR>
 
 " 削除のみブラックホールレジスタ
 vnoremap d "_d
@@ -47,8 +47,8 @@ nnoremap <Leader>p "+p
 nnoremap <Leader>P "+P
 vnoremap <Leader>p "+p
 vnoremap <Leader>P "+P
-nnoremap <Leader><Leader> :term<CR>
 
 " :term設定 「 E21: 'modifiable'がオフなので、変更できません」の回避>https://translate.google.com/translate?hl=ja&sl=en&u=https://github.com/vim/vim/issues/2216&prev=search&pto=aue
 set termkey=<C-g>
-tnoremap <silent><Esc><Esc> <C-g><S-n>
+tnoremap <silent><C-d> <C-g><S-n>
+nnoremap <Leader><Leader> :term<CR>

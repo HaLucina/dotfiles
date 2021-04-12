@@ -117,10 +117,12 @@ if ! shopt -oq posix; then
   fi
 fi
 
-# vimで<C-s>と<C-s>へマッピング可能にする為のもの。
-# https://qiita.com/minamijoyo/items/727e97956a118bae1a99
-stty stop undef
-stty start undef
+# vimで<C-s>と<C-q>へマッピング可能にする為のもの。
+# https://linuxfan.info/disable-ctrl-s
+if [[ -t 0 ]]; then
+  stty stop undef
+  stty start undef
+fi
 
 #.bashrc は対話モードの bash を起動する時に毎回実行されます。具体的な用途は:
 #

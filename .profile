@@ -29,3 +29,7 @@ fi
 if [ -d "$HOME/.local/bin" ] ; then
     PATH="$HOME/.local/bin:$PATH"
 fi
+
+# GOPATHの追加
+export GOROOT=/usr/local/go
+export PATH=$PATH:$GOROOT/bin
