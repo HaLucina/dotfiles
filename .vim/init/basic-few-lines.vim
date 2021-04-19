@@ -74,8 +74,21 @@ function! s:open(args) abort
     endif
 endfunction
 
-
 " すでに :terminal が存在していればその :terminal を使用する
 command! -nargs=*
 \   Terminal call s:open(<q-args>)
+""""""""""""
+
+
+""""""貼り付け時にペーストバッファが上書きされないようにする
+" vp doesn't replace paste buffer
+function! RestoreRegister()
+  let @" = s:restore_reg
+  return ''
+endfunction
+function! s:Repl()
+  let s:restore_reg = @"
+  return "p@=RestoreRegister()\<cr>"
+endfunction
+vmap <silent> <expr> p <sid>Repl()
 """"""""""""
