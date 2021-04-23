@@ -48,3 +48,26 @@ https://knowledge.sakura.ad.jp/22488/
 https://www.atmarkit.co.jp/ait/articles/1706/02/news017.html
 
 C:\Users\gs-keibi.cross\AppData\Local\Google\Chrome\User Data
+
+## PythonとShellScriptの使い分け
+- 標準入力から得られた内容を加工して、結果を標準出力に出す用途が得意
+- 環境依存したくないインストール系作業
+- ステートレスならshell ステートフルならPython
+- 画面スクロールするレベルの量を書くならPython使った方がいい
+- 複雑な計算処理はPython使った方がいい
+- 変数をたくさん使うならPython使った方がいい
+- 実行の過程を標準出力で見るならshell
+- いちいち変数を用意しなくても標準出力でパイプ繋げれば済みそうなものはShell
+- 引数、配列、if、for使う必要あるならPythonの方が楽
+- json使うならPython
+- オブジェクト指向、クラスを考えるほどならPython
+- 非対話出来な
+- ファイル操作は
+- 環境依存が少ない
+  - 基本Unixにはbashがある
+  - Pythonだと2.xの可能性がある
+  - そうじゃなくてもライブラリ依存しているかなどの不安要素がある
+
+### 参考
+- https://eel3.hatenablog.com/entry/20161225/1482676689
+- https://qiita.com/piroor/items/77233173707a0baa6360
