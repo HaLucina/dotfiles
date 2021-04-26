@@ -3,7 +3,15 @@
 """""""""""" 補完ウィンドウの設定
 set completeopt=menuone,noinsert
 inoremap <expr><CR>  pumvisible() ? "<C-y>" : "<CR>"
-"""""""""""" 補完ウィンドウの設定 End
+"""""""""""" 
+
+""""""
+augroup source-vimrc
+  au!
+  au BufWritePost *vimrc source $MYVIMRC
+  au BufWritePost *gvimrc if has('gui_running') source $MYGVIMRC
+augroup END
+""""""""""""
 
 """""" auto comment off
 augroup auto_comment_off
@@ -22,7 +30,6 @@ augroup MyXML
 augroup END
 """"""""""""
 
-
 """""" 全角スペースのハイライト設定
 " 参考[https://oki2a24.com/2019/02/22/attention-when-visualizing-double-byte-space-with-vim-and-error-when-failing/]
 scriptencoding utf-8
@@ -33,7 +40,6 @@ augroup highlightIdegraphicSpace
 augroup END
 colorscheme default
 """"""""""""
-
 
 """""" auto fcitx(挿入モードからコマンドモードになった時、自動的に半角英数にする)
 let g:input_toggle = 1
@@ -47,48 +53,4 @@ endfunction
  
 set timeout timeoutlen=3000 ttimeoutlen=100 "元々は set ttimeoutlen=150
 au InsertLeave * call Fcitx2en()
-""""""""""""
-
-""""""""""""
-" vp doesn't replace paste buffer
-function! RestoreRegister()
-  let @" = s:restore_reg
-  return ''
-endfunction
-function! s:Repl()
-  let s:restore_reg = @"
-  return "p@=RestoreRegister()\<cr>"
-endfunction
-vmap <silent> <expr> p <sid>Repl()
-""""""""""""
-
-
-"""""" すでに起動している :terminal があればその :terminal のバッファを開く
-function! s:open(args) abort
-    if empty(term_list())
-        execute "terminal" a:args
-    else
-        let bufnr = term_list()[0]
-        execute term_getsize(bufnr)[0] . "new"
-        execute "buffer + " bufnr
-    endif
-endfunction
-
-" すでに :terminal が存在していればその :terminal を使用する
-command! -nargs=*
-\   Terminal call s:open(<q-args>)
-""""""""""""
-
-
-""""""貼り付け時にペーストバッファが上書きされないようにする
-" vp doesn't replace paste buffer
-function! RestoreRegister()
-  let @" = s:restore_reg
-  return ''
-endfunction
-function! s:Repl()
-  let s:restore_reg = @"
-  return "p@=RestoreRegister()\<cr>"
-endfunction
-vmap <silent> <expr> p <sid>Repl()
 """"""""""""

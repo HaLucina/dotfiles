@@ -27,5 +27,4 @@ syndaemon -d -t -k
 synclient AreaLeftEdge=400 AreaRightEdge=2500 AreaTopEdge=200
 
 #lxterminal -e vim . -c term
-lxterminal -e vim .
-
+lxterminal

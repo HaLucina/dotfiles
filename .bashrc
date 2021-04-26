@@ -119,6 +119,7 @@ fi
 
 # vimで<C-s>と<C-q>へマッピング可能にする為のもの。
 # https://linuxfan.info/disable-ctrl-s
+# ただし、sttyは非インタラクティブな実行だと反映されない
 if [[ -t 0 ]]; then
   stty stop undef
   stty start undef

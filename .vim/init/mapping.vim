@@ -9,20 +9,21 @@
 " 一番上にもっていかないと<Leader>が読み込まない
 let g:mapleader = "\<Space>"
 
+".vimrcを開く: <Space>e.
+nnoremap <Space>e. :<C-u>edit $MYVIMRC<Enter>
+".vimrcを反映: <Space>s.
+nnoremap <Space>s. :<C-u>source $MYVIMRC<Enter>
+
 nnoremap <CR> A<CR><Esc>
 nnoremap O O<Esc>
 nnoremap <silent><Esc><Esc> :nohlsearch<CR><Esc>
 
 " デフォルトのLinuxでは<C-s>と<C-q>を割り当てることは出来ない。
 " .bashrcの設定をいじった。
-nnoremap <silent><C-s> :w<CR>
-nnoremap <silent><C-q> :q!<CR>
+nnoremap <C-s> :<C-u>w<CR>
+nnoremap <C-q> :<C-u>q!<CR>
 
 " 削除のみブラックホールレジスタ
-vnoremap d "_d
-nnoremap d "_d
-vnoremap D "_D
-nnoremap D "_D
 vnoremap x "_x
 nnoremap x "_x
 vnoremap s "_s
@@ -34,13 +35,14 @@ inoremap <C-h> <BS>
 "カーソル下の単語をハイライトする
 nnoremap <silent> <C-f> :let @/ = '\<' . expand('<cword>') . '\>'<CR>:set hlsearch<CR>
 nnoremap <C-h> <C-f>:%s/<C-r>///g<Left><Left>
-xnoremap <silent> <Space> mz:call <SID>set_vsearch()<CR>:set hlsearch<CR>`z
-xnoremap <C-f> :<C-u>call <SID>set_vsearch()<CR>/<C-r>/<CR>
-xmap <C-h> <Space>:%s/<C-r>///g<Left><Left>
+
 function! s:set_vsearch()
   silent normal gv"zy
   let @/ = '\V' . substitute(escape(@z, '/\'), '\n', '\\n', 'g')
 endfunction
+xnoremap <silent> <Space> mz:call <SID>set_vsearch()<CR>:set hlsearch<CR>`z
+xnoremap <C-f> :<C-u>call <SID>set_vsearch()<CR>/<C-r>/<CR>
+xmap <C-h> <Space>:%s/<C-r>///g<Left><Left>
 
 nnoremap <S-h>   0
 nnoremap <S-j>   }
@@ -65,6 +67,12 @@ nnoremap <Leader>P "+P
 vnoremap <Leader>p "+p
 vnoremap <Leader>P "+P
 
+" ESC to jj
+inoremap <silent> jj <ESC>
+" 日本語入力で”っj”と入力してもEnterキーで確定させればインサートモードを抜ける
+inoremap <silent> っｊ <ESC>
+inoremap <silent> っj <ESC>
+
 "vimのコマンドラインのカーソル移動
 cnoremap <C-p> <Up>
 cnoremap <C-n> <Down>
@@ -74,6 +82,7 @@ cnoremap <C-a> <Home>
 cnoremap <C-e> <End>
 cnoremap <C-d> <Del>
 
+xnoremap p "_xP
 
 " 行を移動
 nnoremap <C-k> "zdd<Up>"zP
@@ -86,4 +95,4 @@ vnoremap <C-j> "zx"zp`[V`]
 " :term設定 「 E21: 'modifiable'がオフなので、変更できません」の回避>https://translate.google.com/translate?hl=ja&sl=en&u=https://github.com/vim/vim/issues/2216&prev=search&pto=aue
 set termkey=<C-g>
 tnoremap <silent><C-d> <C-g><S-n>
-nnoremap <Leader><Leader> :term<CR>
+nnoremap <Leader><Leader> :<C-u>term<CR>

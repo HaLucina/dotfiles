@@ -1,5 +1,4 @@
 "highlightとか色関連の設定
-
 syntax on
 
 " dein.tomlのhookで実行させる

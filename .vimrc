@@ -5,6 +5,3 @@
 
 runtime! .vim/init/*.vim
 runtime! .vim/plugins/*.vim
-"runtime! $HOME/mygits/dotfiles/.vim/plugins/*.vim
-
-

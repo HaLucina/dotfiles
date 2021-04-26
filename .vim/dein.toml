@@ -43,11 +43,13 @@ repo = 'MrPeterLee/VimWordpress'
 [[plugins]]
 repo = 'tpope/vim-markdown'
 
-[[plugins]] # カラースキーマ 参考：https://qiita.com/kawaz/items/ee725f6214f91337b42b
+[[plugins]] # カラースキーマ 
 repo = 'w0ng/vim-hybrid'
-hook_add = '''
-	au SetHybrid VimEnter * nested colorscheme hybrid
-'''
+#参考：https://qiita.com/kawaz/items/ee725f6214f91337b42b
+#hook_add = '''
+#	au SetHybrid VimEnter * nested colorscheme hybrid
+#'''
+#ただし、source ~/.bashrcによる再読込と相性が悪い方法
 
 [[plugins]]
 repo = 'dhruvasagar/vim-table-mode'

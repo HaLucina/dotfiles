@@ -10,8 +10,8 @@ au BufRead,BufNewFile *.md set filetype=markdown " MarkDown設定
 
 """""" set Area """"""
 set autoindent
-"set clipboard=unnamedplus
 set cursorline
+set clipboard=unnamedplus
 set hlsearch
 set incsearch
 set laststatus=2 "ステータス行を常に表示
