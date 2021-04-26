@@ -305,7 +305,7 @@
 </keybind>
 <!--
   Take a screenshot of the current window with scrot when Alt+Print are pressed 
->
+-->
 <keybind key="Print">
   <action name="Execute">
     <command>scrot -e 'mv $f ~/Pictures/'</command>
