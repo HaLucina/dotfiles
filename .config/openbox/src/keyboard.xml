@@ -1,3 +1,4 @@
+<!-- src area -->
 <keybind key = "W-f">
   <keybind key = "x">
     <action name = "ToggleMaximizeFull" />
