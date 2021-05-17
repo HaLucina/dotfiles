@@ -7,11 +7,13 @@ filetype plugin indent on
 au BufRead,BufNewFile *.md set filetype=markdown " MarkDown設定
 """""" various End """"""
 
-
 """""" set Area """"""
 set autoindent
 set cursorline
-set clipboard=unnamedplus
+"nvimの場合=unnamedplus > +=unnamedplus に変更し
+"sudo apt-get install xclip xsel しないとクリップボード動かない
+"https://chakku.hatenablog.com/entry/2015/12/03/004348
+set clipboard+=unnamedplus
 set hlsearch
 set incsearch
 set laststatus=2 "ステータス行を常に表示
@@ -29,8 +31,9 @@ set wildmenu wildmode=list:full
 set encoding=utf-8
 set fileencodings=utf-8
 set ambiwidth=double "全角文字が重ならないようにする設定[https://www.softel.co.jp/blogs/tech/archives/5890]
+set t_TI=
+set t_TE=
 """""" set End """"""
-
 
 """""" let Area """""" 
 let loaded_matchparen = 1 "反対側の括弧をハイライトしない
@@ -46,8 +49,4 @@ let g:netrw_sizestyle="H"
 let g:netrw_timefmt="%Y/%m/%d(%a) %H:%M:%S"
 let g:netrw_winsize = 180
 let g:yankring_n_keys = 'Y D'
-let twitvim_browser_cmd = 'firefox' 
-let twitvim_count = 40
-let twitvim_enable_python = 1 
-let twitvim_force_ssl = 1 
 """""" let End """"""

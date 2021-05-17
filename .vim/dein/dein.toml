@@ -38,18 +38,15 @@ repo = 'kannokanno/previm'
 repo = 'thinca/vim-quickrun'
 
 [[plugins]]
-repo = 'MrPeterLee/VimWordpress'
-
-[[plugins]]
 repo = 'tpope/vim-markdown'
 
 [[plugins]] # カラースキーマ 
 repo = 'w0ng/vim-hybrid'
-#参考：https://qiita.com/kawaz/items/ee725f6214f91337b42b
+##参考：https://qiita.com/kawaz/items/ee725f6214f91337b42b
 #hook_add = '''
-#	au SetHybrid VimEnter * nested colorscheme hybrid
-#'''
-#ただし、source ~/.bashrcによる再読込と相性が悪い方法
+#	au SetHybrid VimEnter * nested colorscheme codedark
+#	'''
+#ただし、source ~/.bashrcによる再読込と相性が悪い方法である
 
 [[plugins]]
 repo = 'dhruvasagar/vim-table-mode'
@@ -72,3 +69,20 @@ repo = 'basyura/bitly.vim'
 [[plugins]]
 repo = 'Shougo/unite.vim'
 
+#[[plugins]]
+#repo = 'lambdalisue/fern.vim' 
+#
+#[[plugins]]
+#repo = 'vim-airline/vim-airline'
+#
+#[[plugins]]
+#repo = 'vim-airline/vim-airline-themes'
+#
+#[[plugins]]
+#repo = 'lambdalisue/nerdfont.vim'
+#
+#[[plugins]]
+#repo = 'lambdalisue/fern-renderer-nerdfont.vim'
+#
+#[[plugins]]
+#repo = 'lambdalisue/glyph-palette.vim'

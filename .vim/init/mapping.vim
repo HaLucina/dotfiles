@@ -1,5 +1,5 @@
-"キーバインドの設定（vim本体）
-" 参考：https://postd.cc/how-to-boost-your-vim-productivity/
+"キーバイン の設定（vim本体）
+" 参考：http://postd.cc/how-to-boost-your-vim-productivity/
 " http://deris.hatenablog.jp/entry/2013/05/02/192415
 " https://easyramble.com/vim-leader-space-vimrc.html
 " https://qiita.com/itmammoth/items/312246b4b7688875d023
@@ -10,9 +10,9 @@
 let g:mapleader = "\<Space>"
 
 ".vimrcを開く: <Space>e.
-nnoremap <Space>e. :<C-u>edit $MYVIMRC<Enter>
+nnoremap <Leader>e. :<C-u>edit $MYVIMRC<Enter>
 ".vimrcを反映: <Space>s.
-nnoremap <Space>s. :<C-u>source $MYVIMRC<Enter>
+nnoremap <Leader>s. :<C-u>source $MYVIMRC<Enter>
 
 nnoremap <CR> A<CR><Esc>
 nnoremap O O<Esc>
@@ -44,6 +44,7 @@ xnoremap <silent> <Space> mz:call <SID>set_vsearch()<CR>:set hlsearch<CR>`z
 xnoremap <C-f> :<C-u>call <SID>set_vsearch()<CR>/<C-r>/<CR>
 xmap <C-h> <Space>:%s/<C-r>///g<Left><Left>
 
+nnoremap <silent><C-l> <C-u>:e!<CR>
 nnoremap <S-h>   0
 nnoremap <S-j>   }
 nnoremap <S-k>   {
@@ -56,16 +57,18 @@ nnoremap j gj
 nnoremap k gk
 nnoremap ZZ <Nop>
 nnoremap ZQ <Nop>
-nnoremap <Leader>h gT
-nnoremap <Leader>l gt
+nnoremap S <Nop>
+nnoremap q <Nop>
 vnoremap <silent> p p`]
 nnoremap <silent> p p`]
-vnoremap <Leader>y "+y
-vnoremap <Leader>d "+d
-nnoremap <Leader>p "+p
-nnoremap <Leader>P "+P
-vnoremap <Leader>p "+p
-vnoremap <Leader>P "+P
+vnoremap <silent><Leader>y "+y
+vnoremap <silent><Leader>d "+d
+nnoremap <silent><Leader>p "+p
+nnoremap <silent><Leader>P "+P
+vnoremap <silent><Leader>p "+p
+vnoremap <silent><Leader>P "+P
+nnoremap <silent><Leader>h :wincmd h<CR>
+nnoremap <silent><Leader>l :wincmd l<CR>
 
 " ESC to jj
 inoremap <silent> jj <ESC>
@@ -73,7 +76,7 @@ inoremap <silent> jj <ESC>
 inoremap <silent> っｊ <ESC>
 inoremap <silent> っj <ESC>
 
-"vimのコマンドラインのカーソル移動
+"vimコマンドラインのカーソル移動
 cnoremap <C-p> <Up>
 cnoremap <C-n> <Down>
 cnoremap <C-b> <Left>
@@ -92,7 +95,18 @@ nnoremap <C-j> "zdd"zp
 vnoremap <C-k> "zx<Up>"zP`[V`]
 vnoremap <C-j> "zx"zp`[V`]
 
-" :term設定 「 E21: 'modifiable'がオフなので、変更できません」の回避>https://translate.google.com/translate?hl=ja&sl=en&u=https://github.com/vim/vim/issues/2216&prev=search&pto=aue
-set termkey=<C-g>
-tnoremap <silent><C-d> <C-g><S-n>
-nnoremap <Leader><Leader> :<C-u>term<CR>
+if has('nvim')
+	"https://zenn.dev/ryo_kawamata/articles/improve-neovmi-terminal
+	tnoremap <silent><C-d> <C-\><C-n>
+	nnoremap <Leader><Leader> :wincmd l<CR>:<C-u>split<CR>:wincmd j<CR>:resize 20<CR>:terminal<CR>
+	autocmd TermOpen * startinsert	
+"	nnoremap <Leader><Leader> :<C-u>split | :<C-u>wincmd j | :<C-u>resize 20 | :<C-u>terminal
+else
+	" :term設定 「 E21: 'modifiable'がオフなので、変更できません」の回避>https://translate.google.com/translate?hl=ja&sl=en&u=https://github.com/vim/vim/issues/2216&prev=search&pto=aue
+" vimのver8.0>8.2にupdateした際に「未知のオプションが発生しました」と出た。termkeyをtermwinkeyに変更すると直った。>https://vim-jp.org/vimmagazine/2018/04/30/vimmagazine.html」
+	set termwinkey=<C-g>
+	tnoremap <silent><C-d> <C-g><S-n>
+	nnoremap <Leader><Leader> :<C-u>term<CR>
+endif
+
+

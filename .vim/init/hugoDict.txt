@@ -5,3 +5,7 @@
 {{< youtube num >}}
 {{< image classes="fancybox center clear fig-100" src="https://res.cloudinary.com/ddghc4l09/.png" title="" >}}
 {{< video "" >}}
+{{< youtube num >}}
+{{% leftarrow %}} text {{% /leftarrow %}}
+{{% rightarrow %}} text {{% /rightarrow %}}
+
