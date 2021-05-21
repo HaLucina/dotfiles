@@ -68,7 +68,6 @@ nnoremap <silent><Leader>P "+P
 vnoremap <silent><Leader>p "+p
 vnoremap <silent><Leader>P "+P
 nnoremap <silent><Leader>h :wincmd h<CR>
-nnoremap <silent><Leader>l :wincmd l<CR>
 
 " ESC to jj
 inoremap <silent> jj <ESC>
@@ -100,7 +99,6 @@ if has('nvim')
 	tnoremap <silent><C-d> <C-\><C-n>
 	nnoremap <Leader><Leader> :wincmd l<CR>:<C-u>split<CR>:wincmd j<CR>:resize 20<CR>:terminal<CR>
 	autocmd TermOpen * startinsert	
-"	nnoremap <Leader><Leader> :<C-u>split | :<C-u>wincmd j | :<C-u>resize 20 | :<C-u>terminal
 else
 	" :term設定 「 E21: 'modifiable'がオフなので、変更できません」の回避>https://translate.google.com/translate?hl=ja&sl=en&u=https://github.com/vim/vim/issues/2216&prev=search&pto=aue
 " vimのver8.0>8.2にupdateした際に「未知のオプションが発生しました」と出た。termkeyをtermwinkeyに変更すると直った。>https://vim-jp.org/vimmagazine/2018/04/30/vimmagazine.html」

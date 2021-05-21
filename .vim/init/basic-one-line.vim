@@ -2,12 +2,14 @@
 " 1行で済んでいる設定をまとめたもの
 " Exコマンド一覧：https://vim-jp.org/vimdoc-ja/vimindex.html"ex-cmd-index
 
+
 """""" other Area """"""
 filetype plugin indent on
 au BufRead,BufNewFile *.md set filetype=markdown " MarkDown設定
 """""" various End """"""
 
 """""" set Area """"""
+set autochdir
 set autoindent
 set cursorline
 "nvimの場合=unnamedplus > +=unnamedplus に変更し
