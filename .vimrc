@@ -34,6 +34,10 @@ call plug#begin($XDG_VIM_HOME.'/plugged')
 	Plug 'lambdalisue/glyph-palette.vim'
 	Plug 'tomasiser/vim-code-dark'
 	Plug 'lambdalisue/fern-git-status.vim'
+Plug 'airblade/vim-gitgutter'
+
+Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }
+Plug 'junegunn/fzf.vim'
 call plug#end()
 
 runtime! init/*.vim
