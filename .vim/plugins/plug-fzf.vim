@@ -36,8 +36,5 @@ nnoremap fl :BLines<CR>
 nnoremap fm :Marks<CR>
 " fhでファイル閲覧履歴検索を開く
 nnoremap fh :History<CR>
-
-
-ajglkajwkr
 " fcでコミット履歴検索を開く
 nnoremap fc :Commits<CR>
