@@ -8,6 +8,7 @@ filetype plugin indent on
 au BufRead,BufNewFile *.md set filetype=markdown " MarkDown設定
 """""" various End """"""
 
+
 """""" set Area """"""
 set autochdir
 set autoindent

@@ -1,3 +1,10 @@
+" 補完表示時のEnterで改行をしない
+inoremap <expr><CR>  pumvisible() ? "<C-y>" : "<CR>"
+
+set completeopt=menuone,noinsert
+inoremap <expr><TAB> pumvisible() ? "<C-n>" : "<TAB>"
+inoremap <expr><S-TAB> pumvisible() ? "<C-p>" : "<S-TAB>"
+
 function! s:TemplateFrom(files)
   let pos = col('.') - 1
   let line = getline('.')

@@ -86,13 +86,9 @@ cnoremap <C-d> <Del>
 
 xnoremap p "_xP
 
-" 行を移動
-nnoremap <C-k> "zdd<Up>"zP
-nnoremap <C-j> "zdd"zp
-
-" 複数行を移動
-vnoremap <C-k> "zx<Up>"zP`[V`]
-vnoremap <C-j> "zx"zp`[V`]
+" タブを移動
+nnoremap <C-h> gT
+nnoremap <C-l> gt
 
 if has('nvim')
 	"https://zenn.dev/ryo_kawamata/articles/improve-neovmi-terminal

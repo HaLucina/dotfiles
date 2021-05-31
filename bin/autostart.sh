@@ -1,4 +1,3 @@
-<< DESCRIPTION
 -----------------------------------------------------------------------------------
 [要約]
 lxterminalのautostartで実行したいことを代行させるbush
@@ -17,8 +16,6 @@ lxterminalのautostartで実行したいことを代行させるbush
 - autostartファイルをdotfilesで管理しようとシンボリックにしたら動かなかったので
   autostartファイルは置いたまま、実行したいことはbushから呼び出すことにした
 -----------------------------------------------------------------------------------
-DESCRIPTION
-
 
 #!/bin/bash
 synclient TapAndDragGesture=0 
@@ -27,4 +24,5 @@ syndaemon -d -t -k
 synclient AreaLeftEdge=400 AreaRightEdge=2500 AreaTopEdge=200
 
 #lxterminal -e vim . -c term
+google-chrome
 lxterminal -e nvim
