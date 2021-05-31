@@ -21,7 +21,7 @@ nnoremap <silent><Esc><Esc> :nohlsearch<CR><Esc>
 " デフォルトのLinuxでは<C-s>と<C-q>を割り当てることは出来ない。
 " .bashrcの設定をいじった。
 nnoremap <C-s> :<C-u>w<CR>
-nnoremap <C-q> :<C-u>q!<CR>
+nnoremap <C-q> :<C-u>q<CR>
 
 " 削除のみブラックホールレジスタ
 vnoremap x "_x
