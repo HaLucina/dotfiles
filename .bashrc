@@ -138,3 +138,6 @@ fi
 
 #alias python3='/usr/local/bin/python3.9'
 #export PYTHONPATH="/home/halucina/.local/lib/python3.6/site-packages:/home/halucina/.local/lib/python2.7/site-packages:$PYTHONPATH"
+
+#https://co.bsnws.net/article/332
+alias bat='/usr/local/bat/bat'

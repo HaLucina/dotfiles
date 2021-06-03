@@ -10,7 +10,8 @@ au BufRead,BufNewFile *.md set filetype=markdown " MarkDown設定
 
 
 """""" set Area """"""
-set autochdir
+"fern.vimと相性が悪い
+"set autochdir
 set autoindent
 set cursorline
 "nvimの場合=unnamedplus > +=unnamedplus に変更し
