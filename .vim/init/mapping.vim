@@ -21,16 +21,13 @@ nnoremap <silent><Esc><Esc> :nohlsearch<CR><Esc>
 " デフォルトのLinuxでは<C-s>と<C-q>を割り当てることは出来ない。
 " .bashrcの設定をいじった。
 nnoremap <C-s> :<C-u>w<CR>
-nnoremap <C-q> :<C-u>q<CR>
+nnoremap <C-q> :<C-u>q!<CR>
 
 " 削除のみブラックホールレジスタ
 vnoremap x "_x
 nnoremap x "_x
 vnoremap s "_s
 nnoremap s "_s
-
-inoremap <C-d> <Del>
-inoremap <C-h> <BS>
 
 "カーソル下の単語をハイライトする
 nnoremap <silent> <C-f> :let @/ = '\<' . expand('<cword>') . '\>'<CR>:set hlsearch<CR>
@@ -102,5 +99,3 @@ else
 	tnoremap <silent><C-d> <C-g><S-n>
 	nnoremap <Leader><Leader> :<C-u>term<CR>
 endif
-
-
