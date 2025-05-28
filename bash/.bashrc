@@ -117,6 +117,37 @@ if ! shopt -oq posix; then
   fi
 fi
 
+
+
+#####################################
+# My customization starts from here
+#####################################
+cd ~
+
+# 色の定義
+YELLOW='\033[1;33m'  # 黄色
+RED='\033[0;31m'     # 赤色
+NC='\033[0m'         # 色をリセット
+
+# ファイルを読み込む関数
+load_mysetups() {
+    if [ -d ~/mysetups ]; then
+        for file in ~/mysetups/*; do
+            if [ -f "$file" ]; then
+                source "$file"
+                echo -e "${YELLOW}Successfully loaded $file.${NC}"
+            else
+                echo -e "${RED}Failed to load $file.${NC}"
+            fi
+        done
+    else
+        echo -e "${RED}Directory ~/mysetups does not exist.${NC}"
+    fi
+}
+
+# 関数を呼び出す
+load_mysetups
+
 # vimで<C-s>と<C-q>へマッピング可能にする為のもの。
 # https://linuxfan.info/disable-ctrl-s
 # ただし、sttyは非インタラクティブな実行だと反映されない
@@ -125,19 +156,3 @@ if [[ -t 0 ]]; then
   stty start undef
 fi
 
-#.bashrc は対話モードの bash を起動する時に毎回実行されます。具体的な用途は:
-#
-#    環境変数でない変数を設定する (export しない変数)
-#    エイリアスを定義する
-#    シェル関数を定義する
-#    コマンドライン補完の設定をする
-#
-#これらは bash を起動する度に毎回設定する必要があるものです。
-# 
-#https://qiita.com/magicant/items/d3bb7ea1192e63fba850
-
-#alias python3='/usr/local/bin/python3.9'
-#export PYTHONPATH="/home/halucina/.local/lib/python3.6/site-packages:/home/halucina/.local/lib/python2.7/site-packages:$PYTHONPATH"
-
-#https://co.bsnws.net/article/332
-alias bat='/usr/local/bat/bat'
