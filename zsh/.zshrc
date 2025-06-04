@@ -8,7 +8,7 @@ setopt histignorealldups sharehistory
 # 同じコマンドの重複を無視し、全てのZshセッションで履歴を共有します。
 
 # Use emacs keybindings even if our EDITOR is set to vi
-bindkey -e
+bindkey -v
 # Emacsのキーバインディングを使用します。
 
 # Keep 1000 lines of history within the shell and save it to ~/.zsh_history:
@@ -87,6 +87,8 @@ alias sz='source ~/.zshrc'
 alias path='echo $PATH'
 alias shell='echo $SHELL'
 alias vn='nvim ~/.config/nvim/init.lua'
+alias v='nvim'
+alias o='(nohup /mnt/z/launchers/obsidian/Obsidian.exe &> /dev/null &)'
 # よく使うコマンドのエイリアスを設定します。
 
 # function
