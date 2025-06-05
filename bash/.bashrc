@@ -57,11 +57,16 @@ if [ -n "$force_color_prompt" ]; then
     fi
 fi
 
+source ~/.git-prompt.sh
 if [ "$color_prompt" = yes ]; then
-    PS1='${debian_chroot:+($debian_chroot)}\[\033[01;32m\]\u@\h\[\033[00m\]:\[\033[01;34m\]\w\[\033[00m\]\$ '
+    PS1='\[\e[30;47m\] \t \[\e[30;46m\] \W $(__git_ps1 "\[\e[30;42m\](%s)")\[\e[0m\]\$ '
 else
-    PS1='${debian_chroot:+($debian_chroot)}\u@\h:\w\$ '
+    PS1='\t \W $(__git_ps1 "(%s)") \$'
 fi
+
+# dircolors
+eval $(dircolors -b ~/.dircolors)
+
 unset color_prompt force_color_prompt
 
 # If this is an xterm set the title to user@host:dir

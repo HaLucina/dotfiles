@@ -10,8 +10,8 @@ vim.opt.termguicolors = true
 -- line    3:
 -- E121: Undefined variable: s:termguicolors
 -- 
--- ~/.dircolors をnvimで編集してカーソルを下に移動していくと上記のエラーがいちいち出てきた。
--- 書行ける策は以下をzshrcに追記すること。
+-- nvimで~/.dircolors を編集してカーソルを下に移動していくと上記のエラーがいちいち出てきた。
+-- 解決策は以下をnvim.luaに追記すること。
 -- 参考 ＞ https://github.com/neovim/neovim/issues/32097
 -- vim.opt.termguicolors = true
 
@@ -34,10 +34,10 @@ if vim.fn.executable('xclip') then
   }
 end
 -- 透明な背景を設定
---vim.cmd [[
---  highlight Normal ctermbg=none guibg=none
---  highlight NonText ctermbg=none guibg=none
---]]
+vim.cmd [[
+  highlight Normal ctermbg=none guibg=none
+  highlight NonText ctermbg=none guibg=none
+]]
 
 -- Lazy
 local lazypath = vim.fn.stdpath("data") .. "/lazy/lazy.nvim"
