@@ -1,0 +1,21 @@
+COLOR_PROMPT_TEXT='009'
+COLOR_PROMPT_GLYPH='255'
+NUM_DIRS_LEFT_OF_TRUNCATION=1
+NUM_DIRS_RIGHT_OF_TRUNCATION=2
+GLYPH_PROMPT_TRUNCATION_SYMBOL='⋯'
+GLYPH_PROMPT_END_SYMBOL='❯'
+
+set_prompt() {
+  [[ $NUM_DIRS_LEFT_OF_TRUNCATION -le 0 ]] && NUM_DIRS_LEFT_OF_TRUNCATION=1
+  [[ $NUM_DIRS_RIGHT_OF_TRUNCATION -le 0 ]] && NUM_DIRS_RIGHT_OF_TRUNCATION=2
+
+  local prompt_truncation_symbol="%F{${COLOR_PROMPT_GLYPH}}%B${GLYPH_PROMPT_TRUNCATION_SYMBOL}%b%f"
+  local prompt_end_symbol="%F{${COLOR_PROMPT_GLYPH}}%B${GLYPH_PROMPT_END_SYMBOL}%b%f"
+  local total_dirs=$(($NUM_DIRS_LEFT_OF_TRUNCATION+$NUM_DIRS_RIGHT_OF_TRUNCATION+1))
+  local dir_path_full="%F{${COLOR_PROMPT_TEXT}}%d%f"
+  local dir_path_truncated="%F{${COLOR_PROMPT_TEXT}}%-${NUM_DIRS_LEFT_OF_TRUNCATION}d/%f${prompt_truncation_symbol}%F{${COLOR_PROMPT_TEXT}}/%${NUM_DIRS_RIGHT_OF_TRUNCATION}d%f"
+
+  PROMPT="%(${total_dirs}C.${dir_path_truncated}.${dir_path_full}) ${prompt_end_symbol} "
+}
+
+precmd_functions+=(set_prompt)

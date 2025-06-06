@@ -119,6 +119,10 @@ gre () {
 }
 # 指定したディレクトリ内でパターンに一致するファイルを検索する関数。
 
+
+######## 参考 > https://joshigaurava.medium.com/custom-zsh-prompt-from-scratch-171e55a80f58
+######## src  > https://gist.github.com/joshigaurava/b437e1fce4c2214fd71c2ea8c4ab852b/revisions
+# 参考を翻訳して理解したい
 # Color and glyph configurations
 COLOR_PROMPT_TEXT='009'              # Red
 COLOR_PROMPT_GLYPH='255'             # White
