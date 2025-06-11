@@ -1,0 +1,21 @@
+# .zshrc（dotfiles/zshrc と同階層の *.shrc を自動で全て読み込み）
+
+# dircolors 設定
+eval $(dircolors -b ~/.dircolors)
+
+# 補完と履歴など基本設定
+setopt histignorealldups sharehistory
+bindkey -e
+HISTSIZE=1000
+SAVEHIST=1000
+HISTFILE=~/.zsh_history
+
+autoload -Uz compinit
+compinit
+
+# --- 分割ファイル一括読み込み ---
+shrc_dir="${HOME}/dotfiles/zsh"  # ここを配置場所に合わせて修正
+
+for shrc_file in "$shrc_dir"/*.shrc; do
+  [ -r "$shrc_file" ] && source "$shrc_file"
+done

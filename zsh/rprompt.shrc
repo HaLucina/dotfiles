@@ -1,29 +1,41 @@
-COLOR_GIT_REPOSITORY_TEXT='245'
-COLOR_GIT_BRANCH_TEXT='255'
-COLOR_GIT_STATUS_CLEAN='010'
-COLOR_GIT_STATUS_DIRTY='009'
-GLYPH_GIT_BRANCH_SYNC_SYMBOL='«'
-GLYPH_GIT_STASH_SYMBOL='∘'
-GLYPH_GIT_STATUS_SYMBOL='»'
+# Color and glyph configurations
+COLOR_GIT_REPOSITORY_TEXT='245'      # Grey
+COLOR_GIT_BRANCH_TEXT='255'          # White
+COLOR_GIT_STATUS_CLEAN='010'         # Green
+COLOR_GIT_STATUS_DIRTY='009'         # Red
+GLYPH_GIT_BRANCH_SYNC_SYMBOL='«'     # DejaVu Sans Mono glyph for Git branch sync status indicator
+GLYPH_GIT_STASH_SYMBOL='∘'           # DejaVu Sans Mono glyph for Git stash indicator
+GLYPH_GIT_STATUS_SYMBOL='»'          # DejaVu Sans Mono glyph for Git status indicator
+
+# Prompt customizations
+precmd_functions+=(set_rprompt)
+
+# Helpers
 
 set_rprompt() {
+  # Attempt to get the current Git branch name
   local git_branch_name=$(git symbolic-ref --short HEAD 2> /dev/null)
   if [[ -z $git_branch_name ]]; then
+    # Unable to get the branch name
     RPROMPT=""
 
     return
   fi
 
+  # Collect Git status information
+
   local git_remote_commit=$(git rev-parse "origin/$git_branch_name" 2> /dev/null)
   local git_local_commit=$(git rev-parse "$git_branch_name" 2> /dev/null)
   local git_branch_sync_color=$COLOR_GIT_STATUS_DIRTY
   if [[ $git_remote_commit == $git_local_commit ]]; then
+    # Branch in sync
     git_branch_sync_color=$COLOR_GIT_STATUS_CLEAN
   fi
 
   local git_stash=$(git stash list)
   local git_stash_symbol=$GLYPH_GIT_STASH_SYMBOL
   if [[ -z $git_stash ]]; then
+    # Empty stash
     git_stash_symbol=""
   fi
 
@@ -31,10 +43,12 @@ set_rprompt() {
   local git_stash_color=$COLOR_GIT_STATUS_DIRTY
   local git_status_color=$COLOR_GIT_STATUS_DIRTY
   if [[ -z $git_status ]]; then
+    # Nothing reported in status
     git_stash_color=$COLOR_GIT_STATUS_CLEAN
     git_status_color=$COLOR_GIT_STATUS_CLEAN
   fi
 
+  # Get the top-level directory of the Git repository
   local git_repository_path=$(git rev-parse --show-toplevel)
   local git_repository_name=$(basename "$git_repository_path")
 
@@ -46,5 +60,3 @@ set_rprompt() {
 
   RPROMPT="${git_repository_text} ${git_branch_sync_symbol}${git_stash_symbol}${git_status_symbol} ${git_branch_text}"
 }
-
-precmd_functions+=(set_rprompt)

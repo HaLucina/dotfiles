@@ -1,0 +1,44 @@
+# 補完時に各候補の説明を表示します。
+zstyle ':completion:*' auto-description 'specify: %d'
+
+# 補完の順序を_expand, _complete, _correct, _approximateの順に設定します。
+zstyle ':completion:*' completer _expand _complete _correct _approximate
+
+# 補完候補リストのフォーマットを設定します。
+zstyle ':completion:*' format 'Completing %d'
+
+# 補完候補のグループ名を設定しません。
+zstyle ':completion:*' group-name ''
+
+# 2つ目の候補から補完メニューを表示します。
+zstyle ':completion:*' menu select=2
+
+# デフォルトの補完リストの色を設定します。
+zstyle ':completion:*:default' list-colors ${(s.:.)LS_COLORS}
+
+# 補完リストの色をリセットします。
+zstyle ':completion:*' list-colors ''
+
+# 補完リストのプロンプトを設定します。
+zstyle ':completion:*' list-prompt %SAt %p: Hit TAB for more, or the character to insert%s
+
+# 補完候補のマッチング方法を設定します。
+zstyle ':completion:*' matcher-list '' 'm:{a-z}={A-Z}' 'm:{a-zA-Z}={A-Za-z}' 'r:|[._-]=* r:|=* l:|=*'
+
+# 長い形式で補完メニューを表示します。
+zstyle ':completion:*' menu select=long
+
+# 補完メニューのスクロールプロンプトを設定します。
+zstyle ':completion:*' select-prompt %SScrolling active: current selection at %p%s
+
+# 古い補完システム（compctl）を使用しないように設定します。
+zstyle ':completion:*' use-compctl false
+
+# 補完時に詳細な情報を表示します。
+zstyle ':completion:*' verbose true
+
+# killコマンドの補完リストでプロセスを表示する際の色を設定します。
+zstyle ':completion:*:*:kill:*:processes' list-colors '=(#b) #([0-9]#)*=0=01;31'
+
+# killコマンドの補完リストで使用するコマンドを設定します。
+zstyle ':completion:*:kill:*' command 'ps -u $USER -o pid,%cpu,tty,cputime,cmd'

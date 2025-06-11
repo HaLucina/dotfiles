@@ -1,0 +1,15 @@
+pss () {
+    if [[ -z "$1" ]]; then
+        echo "Usage: pss <pattern>"
+        return 1
+    fi
+    ps aux | grep -E "PID|$1" | grep -v grep
+}
+
+gre () {
+    if [[ -z "$1" || -z "$2" ]]; then
+        echo "Usage: gre <pattern> <directory>"
+        return 1
+    fi
+    grep -E "$1" -rl "$2"
+}
