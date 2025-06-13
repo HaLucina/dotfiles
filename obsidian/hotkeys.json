@@ -66,7 +66,6 @@
   ],
   "workspace:goto-last-tab": [],
   "editor:open-link-in-new-window": [],
-  "editor:follow-link": [],
   "workspace:edit-file-title": [],
   "markdown:add-metadata-property": [],
   "editor:insert-link": [],
@@ -106,5 +105,30 @@
       ],
       "key": "Enter"
     }
-  ]
+  ],
+  "templater-obsidian:Template/tCreate_new_file_from_selected_text.md": [
+    {
+      "modifiers": [
+        "Mod",
+        "Shift"
+      ],
+      "key": "N"
+    }
+  ],
+  "table-editor-obsidian:table-control-bar": [],
+  "switcher:open": [],
+  "omnisearch:show-modal": [
+    {
+      "modifiers": [
+        "Mod",
+        "Shift"
+      ],
+      "key": "O"
+    }
+  ],
+  "workspace:close-window": [],
+  "editor:delete-paragraph": [],
+  "editor:toggle-bold": [],
+  "editor:toggle-italics": [],
+  "editor:toggle-comments": []
 }
