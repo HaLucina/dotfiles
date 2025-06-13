@@ -186,3 +186,10 @@ Obsidianのコアプラグインに関する設定を管理します。デフォ
 
 ### zk-prefixer.json
 Zettelkastenスタイルのプレフィックスに関する設定を管理します。ノートの命名規則や関連付けに影響します。
+
+
+## memo tmux導入参考
+
+https://dev.to/nexxeln/my-developer-workflow-using-wsl-tmux-and-neovim-55f5
+
+https://gist.github.com/gocs/b69e689f03cf18fda219152e0e0ad422
