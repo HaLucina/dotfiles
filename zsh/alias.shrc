@@ -8,6 +8,14 @@ alias gs='git status'
 alias ga='git add .'
 alias gp='git pull'
 alias gl="git log"
+gcp() {
+  if [ -z "$*" ]; then
+    echo "コミットメッセージを入力してください"
+    return 1
+  fi
+  git commit -m "$*" && git push
+}
+
 alias hi='history'
 alias bu='bundle'
 alias ls='lsd'
@@ -15,6 +23,7 @@ alias lsa='lsd -a'
 alias ll='ls -l'
 alias lla='ls -la'
 alias lt='ls --tree'
+alias lta='ls --tree -a'
 alias ..='cd ..'
 alias rmi='rm -i'
 alias rmf='rm -fr'
