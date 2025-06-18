@@ -10,7 +10,7 @@ alias gp='git pull'
 alias gl="git log"
 gcp() {
   if [ -z "$*" ]; then
-    echo "コミットメッセージを入力してください"
+    echo "Please enter a commit message."
     return 1
   fi
   git commit -m "$*" && git push
