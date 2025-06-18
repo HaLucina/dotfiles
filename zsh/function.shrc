@@ -13,3 +13,10 @@ gre () {
     fi
     grep -E "$1" -rl "$2"
 }
+
+vz () {
+  local dir="$HOME/dotfiles/zsh"
+  local file
+  file=$(ls "$dir"/* "$dir"/.zshrc 2>/dev/null | fzf --prompt="Select zshrc part: " --height=40%) || return
+  nvim "$file"
+}
