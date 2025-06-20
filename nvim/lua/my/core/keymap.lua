@@ -7,13 +7,23 @@ local keymap = vim.keymap -- for conciseness
 -- General Keymaps -------------------
 
 -- use jj to exit insert mode
-keymap.set("i", "jj", "<ESC>", { desc = "Exit insert mode with jk" })
+keymap.set("i", "jj", "<ESC>", { desc = "Exit insert mode with jj" })
+keymap.set("i", "ｊｊ", "<ESC>", { desc = "Exit insert mode with ｊｊ" })
+keymap.set("i", "っｊ", "<ESC>", { desc = "Exit insert mode with っｊ" })
+keymap.set("i", "っj", "<ESC>", { desc = "Exit insert mode with っｊ" })
 
 -- clear search highlights
 keymap.set("n", "<leader>nh", ":nohl<CR>", { desc = "Clear search highlights" })
 
+keymap.set("n", "o", "o<ESC>", { desc = "Leave a blank line which push enter on normal mode" })
+keymap.set("n", "O", "O<ESC>", { desc = "Leave a blank line which push enter on normal mode" })
+
+
 -- delete single character without copying into register
 keymap.set("n", "x", '"_x')
+keymap.set("v", "x", '"_x')
+keymap.set("n", "s", '"_s')
+keymap.set("v", "s", '"_s')
 
 -- increment/decrement numbers
 keymap.set("n", "<leader>+", "<C-a>", { desc = "Increment number" }) -- increment
