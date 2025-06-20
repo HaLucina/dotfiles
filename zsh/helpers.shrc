@@ -1,0 +1,39 @@
+# Help strings for each function
+f_pss_help="pss: Search for processes by pattern.
+Usage: pss <pattern>
+Example: pss ssh"
+
+f_gre_help="gre: Recursively search for files containing a pattern.
+Usage: gre <pattern> <directory>
+Example: gre TODO src/"
+
+f_gcp_help="gcp: Commit and push changes with a commit message check.
+Usage: gcp <commit message>
+Example: gcp 'update README'"
+
+f_vz_help="vz: Fuzzy open and edit zsh config parts using fzf and nvim.
+Usage: vz
+Example: vz"
+
+# man_own function
+man_own() {
+    local fn="$1"
+    local help_var="${fn}_help"
+    if [[ -n ${(P)help_var} ]]; then
+        print -- ${(P)help_var}
+    else
+        print -- "No manual entry for $fn"
+    fi
+}
+
+# require_args function
+require_args() {
+    local funcname="$1"
+    local req_args="$2"
+    shift 2
+    local given_args=$#
+    if (( given_args < req_args )) || [[ "$1" == "help" || "$1" == "-h" || "$1" == "--help" ]]; then
+        man_own "$funcname"
+        return 1
+    fi
+}

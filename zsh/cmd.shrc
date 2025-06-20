@@ -1,23 +1,23 @@
+# Basic commands
 alias wi='which'
 alias cl='clear'
 alias to='touch'
 alias so='source'
 alias bat='batcat'
+alias hi='history'
+alias bu='bundle'
+alias path='echo $PATH'
+alias shell='echo $SHELL'
+
+# Git commands
 alias g='git'
 alias gs='git status'
 alias ga='git add .'
 alias gp='git pull'
-alias gl="git log"
-gcp() {
-  if [ -z "$*" ]; then
-    echo "Please enter a commit message."
-    return 1
-  fi
-  git commit -m "$*" && git push
-}
+alias gl='git log'
+alias gcp='f_gcp'         # git commit and push with a commit message check
 
-alias hi='history'
-alias bu='bundle'
+# File Operations Commands
 alias ls='lsd'
 alias lsa='lsd -a'
 alias ll='ls -l'
@@ -27,9 +27,16 @@ alias lta='ls --tree -a'
 alias ..='cd ..'
 alias rmi='rm -i'
 alias rmf='rm -fr'
+
+alias vz='f_vz'           # Fuzzy open and edit zsh config parts
+
+# Neovim commands
 alias v='nvim'
 alias vn='nvim ~/.config/nvim/init.lua'
 alias sz='source ~/.zshrc'
-alias path='echo $PATH'
-alias shell='echo $SHELL'
+
 alias o='(nohup /mnt/z/launchers/obsidian/Obsidian.exe &> /dev/null &)'
+
+# Custom utility functions
+alias pss='f_pss'         # Search for processes by pattern
+alias gre='f_gre'         # Recursively grep for pattern in files

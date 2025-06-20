@@ -1,0 +1,26 @@
+f_pss() {
+    require_args "${funcstack[1]}" 1 "$@" || return 1
+    ps aux | grep -E "PID|$1" | grep -v grep
+}
+
+f_gre() {
+    require_args "${funcstack[1]}" 2 "$@" || return 1
+    grep -E "$1" -rl "$2"
+}
+
+f_gcp() {
+    # Commit and push changes with a commit message check.
+    if [ -z "$*" ]; then
+        echo "Please enter a commit message."
+        return 1
+    fi
+    git commit -m "$*" && git push
+}
+
+f_vz() {
+    echo 'Fuzzy open and edit zsh config parts using fzf and nvim.'
+    local dir="$HOME/dotfiles/zsh"
+    local file
+    file=$(ls "$dir"/* "$dir"/.zshrc 2>/dev/null | fzf --prompt="Select zshrc part: " --height=40%) || return
+    nvim "$file"
+}
