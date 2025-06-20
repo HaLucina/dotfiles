@@ -3,8 +3,8 @@
 
 
 ## tree
-> [!note]- tree
-> dorfiles
+> [!note]- tree  
+> dorfiles  
 > │  README.md
 > │
 > ├─bash
@@ -120,11 +120,6 @@ https://qiita.com/dev-sabatarou/items/c0a1cf81a8c7a0dfa04a
 
 ## vimコマンド
 
-1. vimでターミナルを使う方法
-https://knowledge.sakura.ad.jp/22488/
-https://knowledge.sakura.ad.jp/23018/
-https://qiita.com/gorilla0513/items/4d1c610f1283bbe46f81
-
 1. netwrの使い方
 https://qiita.com/gorilla0513/items/bf2f78dfec67242f5bcf
 http://sawasawato.blog.fc2.com/blog-entry-57.html
@@ -143,8 +138,6 @@ https://www.atmarkit.co.jp/ait/articles/1706/02/news017.html
 
 
 ## Obsidian 設定ファイル説明
-
-以下のファイルは、Obsidianの各種設定に関連しています。
 
 ### app.json
 アプリケーション全体の設定を管理するファイルです。ユーザーインターフェースや基本的な動作に関する設定が含まれています。
