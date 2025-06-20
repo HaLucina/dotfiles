@@ -39,30 +39,46 @@
 
 
 <a id="ahk"></a><details><summary>
-ahk</summary>
+
+## Auto Hot Key
+
+</summary>
 
 </details>
+
 
 <a id="bash"></a><details><summary>
-bash</summary>
+
+## Bash
+
+</summary>
 
 </details>
+
 
 <a id="chgkey"></a><details><summary>
-chgkey</summary>
+
+## Change Key
+
+</summary>
 
 </details>
+
 
 <a id="nvim"></a><details><summary>
-nvim</summary>
+
+## Neovim
+
+</summary>
 
 </details>
 
-<a id="obsidian"></a>
-<details>
-  <summary>
-    ## Obsidian 設定ファイル説明
-  </summary>
+
+<a id="obsidian"></a><details><summary>
+
+## Obsidian
+
+</summary>
 
 ### app.json
 アプリケーション全体の設定を管理するファイルです。ユーザーインターフェースや基本的な動作に関する設定が含まれています。
@@ -97,30 +113,39 @@ Zettelkastenスタイルのプレフィックスに関する設定を管理し�
 
 </details>
 
+
 <a id="openbox"></a><details><summary>
 
-openbox</summary>
+Openbox
+
+</summary>
 
 </details>
 
 
 <a id="vim"></a><details><summary>
 
-vim</summary>
+Vim
+
+</summary>
 
 </details>
 
 
 <a id="wsl"></a><details><summary>
 
-wsl</summary>
+Windows Subsystem for Linux
+
+</summary>
 
 </details>
 
 
 <a id="zsh"></a><details><summary>
 
-zsh</summary>
+## Z Shell
+
+</summary>
 
 </details>
 
