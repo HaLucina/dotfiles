@@ -1,118 +1,57 @@
-# 目次
-1. [概要](#anchor1)
-1. [順序](#anchor2)
-1. [詳細](#anchor3)
+# TOC
 
-## tree
+1. [ahk](#ahk)
+1. [bash](#bash)
+1. [chgkey](#chgkey)
+1. [nvim](#nvim)
+1. [obsidian](#obsidian)
+1. [openbox](#openbox)
+1. [vim](#vim)
+1. [wsl](#wsl)
+1. [zsh](#zsh)
+
+# Directory tree
 > [!note]- tree  
 > dorfiles  
-> │  README.md  
+> ├─ahk  
 > │  
 > ├─bash  
-> │  │  .bashrc  
-> │  │  .bash_profile  
-> │  │  
 > │  └─sh  
-> │          autostart.sh  
-> │          hello  
 > │  
 > ├─nvim  
-> │      init.lua
-> │      lazy-lock.json
-> │
-> ├─obsidian
-> │  │  .obsidian.vimrc
-> │  │  app.json
-> │  │  appearance.json
-> │  │  command-palette.json
-> │  │  community-plugins.json
-> │  │  core-plugins-migration.json
-> │  │  core-plugins.json
-> │  │  daily-notes.json
-> │  │  hotkeys.json
-> │  │  note-composer.json
-> │  │  page-preview.json
-> │  │  templates.json
-> │  │  types.json
-> │  │  workspace.json
-> │  │  zk-prefixer.json
-> │  │
-> │  └─plugins
-> │          calendar.data.json
-> │          dataview.data.json
-> │          homepage.data.json
-> │          obsidian-another-quick-switcher.data.json
-> │          obsidian-front-matter-title-plugin.data.json
-> │          obsidian-minimal-settings.data.json
-> │          obsidian-style-settings.data.json
-> │          table-editor-obsidian.data.json
-> │          templater-obsidian.data.json
-> │
-> ├─openbox
-> │  │  applications.xml
-> │  │  create-rc.sh
-> │  │  keyboard.xml
-> │  │  lubuntu-rc.xml
-> │  │
-> │  ├─bk
-> │  │      bk-keys.xml
-> │  │      origin-lubuntu-rc.xml
-> │  │      rc-application.xml
-> │  │      rc-key.xml
-> │  │
-> │  ├─default
-> │  │      applications.xml
-> │  │      keyboard.xml
-> │  │
-> │  └─src
-> │          applications.xml
-> │          keyboard.xml
-> │
-> ├─vim
-> │  │  .netrwhist
-> │  │  .vimrc
-> │  │  init.vim
-> │  │
-> │  ├─autoload
-> │  │      plug.vim
-> │  │
-> │  ├─dein
-> │  │      dein.toml
-> │  │      dein.vimrc
-> │  │      deinSettings.vim
-> │  │
-> │  ├─init
-> │  │      basic-few-lines.vim
-> │  │      basic-one-line.vim
-> │  │      color.vim
-> │  │      hugoDict.txt
-> │  │      hugoThumbnailDict.txt
-> │  │      mapping.vim
-> │  │      mycommand.vim
-> │  │      template-commands.vim
-> │  │
-> │  └─plugins
-> │          plug-fern.vim
-> │          plug-fzf.vim
-> │          plug-glyph-palette.vim
-> │          plug-vim-airline.vim
-> │          plug-vim-gitgutter.vim
-> │          plugin-open-browser.vim
-> │          plugin-tweetvim.vim
-> │          plugin-vim-quickrun.vim
-> │
-> └─zsh
->         .zshrc
+> │  
+> ├─obsidian  
+> │  └─plugins  
+> │  
+> ├─openbox  
+> │  ├─bk  
+> │  ├─default  
+> │  └─src  
+> │  
+> ├─vim  
+> │  ├─autoload  
+> │  ├─dein  
+> │  ├─init  
+> │  └─plugins  
+> │  
+> └─zsh  
 > ```
 
 
-<a id="anchor1"></a>
-<details>
-<summary>
+<a id="obsidian"></a><details><summary>
+ahk
+<a id="obsidian"></a><details><summary>
+bash
+<a id="obsidian"></a><details><summary>
+chgkey
+<a id="obsidian"></a><details><summary>
+nvim
 
-## Obsidian 設定ファイル説明
 
-</summary>
+
+<a id="obsidian"></a><details><summary>
+
+## Obsidian 設定ファイル説明</summary>
   
 ### app.json
 アプリケーション全体の設定を管理するファイルです。ユーザーインターフェースや基本的な動作に関する設定が含まれています。
@@ -147,18 +86,25 @@ Zettelkastenスタイルのプレフィックスに関する設定を管理し�
 
 </details>
 
-ahk
-bash
-chgkey
-nvim
-obsidian
+<a id="obsidian"></a><details><summary>
+
 openbox
+
+<a id="obsidian"></a><details><summary>
+
 vim
+
+<a id="obsidian"></a><details><summary>
+
 wsl
+
+<a id="obsidian"></a><details><summary>
+
 zsh
 
+</summary>
 
-
+</details>
 
 ## memo
 https://dev.to/nexxeln/my-developer-workflow-using-wsl-tmux-and-neovim-55f5
