@@ -38,7 +38,8 @@
 > ```
 
 
-<a id="ahk"></a><details><summary>
+<a id="ahk"></a>
+<details><summary>
 
 ## Auto Hot Key
 
@@ -47,7 +48,8 @@
 </details>
 
 
-<a id="bash"></a><details><summary>
+<a id="bash"></a>
+<details><summary>
 
 ## Bash
 
@@ -56,7 +58,8 @@
 </details>
 
 
-<a id="chgkey"></a><details><summary>
+<a id="chgkey"></a>
+<details><summary>
 
 ## Change Key
 
@@ -65,7 +68,8 @@
 </details>
 
 
-<a id="nvim"></a><details><summary>
+<a id="nvim"></a>
+<details><summary>
 
 ## Neovim
 
@@ -74,7 +78,8 @@
 </details>
 
 
-<a id="obsidian"></a><details><summary>
+<a id="obsidian"></a>
+<details><summary>
 
 ## Obsidian
 
@@ -114,7 +119,8 @@ Zettelkastenスタイルのプレフィックスに関する設定を管理し�
 </details>
 
 
-<a id="openbox"></a><details><summary>
+<a id="openbox"></a>
+<details><summary>
 
 Openbox
 
@@ -123,7 +129,8 @@ Openbox
 </details>
 
 
-<a id="vim"></a><details><summary>
+<a id="vim"></a>
+<details><summary>
 
 Vim
 
@@ -132,7 +139,8 @@ Vim
 </details>
 
 
-<a id="wsl"></a><details><summary>
+<a id="wsl"></a>
+<details><summary>
 
 Windows Subsystem for Linux
 
@@ -141,7 +149,8 @@ Windows Subsystem for Linux
 </details>
 
 
-<a id="zsh"></a><details><summary>
+<a id="zsh"></a>
+<details><summary>
 
 ## Z Shell
 
