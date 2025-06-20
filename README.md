@@ -11,7 +11,8 @@
 1. [zsh](#zsh)
 
 # Directory tree
-> [!note]- tree  
+> [!note]- tree
+> ```  
 > dorfiles  
 > ├─ahk  
 > │  
