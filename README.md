@@ -122,7 +122,7 @@ Zettelkastenスタイルのプレフィックスに関する設定を管理し�
 <a id="openbox"></a>
 <details><summary>
 
-Openbox
+## Openbox
 
 </summary>
 
@@ -132,7 +132,7 @@ Openbox
 <a id="vim"></a>
 <details><summary>
 
-Vim
+## Vim
 
 </summary>
 
@@ -142,7 +142,7 @@ Vim
 <a id="wsl"></a>
 <details><summary>
 
-Windows Subsystem for Linux
+## Windows Subsystem for Linux
 
 </summary>
 
