@@ -109,7 +109,9 @@
 <a id="anchor1"></a>
 <details>
 <summary>
+
 ## Obsidian 設定ファイル説明
+
 </summary>
   
 ### app.json
