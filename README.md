@@ -107,19 +107,11 @@
 
 
 <a id="anchor1"></a>
-
-ahk
-bash
-chgkey
-nvim
-obsidian
-openbox
-vim
-wsl
-zsh
-
-
+<details>
+<summary>
 ## Obsidian 設定ファイル説明
+</summary>
+  
 ### app.json
 アプリケーション全体の設定を管理するファイルです。ユーザーインターフェースや基本的な動作に関する設定が含まれています。
 ### appearance.json
@@ -150,6 +142,20 @@ Obsidianのコアプラグインに関する設定を管理します。デフォ
 ワークスペースの設定を管理します。開いているノートやレイアウトに関する情報が含まれています。
 ### zk-prefixer.json
 Zettelkastenスタイルのプレフィックスに関する設定を管理します。ノートの命名規則や関連付けに影響します。
+
+</details>
+
+ahk
+bash
+chgkey
+nvim
+obsidian
+openbox
+vim
+wsl
+zsh
+
+
 
 
 ## memo
