@@ -38,14 +38,26 @@
 > ```
 
 
-<a id="obsidian"></a><details><summary>
-ahk
-<a id="obsidian"></a><details><summary>
-bash
-<a id="obsidian"></a><details><summary>
-chgkey
-<a id="obsidian"></a><details><summary>
-nvim
+<a id="ahk"></a><details><summary>
+ahk</summary>
+
+</details>
+
+<a id="bash"></a><details><summary>
+bash</summary>
+
+</details>
+
+<a id="chgkey"></a><details><summary>
+chgkey</summary>
+
+</details>
+
+<a id="nvim"></a><details><summary>
+nvim</summary>
+
+</details>
+
 
 
 
@@ -86,25 +98,34 @@ Zettelkastenスタイルのプレフィックスに関する設定を管理し�
 
 </details>
 
-<a id="obsidian"></a><details><summary>
+<a id="openbox"></a><details><summary>
 
-openbox
-
-<a id="obsidian"></a><details><summary>
-
-vim
-
-<a id="obsidian"></a><details><summary>
-
-wsl
-
-<a id="obsidian"></a><details><summary>
-
-zsh
-
-</summary>
+openbox</summary>
 
 </details>
+
+
+<a id="vim"></a><details><summary>
+
+vim</summary>
+
+</details>
+
+
+<a id="wsl"></a><details><summary>
+
+wsl</summary>
+
+</details>
+
+
+<a id="zsh"></a><details><summary>
+
+zsh</summary>
+
+</details>
+
+
 
 ## memo
 https://dev.to/nexxeln/my-developer-workflow-using-wsl-tmux-and-neovim-55f5
