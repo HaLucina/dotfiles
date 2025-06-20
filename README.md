@@ -58,12 +58,13 @@ nvim</summary>
 
 </details>
 
+<a id="obsidian"></a>
+<details>
+<summary>
 
+## Obsidian 設定ファイル説明
 
-
-<a id="obsidian"></a><details><summary>
-
-## Obsidian 設定ファイル説明</summary>
+</summary>
   
 ### app.json
 アプリケーション全体の設定を管理するファイルです。ユーザーインターフェースや基本的な動作に関する設定が含まれています。
