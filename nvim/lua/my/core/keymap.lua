@@ -14,8 +14,6 @@ local function search_visual_selection()
     vim.cmd('normal! n')
 end
 
--- memo v mode置換するやつを以下の記事を参考にして改造したい。
--- https://ryota2357.com/blog/2023/neovim-custom-vim-ui-input/
 local function cmd_substitute_last_search_pattern()
     local pat = vim.fn.getreg("/")
     if pat == "" then return end
@@ -25,7 +23,6 @@ local function cmd_substitute_last_search_pattern()
     vim.api.nvim_feedkeys(left .. left .. left, "n", false)
 end
 
--- 1. カーソル下の単語でハイライト (Vimコマンドを入力する)
 local function cmd_input_highlight_cword()
     vim.api.nvim_feedkeys(
         ":let @/ = '\\<' . expand('<cword>') . '\\>'<CR>:set hlsearch<CR>",
@@ -34,19 +31,34 @@ local function cmd_input_highlight_cword()
     )
 end
 
--- 2. 直前の検索パターンで置換 (Vimコマンドを入力する)
 local function cmd_input_substitute_last_search()
     vim.api.nvim_feedkeys(":%s/<C-r>///gc<Left><Left><Left>", "n", false)
 end
 
--- 3. 検索ハイライトを消す (Vimコマンドを入力する)
 local function cmd_input_clear_hlsearch()
-    vim.api.nvim_feedkeys(":nohlsearch | echo ''<CR>", "n", false)
+    vim.api.nvim_feedkeys(":nohlsearch<CR><C-l>", "n", false)
 end
 
-local function paste_and_remove_cr(cmd)
-    vim.cmd('normal! ' .. cmd)
-    vim.cmd('silent! %s/\\r//g')
+-- ノーマル/ビジュアルでp
+local function smart_paste_p()
+    local m = vim.api.nvim_get_mode().mode
+    if m == "n" then
+        vim.cmd('normal! "+p')
+        vim.cmd('silent! %s/\\r//g')
+    elseif m == "v" or m == "V" or m == "\22" then
+        vim.cmd('normal! "_d"0P')
+    end
+end
+
+-- ノーマル/ビジュアルでP
+local function smart_paste_P()
+    local m = vim.api.nvim_get_mode().mode
+    if m == "n" then
+        vim.cmd('normal! "+P')
+        vim.cmd('silent! %s/\\r//g')
+    elseif m == "v" or m == "V" or m == "\22" then
+        vim.cmd('normal! "_d"0P')
+    end
 end
 
 -------------------------
@@ -59,6 +71,10 @@ kmap({ 'i'      },    'jj',             '<ESC>',                                
 kmap({ 'n', 'x' },    ';',              ':',                                    { noremap = true, silent = false, desc = "Remap ; to :" })
 kmap({ 'n', 'x', 'o'}, ':',             ';',                                    { noremap = true, silent = false, desc = "Remap : to ;" })
 
+kmap({ 'i'      },    '<C-d>',          '<Del>',                                { noremap = true, silent = true, desc = "Insert: <C-d> as <Del>" })
+kmap({ 'i'      },    '<C-h>',          '<BS>',                                 { noremap = true, silent = true, desc = "Insert: <C-h> as <BS>" })
+kmap({ 'n'      },    'c',              '"_c',                                  { noremap = true, silent = true, desc = "Change without yanking" })
+
 kmap({ 'n', 'x' },    'H',              '0',                                    { noremap = true, silent = true, desc = "Home row: move to line start" })
 kmap({ 'n', 'x' },    'L',              '$',                                    { noremap = true, silent = true, desc = "Home row: move to line end" })
 kmap({ 'n', 'x' },    'J',              '}',                                    { noremap = true, silent = true, desc = "Home row: move to next paragraph" })
@@ -70,8 +86,9 @@ kmap({ 'n'      },    'o',              'o<ESC>',                               
 kmap({ 'n'      },    'O',              'O<ESC>',                               { noremap = true, silent = true, desc = "Insert blank line above and remain in normal mode" })
 kmap({ 'x'      },    'gg',             'gg0',                                  { noremap = true, silent = true, desc = "Visual: go to first line and head" })
 kmap({ 'x'      },    'G',              'G$',                                   { noremap = true, silent = true, desc = "Visual: go to last line and end" })
-kmap({ 'n', 'x' },    'p',              paste_and_remove_cr('"+p'),             { noremap = true, silent = true, desc = "Paste from clipboard and remove CR" })
-kmap({ 'n', 'x' },    'P',              paste_and_remove_cr('"+P'),             { noremap = true, silent = true, desc = "Paste from clipboard and remove CR" })
+
+kmap({ 'n', 'x' },    'p',              smart_paste_p,                          { noremap = true, silent = true, desc = "Paste from clipboard and remove CR / Visual: paste without yanking selection" })
+kmap({ 'n', 'x' },    'P',              smart_paste_P,                          { noremap = true, silent = true, desc = "Paste from clipboard and remove CR / Visual: paste without yanking selection (reverse)" })
 
 -- Move line(s) up/down
 kmap({ 'n'      },    '<C-k>',          '"zdd<Up>"zP',                          { noremap = true, silent = true, desc = "Move current line up" })
@@ -82,7 +99,7 @@ kmap({ 'x'      },    '<C-j>',          '"zx"zp`[V`]',                          
 -- Search & substitution
 kmap({ 'n', 'x' },    '<C-f>',          cmd_input_highlight_cword,              { noremap = true, silent = true,  desc = "Highlight word under cursor (cmd input)" })
 kmap({ 'n'      },    's',              cmd_input_substitute_last_search,       { noremap = true, silent = false, desc = "Substitute by last search pattern (cmd input)" })
-kmap({ 'n'      },    '<ESC>',          cmd_input_clear_hlsearch,               { noremap = true, silent = false, desc = "Clear search highlights and commandline (cmd input)" })
+kmap({ 'n'      },    '<ESC>',          cmd_input_clear_hlsearch,               { noremap = true, silent = false, desc = "Clear search highlights and redraw (cmd input)" })
 kmap({ 'n'      },    'S',              cmd_substitute_last_search_pattern,     { noremap = true, silent = false, desc = "Substitute by last search pattern (function)" })
 
 -- Scrolling & screen movement
