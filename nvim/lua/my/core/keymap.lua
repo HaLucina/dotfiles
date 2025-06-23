@@ -1,5 +1,5 @@
 vim.g.mapleader = " " -- Set leader key to space
-local keymap = vim.keymap -- for conciseness
+local kmap = vim.keymap.set -- for conciseness
 
 -------------------------
 -- Action Functions
@@ -14,6 +14,9 @@ local function search_visual_selection()
     vim.cmd('normal! n')
 end
 
+
+-- memo v mode置換するやつを以下の記事を参考にして改造したい。
+-- https://ryota2357.com/blog/2023/neovim-custom-vim-ui-input/
 local function substitute_last_search_pattern()
     local pat = vim.fn.getreg("/")
     if pat == "" then return end
@@ -29,73 +32,51 @@ local function paste_and_remove_cr(cmd)
 end
 
 -------------------------
--- General Keymaps Table
+-- Keymaps
 -------------------------
 
-local keymaps = {
-    -- Cursor movement & editing
-    { modes = { 'n', 'v' }, key = 'H',                action = '0',                                        opts = { desc = "Home row: move to line start" } },
-    { modes = { 'n', 'v' }, key = 'L',                action = '$',                                        opts = { desc = "Home row: move to line end" } },
-    { modes = { 'n', 'v' }, key = 'J',                action = '}',                                        opts = { desc = "Home row: move to next paragraph" } },
-    { modes = { 'n', 'v' }, key = 'K',                action = '{',                                        opts = { desc = "Home row: move to previous paragraph" } },
-    { modes = { 'n', 'v' }, key = 'x',                action = '"_x',                                      opts = { desc = "Delete without yanking" } },
-    { modes = { 'n', 'v' }, key = 's',                action = '"_s',                                      opts = { desc = "Substitute without yanking" } },
-    { modes = { 'n'      }, key = 'j',                action = 'gj',                                       opts = { desc = "Smarter line navigation down (gj)" } },
-    { modes = { 'n'      }, key = 'k',                action = 'gk',                                       opts = { desc = "Smarter line navigation up (gk)" } },
-    { modes = { 'n'      }, key = 'o',                action = 'o<ESC>',                                   opts = { desc = "Insert blank line below and remain in normal mode" } },
-    { modes = { 'n'      }, key = 'O',                action = 'O<ESC>',                                   opts = { desc = "Insert blank line above and remain in normal mode" } },
-    { modes = { 'v'      }, key = 'gg',               action = 'gg0',                                      opts = { desc = "Visual: go to first line and head" } },
-    { modes = { 'v'      }, key = 'G',                action = 'G$',                                       opts = { desc = "Visual: go to last line and end" } },
-    { modes = { 'n', 'v' }, key = 'p',                action = function() paste_and_remove_cr('"+p') end,  opts = { desc = "Paste from clipboard and remove CR" } },
-    { modes = { 'n', 'v' }, key = 'P',                action = function() paste_and_remove_cr('"+P') end,  opts = { desc = "Paste from clipboard and remove CR" } },
-    -- Search & substitution
-    { modes = { 'n'      }, key = '<C-f>',            action = 'g*',                                       opts = { desc = "Exact match search under cursor" } },
-    { modes = { 'v'      }, key = '<C-f>',            action = search_visual_selection,                    opts = { desc = "Search exact visual selection (dot etc allowed)" } },
-    { modes = { 'n'      }, key = 's',                action = [[:%s/<C-r>///gc<Left><Left><Left>]],       opts = { desc = "Substitute by last search pattern",               silent = false } },
-    { modes = { 'n'      }, key = 'S',                action = substitute_last_search_pattern,             opts = { desc = "Substitute by last search pattern (function)",    silent = false } },
-    { modes = { 'n'      }, key = '<ESC>',            action = ":nohlsearch | echo ''<CR>",                opts = { desc = "Clear search highlights and commandline",         silent = false } },
-    -- Scrolling & screen movement
-    { modes = { 'n'      }, key = '<C-d>',            action = '<C-d>zz',                                  opts = { desc = "Half page down and center" } },
-    { modes = { 'n'      }, key = '<C-u>',            action = '<C-u>zz',                                  opts = { desc = "Half page up and center" } },
-    { modes = { 'n'      }, key = '<C-l>',            action = 'zl',                                       opts = { desc = "Scroll screen right" } },
-    { modes = { 'n'      }, key = '<C-h>',            action = 'zh',                                       opts = { desc = "Scroll screen left" } },
-    -- Window & tab management
-    { modes = { 'n'      }, key = '<leader>sv',       action = '<C-w>v',                                   opts = { desc = "Split window vertically" } },
-    { modes = { 'n'      }, key = '<leader>sh',       action = '<C-w>s',                                   opts = { desc = "Split window horizontally" } },
-    { modes = { 'n'      }, key = '<leader>se',       action = '<C-w>=',                                   opts = { desc = "Make splits equal size" } },
-    { modes = { 'n'      }, key = '<leader>sx',       action = '<cmd>close<CR>',                           opts = { desc = "Close current split" } },
-    { modes = { 'n'      }, key = '<leader>to',       action = '<cmd>tabnew<CR>',                          opts = { desc = "Open new tab" } },
-    { modes = { 'n'      }, key = '<leader>tx',       action = '<cmd>tabclose<CR>',                        opts = { desc = "Close current tab" } },
-    { modes = { 'n'      }, key = '<leader>tn',       action = '<cmd>tabn<CR>',                            opts = { desc = "Go to next tab" } },
-    { modes = { 'n'      }, key = '<leader>tp',       action = '<cmd>tabp<CR>',                            opts = { desc = "Go to previous tab" } },
-    { modes = { 'n'      }, key = '<leader>tf',       action = '<cmd>tabnew %<CR>',                        opts = { desc = "Open current buffer in new tab" } },
-    -- Miscellaneous
-    { modes = { 'n'      }, key = '<leader><leader>', action = ':so<CR>',                                  opts = { desc = "Source current file" } },
-    { modes = { 'i'      }, key = 'jj',               action = '<ESC>',                                    opts = { desc = "Exit insert mode with jj" } },
-}
+kmap({ 'n', 'x' }, 'H',                '0',                                      { noremap = true, silent = true, desc = "Home row: move to line start" })
+kmap({ 'n', 'x' }, 'L',                '$',                                      { noremap = true, silent = true, desc = "Home row: move to line end" })
+kmap({ 'n', 'x' }, 'J',                '}',                                      { noremap = true, silent = true, desc = "Home row: move to next paragraph" })
+kmap({ 'n', 'x' }, 'K',                '{',                                      { noremap = true, silent = true, desc = "Home row: move to previous paragraph" })
+kmap({ 'n', 'x' }, 'x',                '"_x',                                    { noremap = true, silent = true, desc = "Delete without yanking" })
+kmap({ 'n', 'x' }, 's',                '"_s',                                    { noremap = true, silent = true, desc = "Substitute without yanking" })
+kmap({ 'n'      }, 'j',                 'gj',                                     { noremap = true, silent = true, desc = "Smarter line navigation down (gj)" })
+kmap({ 'n'      }, 'k',                 'gk',                                     { noremap = true, silent = true, desc = "Smarter line navigation up (gk)" })
+kmap({ 'n'      }, 'o',                 'o<ESC>',                                { noremap = true, silent = true, desc = "Insert blank line below and remain in normal mode" })
+kmap({ 'n'      }, 'O',                 'O<ESC>',                                { noremap = true, silent = true, desc = "Insert blank line above and remain in normal mode" })
+kmap({ 'x'      }, 'gg',                'gg0',                                   { noremap = true, silent = true, desc = "Visual: go to first line and head" })
+kmap({ 'x'      }, 'G',                 'G$',                                    { noremap = true, silent = true, desc = "Visual: go to last line and end" })
+kmap({ 'n', 'x' }, 'p',                 function() paste_and_remove_cr('"+p') end, { noremap = true, silent = true, desc = "Paste from clipboard and remove CR" })
+kmap({ 'n', 'x' }, 'P',                 function() paste_and_remove_cr('"+P') end, { noremap = true, silent = true, desc = "Paste from clipboard and remove CR" })
 
--------------------------
--- Keymap Option Merge Utility
--------------------------
+-- Search & substitution
+kmap({ 'n'      }, '<C-f>',             'g*',                                    { noremap = true, silent = true, desc = "Exact match search under cursor" })
+kmap({ 'x'      }, '<C-f>',             search_visual_selection,                 { noremap = true, silent = true, desc = "Search exact visual selection (dot etc allowed)" })
+kmap({ 'n'      }, 's',                 [[:%s/<C-r>///gc<Left><Left><Left>]],    { noremap = true, silent = false, desc = "Substitute by last search pattern" })
+kmap({ 'n'      }, 'S',                 substitute_last_search_pattern,          { noremap = true, silent = false, desc = "Substitute by last search pattern (function)" })
+kmap({ 'n'      }, '<ESC>',             ":nohlsearch | echo ''<CR>",             { noremap = true, silent = false, desc = "Clear search highlights and commandline" })
 
-local function merge_opts(custom)
-    local base = { noremap = true, silent = true }
-    if not custom then return base end
-    local merged = {}
-    for k, v in pairs(base) do merged[k] = v end
-    for k, v in pairs(custom) do merged[k] = v end
-    return merged
-end
+-- Scrolling & screen movement
+kmap({ 'n'      }, '<C-d>',             '<C-d>zz',                               { noremap = true, silent = true, desc = "Half page down and center" })
+kmap({ 'n'      }, '<C-u>',             '<C-u>zz',                               { noremap = true, silent = true, desc = "Half page up and center" })
+kmap({ 'n'      }, '<C-l>',             'zl',                                    { noremap = true, silent = true, desc = "Scroll screen right" })
+kmap({ 'n'      }, '<C-h>',             'zh',                                    { noremap = true, silent = true, desc = "Scroll screen left" })
 
--------------------------
--- Register Keymaps
--------------------------
+-- Window & tab management
+kmap({ 'n'      }, '<leader>sv',        '<C-w>v',                                { noremap = true, silent = true, desc = "Split window vertically" })
+kmap({ 'n'      }, '<leader>sh',        '<C-w>s',                                { noremap = true, silent = true, desc = "Split window horizontally" })
+kmap({ 'n'      }, '<leader>se',        '<C-w>=',                                { noremap = true, silent = true, desc = "Make splits equal size" })
+kmap({ 'n'      }, '<leader>sx',        '<cmd>close<CR>',                        { noremap = true, silent = true, desc = "Close current split" })
+kmap({ 'n'      }, '<leader>to',        '<cmd>tabnew<CR>',                       { noremap = true, silent = true, desc = "Open new tab" })
+kmap({ 'n'      }, '<leader>tx',        '<cmd>tabclose<CR>',                     { noremap = true, silent = true, desc = "Close current tab" })
+kmap({ 'n'      }, '<leader>tn',        '<cmd>tabn<CR>',                         { noremap = true, silent = true, desc = "Go to next tab" })
+kmap({ 'n'      }, '<leader>tp',        '<cmd>tabp<CR>',                         { noremap = true, silent = true, desc = "Go to previous tab" })
+kmap({ 'n'      }, '<leader>tf',        '<cmd>tabnew %<CR>',                     { noremap = true, silent = true, desc = "Open current buffer in new tab" })
 
-for _, m in ipairs(keymaps) do
-    for _, mode in ipairs(m.modes) do
-        keymap.set(mode, m.key, m.action, merge_opts(m.opts))
-    end
-end
+-- Miscellaneous
+kmap({ 'n'      }, '<leader><leader>',  ':so<CR>',                               { noremap = true, silent = true, desc = "Source current file" })
+kmap({ 'i'      }, 'jj',                '<ESC>',                                 { noremap = true, silent = true, desc = "Exit insert mode with jj" })
 
 -------------------------
 -- Fileformat autocmd (Separate)
@@ -108,5 +89,3 @@ vim.api.nvim_create_autocmd("BufWritePre", {
     end,
     desc = "Always save files with unix (LF) line endings",
 })
-
-
