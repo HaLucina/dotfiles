@@ -1,17 +1,45 @@
 vim.cmd("let g:netrw_liststyle = 3")
 
 -- 透明な背景を設定
-vim.cmd [[
-  highlight Normal ctermbg=none guibg=none
-  highlight NonText ctermbg=none guibg=none
-]]
+-- vim.cmd [[
+--   highlight Normal ctermbg=none guibg=none
+--   highlight NonText ctermbg=none guibg=none
+-- ]]
+
+vim.api.nvim_set_hl(0, "Normal", { ctermbg = "none", bg = "none" })
+vim.api.nvim_set_hl(0, "NonText", { ctermbg = "none", bg = "none" })
 
 local opt = vim.opt -- for conciseness
 
+-- 全角スペースを常時ハイライト
+vim.api.nvim_set_hl(0, "IdeographicSpace", { bg = "#006400" })
+vim.fn.matchadd("IdeographicSpace", "　")
+vim.api.nvim_create_autocmd("ColorScheme", {
+  callback = function()
+    vim.api.nvim_set_hl(0, "IdeographicSpace", { bg = "#006400" })
+  end,
+})
 
+local uname = vim.uv.os_uname()
+local group = vim.api.nvim_create_augroup("kyoh86-conf-ime", {})
+if uname.sysname == "Linux" then
+  if os.getenv("WSL_DISTRO_NAME") ~= "" then
+    vim.api.nvim_create_autocmd("InsertLeave", {
+      group = group,
+      command = "silent! !zenhan.exe 0",
+    })
+  else
+    -- 割愛: WSL以外の設定
+    vim.api.nvim_create_autocmd("InsertLeave", { 
+      callback = function()
+    vim.fn.jobstart({ "fcitx-remote", "-c" })
+      end,
+    })
+  end
+else
+  -- 割愛: Linux以外の設定
+end
 
-vim.scriptencoding = 'utf-8'
-vim.wo.number = true
 opt.encoding = 'utf-8'
 opt.fileencoding = 'utf-8'
 
@@ -36,7 +64,7 @@ opt.expandtab = true -- expand tab to spaces
 opt.autoindent = true -- copy indent from current line when starting new one
 
 -- line wrapping
-opt.wrap = false -- disable line wrapping
+opt.wrap = false -- enable line wrapping
 
 -- search settings
 opt.ignorecase = true -- ignore case when searching
