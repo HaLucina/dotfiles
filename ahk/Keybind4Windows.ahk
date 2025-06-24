@@ -9,9 +9,10 @@ F13 & a::Send {Blind}{End}       ; F13 + a でEndキー（行末へ移動）
 F13 & BS::Send {Del}             ; F13 + バックスペースでDeleteキー
 F13 & r::Send {F2}               ; F13 + r でF2キー送信（名前変更など）
 
-; 「；」キーを「:」 「Shift+;」を「:」で出力
-sc027::Send, :
-+sc027::Send, `;
+; 「；」キーを「:」 「Shift+;」を「:」で出力（sc027は日本語配列の;キー）
+; Neovimの方で設定するのでコメントアウト
+; sc027::Send, :
+; +sc027::Send, `;
 
 ; Alt(!)との組み合わせ（sc027は日本語配列の;キー）
 !h::Send !{Left}                 ; Alt + h でAlt+左矢印（←ブラウザ戻る等）
