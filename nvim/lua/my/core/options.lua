@@ -43,11 +43,13 @@ end
 opt.encoding = 'utf-8'
 opt.fileencoding = 'utf-8'
 
--- Error detected while processing CursorMoved Autocommands for "<buffer=1>"..function <SNR>22_preview_color[41]..<SNR>22_get_hi_str:
+-- Error detected while processing CursorMoved Autocommands for 
+-- "<buffer=1>"..function <SNR>22_preview_color[41]..<SNR>22_get_hi_str:
 -- line    3:
 -- E121: Undefined variable: s:termguicolors
 -- 
--- nvimで~/.dircolors を編集してカーソルを下に移動していくと上記のエラーがいちいち出てきた。
+-- nvimで~/.dircolors を編集してカーソルを下に移動していくと上記のエラーが
+-- いちいち出てきた。
 -- 解決策は以下をnvim.luaに追記すること。
 -- 参考 ＞ https://github.com/neovim/neovim/issues/32097
 -- vim.opt.termguicolors = true
@@ -80,6 +82,8 @@ opt.cursorline = true -- highlight the current cursor line
 opt.termguicolors = true
 opt.background = "dark" -- colorschemes that can be light or dark will be made dark
 opt.signcolumn = "yes" -- show sign column so that text doesn't shift
+opt.colorcolumn = {80, 100, 120}
+vim.api.nvim_set_hl(0, "ColorColumn", { bg = "#454545" })
 
 -- backspace
 opt.backspace = "indent,eol,start" -- allow backspace on indent, end of line or insert mode start position

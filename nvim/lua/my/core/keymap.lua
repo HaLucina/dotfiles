@@ -24,9 +24,7 @@ end
 
 local function cmd_input_highlight_cword()
     vim.api.nvim_feedkeys(
-        ":let @/ = '\\<' . expand('<cword>') . '\\>'<CR>:set hlsearch<CR>",
-        "n",
-        false
+        ":let @/ = '\\<' . expand('<cword>') . '\\>'<CR>:set hlsearch<CR>", "n", false
     )
 end
 
@@ -35,7 +33,7 @@ local function cmd_input_substitute_last_search()
 end
 
 local function cmd_input_clear_hlsearch()
-    vim.api.nvim_feedkeys(":nohlsearch<CR><C-l>", "n", true)
+    vim.api.nvim_feedkeys(":nohlsearch<CR><ESC><C-l>", "n", false)
 end
 
 -- ノーマル/ビジュアルでp
