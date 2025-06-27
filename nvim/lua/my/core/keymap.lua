@@ -3,37 +3,36 @@ vim.g.mapleader = " " -- Set leader key to space
 -------------------------
 -- Action Functions
 -------------------------
-
-local function search_visual_selection()
-    vim.cmd('normal! "zy')
-    local text = tostring(vim.fn.getreg('z'))
-    text = text:match('^%s*(.-)%s*$')
-    if text == "" or text:find('\n') then return end
-    vim.fn.setreg('/', vim.fn.escape(text, [[/\]]))
-    vim.cmd('normal! n')
+local function highlight_off_and_redraw()
+    vim.cmd("nohlsearch | redraw")
 end
 
-local function cmd_substitute_last_search_pattern()
-    local pat = vim.fn.getreg("/")
-    if pat == "" then return end
-    local rep = string.format("%%s/\\V%s/", vim.fn.escape(pat, [[/\]]))
+local function higtlight_text()
+    local pattern
+    local text
+    local mode = vim.fn.mode()
+    if mode == "v" or mode == "V" or mode == "\22" then
+        vim.cmd('normal! "zy')
+        text = tostring(vim.fn.getreg('z'))
+        text = text:match('^%s*(.-)%s*$')
+        if text == "" or text:find('\n') then return end
+        pattern = "\\V" .. vim.fn.escape(text, [[\]])
+    else
+        text = vim.fn.expand("<cword>")
+        pattern = "\\<" .. text .. "\\>"
+    end
+    vim.fn.setreg("/", pattern)
+    vim.opt.hlsearch = true
+end
+    
+local function open_cmdline_for_substitute()
+    highlight_text()
+    local pattern = vim.fn.getreg("/")
+    if pattern == "" then return end
+    local rep = string.format("%%s/%s/", pattern)
     vim.api.nvim_feedkeys(":" .. rep .. "/gc", "n", false)
     local left = vim.api.nvim_replace_termcodes("<Left>", true, false, true)
     vim.api.nvim_feedkeys(left .. left .. left, "n", false)
-end
-
-local function cmd_input_highlight_cword()
-    vim.api.nvim_feedkeys(
-        ":let @/ = '\\<' . expand('<cword>') . '\\>'<CR>:set hlsearch<CR>", "n", false
-    )
-end
-
-local function cmd_input_substitute_last_search()
-    vim.api.nvim_feedkeys(":%s/<C-r>///gc<Left><Left><Left>", "n", false)
-end
-
-local function cmd_input_clear_hlsearch()
-    vim.api.nvim_feedkeys(":nohlsearch<CR><ESC><C-l>", "n", false)
 end
 
 -- ノーマル/ビジュアルでp
@@ -64,6 +63,7 @@ end
 
 local kmap = vim.keymap.set
 
+
 -----| Mode             | Keys         | Command                           | Description
 -----|------------------|--------------|-----------------------------------|--------------
 kmap( { 'n', 'x',     }, '<leader>so,', ':so<CR>',                          { noremap = true,  silent = true,  desc = "Source current file" })
@@ -77,8 +77,8 @@ kmap( { 'n',          }, 'c',           '"_c',                              { no
 
 kmap( { 'n', 'x',     }, 'H',           '0',                                { noremap = true,  silent = true,  desc = "Home row: move to line start" })
 kmap( { 'n', 'x',     }, 'L',           '$',                                { noremap = true,  silent = true,  desc = "Home row: move to line end" })
-kmap( { 'n', 'x',     }, 'J',           '}',                                { noremap = true,  silent = true,  desc = "Home row: move to next paragraph" })
-kmap( { 'n', 'x',     }, 'K',           '{',                                { noremap = true,  silent = true,  desc = "Home row: move to previous paragraph" })
+kmap( { 'n', 'x',     }, 'J',           '}zz',                                { noremap = true,  silent = true,  desc = "Home row: move to next paragraph" })
+kmap( { 'n', 'x',     }, 'K',           '{zz',                                { noremap = true,  silent = true,  desc = "Home row: move to previous paragraph" })
 kmap( { 'n', 'x',     }, 'x',           '"_x',                              { noremap = true,  silent = true,  desc = "Delete without yanking" })
 kmap( { 'n',          }, 'j',           'gj',                               { noremap = true,  silent = true,  desc = "Smarter line navigation down (gj)" })
 kmap( { 'n',          }, 'k',           'gk',                               { noremap = true,  silent = true,  desc = "Smarter line navigation up (gk)" })
@@ -88,8 +88,9 @@ kmap( { 'x',          }, 'gg',          'gg0',                              { no
 kmap( { 'x',          }, 'G',           'G$',                               { noremap = true,  silent = true,  desc = "Visual: go to last line and end" })
 
 -- Paste
-kmap( { 'n', 'x',     }, 'p',           smart_paste_p,                      { noremap = true,  silent = true,  desc = "Paste from clipboard and remove CR / Visual: paste without yanking selection" })
-kmap( { 'n', 'x',     }, 'P',           smart_paste_P,                      { noremap = true,  silent = true,  desc = "Paste from clipboard and remove CR / Visual: paste without yanking selection (reverse)" })
+kmap( { 'n', 'v',     }, 'p',           smart_paste_p,                      { noremap = true,  silent = true,  desc = "Paste from clipboard and remove CR / Visual: paste without yanking selection" })
+kmap( { 'n', 'v',     }, 'P',           smart_paste_P,                      { noremap = true,  silent = true,  desc = "Paste from clipboard and remove CR / Visual: paste without yanking selection (reverse)" })
+
 
 -- Move line(s) up/down
 kmap( { 'n',          }, '<C-k>',       '"zdd<Up>"zP',                      { noremap = true,  silent = true,  desc = "Move current line up" })
@@ -98,10 +99,9 @@ kmap( { 'x',          }, '<C-k>',       '"zx<Up>"zP`[V`]',                  { no
 kmap( { 'x',          }, '<C-j>',       '"zx"zp`[V`]',                      { noremap = true,  silent = true,  desc = "Move selected lines down" })
 
 -- Search & substitution
-kmap( { 'n', 'x',     }, '<C-f>',       cmd_input_highlight_cword,          { noremap = true,  silent = true,  desc = "Highlight word under cursor (cmd input)" })
-kmap( { 'n',          }, 's',           cmd_input_substitute_last_search,   { noremap = true,  silent = false, desc = "Substitute by last search pattern (cmd input)" })
-kmap( { 'n',          }, '<ESC>',       cmd_input_clear_hlsearch,           { noremap = true,  silent = true,  desc = "Clear search highlights and redraw (cmd input)" })
-kmap( { 'n',          }, 'S',           cmd_substitute_last_search_pattern, { noremap = true, silent = false, desc = "Substitute by last search pattern (function)" })
+kmap( { 'n', 'x',     }, '<C-f>',       higtlight_text,          { noremap = true,  silent = true,  desc = "Highlight word under cursor (cmd input)" })
+kmap( { 'n', 'x',     }, 's',           open_cmdline_for_substitute,   { noremap = true,  silent = false, desc = "Substitute by last search pattern (cmd input)" })
+kmap( { 'n',          }, '<ESC>',       highlight_off_and_redraw,           { noremap = true,  silent = true,  desc = "Clear search highlights and redraw (cmd input)" })
 
 -- Scrolling & screen movement
 kmap( { 'n',          }, '<C-d>',       '<C-d>zz',                          { noremap = true,  silent = true,  desc = "Half page down and center" })
