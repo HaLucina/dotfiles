@@ -1,57 +1,7 @@
 -- Set leader key to space
 vim.g.mapleader = " " 
-
--------------------------
--- Action Functions
--------------------------
-local function highlight_off_and_redraw()
-    vim.cmd("nohlsearch | redraw")
-end
-
-local function highlight_text()
-    local pattern
-    local text
-    local mode = vim.fn.mode()
-    if mode == "v" or mode == "V" or mode == "\22" then
-        vim.cmd('normal! "zy')
-        text = tostring(vim.fn.getreg('z'))
-        text = text:match('^%s*(.-)%s*$')
-        if text == "" or text:find('\n') then return end
-        pattern = "\\V" .. vim.fn.escape(text, [[\]])
-    else
-        text = vim.fn.expand("<cword>")
-        pattern = "\\<" .. text .. "\\>"
-    end
-    vim.fn.setreg("/", pattern)
-    vim.opt.hlsearch = true
-end
-    
-local function open_cmdline_for_substitute()
-    highlight_text()
-    local pattern = vim.fn.getreg("/")
-    local rep = string.format("%%s/%s/", pattern)
-    local left3 = string.rep(vim.api.nvim_replace_termcodes("<Left>", true, false, true), 3)
-    vim.api.nvim_feedkeys(":" .. rep .. "/gc" .. left3, "n", false)
-end
-
-local function smart_paste(which)
-    local m = vim.fn.mode()
-    local op = (which == "p") and '"+p' or '"+P'
-    local d_op = (which == "p") and '"+p' or '"+P'
-    if m == "n" then
-        vim.cmd('normal! ' .. op)
-    elseif m == "v" or m == "V" or m == "\22" then
-        vim.cmd('normal! "_d' .. '"+P')
-    end
-    vim.cmd('silent! %s/\\r//g')
-end
-
--------------------------
--- Keymaps
--------------------------
-
+local f = require('my.core.functions')
 local kmap = vim.keymap.set
-
 
 -----| Mode             | Keys         | Command                        | Description
 -----|------------------|--------------|--------------------------------|--------------
@@ -73,15 +23,15 @@ kmap( { 'n',          }, 'o',           'o<ESC>',                        { norem
 kmap( { 'n',          }, 'O',           'O<ESC>',                        { noremap = true,  silent = true,  desc = "Insert blank line above and remain in normal mode" })
 kmap( { 'x',          }, 'gg',          'gg0',                           { noremap = true,  silent = true,  desc = "Visual: go to first line and head" })
 kmap( { 'x',          }, 'G',           'G$',                            { noremap = true,  silent = true,  desc = "Visual: go to last line and end" })
-kmap( { 'n', 'v'      }, 'p',           function() smart_paste('p') end, { noremap = true,  silent = true })
-kmap( { 'n', 'v'      }, 'P',           function() smart_paste('P') end, { noremap = true,  silent = true })
+kmap( { 'n', 'v'      }, 'p',           function() f.paste_as_lf('p') end, { noremap = true,  silent = true })
+kmap( { 'n', 'v'      }, 'P',           function() f.paste_as_lf('P') end, { noremap = true,  silent = true })
 kmap( { 'n',          }, '<C-k>',       '"zdd<Up>"zP',                   { noremap = true,  silent = true,  desc = "Move current line up" })
 kmap( { 'n',          }, '<C-j>',       '"zdd"zp',                       { noremap = true,  silent = true,  desc = "Move current line down" })
 kmap( { 'x',          }, '<C-k>',       '"zx<Up>"zP`[V`]',               { noremap = true,  silent = true,  desc = "Move selected lines up" })
 kmap( { 'x',          }, '<C-j>',       '"zx"zp`[V`]',                   { noremap = true,  silent = true,  desc = "Move selected lines down" })
-kmap( { 'n', 'x',     }, '<C-f>',       highlight_text,                  { noremap = false, silent = true,  desc = "Highlight word under cursor (cmd input)" })
-kmap( { 'n', 'x',     }, 's',           open_cmdline_for_substitute,     { noremap = true,  silent = false, desc = "Substitute by last search pattern (cmd input)" })
-kmap( { 'n',          }, '<ESC>',       highlight_off_and_redraw,        { noremap = true,  silent = true,  desc = "Clear search highlights and redraw (cmd input)" })
+kmap( { 'n', 'x',     }, '<C-f>',       f.highlight_text,                  { noremap = false, silent = true,  desc = "Highlight word under cursor (cmd input)" })
+kmap( { 'n', 'x',     }, 's',           f.open_cmdline_for_substitute,     { noremap = true,  silent = false, desc = "Substitute by last search pattern (cmd input)" })
+kmap( { 'n',          }, '<ESC>',       f.highlight_off_and_redraw,        { noremap = true,  silent = true,  desc = "Clear search highlights and redraw (cmd input)" })
 kmap( { 'n',          }, '<C-d>',       '<C-d>zz',                       { noremap = true,  silent = true,  desc = "Half page down and center" })
 kmap( { 'n',          }, '<C-u>',       '<C-u>zz',                       { noremap = true,  silent = true,  desc = "Half page up and center" })
 kmap( { 'n',          }, '<C-l>',       'zl',                            { noremap = true,  silent = true,  desc = "Scroll screen right" })
@@ -102,15 +52,3 @@ kmap( { 'c',          }, '<C-f>',       '<Right>',                       { norem
 kmap( { 'c',          }, '<C-a>',       '<Home>',                        { noremap = true,  silent = true,  desc = "Cmdline: move to start" })
 kmap( { 'c',          }, '<C-e>',       '<End>',                         { noremap = true,  silent = true,  desc = "Cmdline: move to end" })
 kmap( { 'c',          }, '<C-d>',       '<Del>',                         { noremap = true,  silent = true,  desc = "Cmdline: delete character" })
-
--------------------------
--- Fileformat autocmd (Separate)
--------------------------
-
-vim.api.nvim_create_autocmd("bufwritepre", {
-    pattern = "*",
-    callback = function()
-        vim.bo.fileformat = "unix"
-    end,
-    desc = "always save files with unix (lf) line endings",
-})
