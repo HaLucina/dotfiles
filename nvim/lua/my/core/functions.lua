@@ -25,7 +25,7 @@ local function M.highlight_text()
 end
     
 local function M.open_cmdline_for_substitute()
-    highlight_text()
+    M.highlight_text()
     local pattern = vim.fn.getreg("/")
     local rep = string.format("%%s/%s/", pattern)
     local left3 = string.rep(vim.api.nvim_replace_termcodes("<Left>", true, false, true), 3)
