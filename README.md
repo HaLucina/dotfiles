@@ -11,33 +11,159 @@
 1. [zsh](#zsh)
 
 # Directory tree
-> [!note]- tree
-> ```  
-> dorfiles  
-> ├─ahk  
-> │  
-> ├─bash  
-> │  └─sh  
-> │  
-> ├─nvim  
-> │  
-> ├─obsidian  
-> │  └─plugins  
-> │  
-> ├─openbox  
-> │  ├─bk  
-> │  ├─default  
-> │  └─src  
-> │  
-> ├─vim  
-> │  ├─autoload  
-> │  ├─dein  
-> │  ├─init  
-> │  └─plugins  
-> │  
-> └─zsh  
-> ```
-
+```
+ dotfiles
+├──  ahk
+│   ├──  bin
+│   │   └──  Export-ahks-to-WindowsStartup.sh
+│   ├──  Keybind4Windows.ahk
+│   └──  memo.md
+├──  bash
+│   └──  bin
+│       ├──  autostart.sh
+│       └──  hello
+├──  chgkey
+│   └──  chgkey.ini
+├──  nvim
+│   ├──  init.lua
+│   ├──  lazy-lock.json
+│   └──  lua
+│       └──  my
+│           ├──  core
+│           │   ├──  functions.lua
+│           │   ├──  highlights.lua
+│           │   ├──  ime.lua
+│           │   ├──  init.lua
+│           │   ├──  keymaps.lua
+│           │   └──  options.lua
+│           ├──  lazy.lua
+│           └──  plugins
+├──  obsidian
+│   ├──  app.json
+│   ├──  appearance.json
+│   ├──  command-palette.json
+│   ├──  community-plugins.json
+│   ├──  core-plugins.json
+│   ├──  daily-notes.json
+│   ├──  hotkeys.json
+│   ├──  obsidian.vimrc
+│   ├──  plugins
+│   │   ├──  calendar.data.json
+│   │   ├──  dataview.data.json
+│   │   ├──  homepage.data.json
+│   │   ├──  obsidian-another-quick-switcher.data.json
+│   │   ├──  obsidian-front-matter-title-plugin.data.json
+│   │   ├──  obsidian-minimal-settings.data.json
+│   │   ├──  obsidian-style-settings.data.json
+│   │   ├──  table-editor-obsidian.data.json
+│   │   └──  templater-obsidian.data.json
+│   ├──  zk-prefixer.json
+│   └──  追記したいファイル
+│       ├──  crossPcSetting
+│       │   ├──  command-palette.json
+│       │   ├──  community-plugins.json
+│       │   ├──  markdown-table-editor
+│       │   │   ├──  main.js
+│       │   │   ├──  manifest.json
+│       │   │   └──  styles.css
+│       │   ├──  obsidian-columns
+│       │   │   ├──  main.js
+│       │   │   ├──  manifest.json
+│       │   │   └──  styles.css
+│       │   ├──  README.md
+│       │   └──  table-editor-obsidian
+│       │       ├──  data.json
+│       │       ├──  main.js
+│       │       ├──  manifest.json
+│       │       └──  styles.css
+│       └──  smartphonSsetting
+│           └──  README.md
+├──  openbox
+│   ├──  applications.xml
+│   ├──  bk
+│   │   ├──  bk-keys.xml
+│   │   ├──  origin-lubuntu-rc.xml
+│   │   ├──  rc-application.xml
+│   │   └──  rc-key.xml
+│   ├──  create-rc.sh
+│   ├──  default
+│   │   ├──  applications.xml
+│   │   └──  keyboard.xml
+│   ├──  keyboard.xml
+│   ├──  lubuntu-rc.xml
+│   └── 󱧼 src
+│       ├──  applications.xml
+│       └──  keyboard.xml
+├──  README.md
+├──  vim
+│   ├──  autoload
+│   │   └──  plug.vim
+│   ├──  dein
+│   │   ├──  dein.toml
+│   │   ├──  dein.vimrc
+│   │   └──  deinSettings.vim
+│   ├──  init
+│   │   ├──  basic-few-lines.vim
+│   │   ├──  basic-one-line.vim
+│   │   ├──  color.vim
+│   │   ├──  hugoDict.txt
+│   │   ├──  hugoThumbnailDict.txt
+│   │   ├──  mapping.vim
+│   │   ├──  mycommand.vim
+│   │   └──  template-commands.vim
+│   ├──  init.vim
+│   ├──  plugged
+│   │   ├──  bitly.vim
+│   │   ├──  fern-git-status.vim
+│   │   ├──  fern-renderer-nerdfont.vim
+│   │   ├──  fern.vim
+│   │   ├──  fzf
+│   │   ├──  fzf.vim
+│   │   ├──  gitv
+│   │   ├──  glyph-palette.vim
+│   │   ├──  nerdfont.vim
+│   │   ├──  open-browser.vim
+│   │   ├──  previm
+│   │   ├──  sudo.vim
+│   │   ├──  TweetVim
+│   │   ├──  twibill.vim
+│   │   ├──  unite-outline
+│   │   ├──  unite.vim
+│   │   ├──  vim-airline
+│   │   ├──  vim-airline-themes
+│   │   ├──  vim-code-dark
+│   │   ├──  vim-fugitive
+│   │   ├──  vim-gitgutter
+│   │   ├──  vim-markdown
+│   │   ├──  vim-quickrun
+│   │   ├──  vim-table-mode
+│   │   └──  webapi-vim
+│   └──  plugins
+│       ├──  plug-fern.vim
+│       ├──  plug-fzf.vim
+│       ├──  plug-glyph-palette.vim
+│       ├──  plug-vim-airline.vim
+│       ├──  plug-vim-gitgutter.vim
+│       ├──  plugin-open-browser.vim
+│       ├──  plugin-tweetvim.vim
+│       └──  plugin-vim-quickrun.vim
+├──  wsl
+│   ├──  bin
+│   │   └──  open-settings-location.sh
+│   ├──  dircolors_NoBgColorForDirnames
+│   ├──  dircolors_src
+│   └──  settings.json
+└──  zsh
+    ├──  cmd.shrc
+    ├──  completion.shrc
+    ├──  func.shrc
+    ├──  helpers.shrc
+    ├──  prompt.shrc
+    ├──  rprompt.shrc
+    ├──  zprofile
+    ├──  zshenv
+    └──  zshrc
+```
 
 <a id="ahk"></a>
 <details><summary>
@@ -48,6 +174,13 @@
 
 </details>
 
+```
+ ahk
+├──  bin
+│   └──  Export-ahks-to-WindowsStartup.sh
+├──  Keybind4Windows.ahk
+└──  memo.md
+```
 
 <a id="bash"></a>
 <details><summary>
@@ -58,6 +191,8 @@
 
 </details>
 
+```
+```
 
 <a id="chgkey"></a>
 <details><summary>
@@ -65,6 +200,11 @@
 ## Change Key
 
 </summary>
+
+```
+ chgkey
+└──  chgkey.ini
+```
 
 </details>
 
@@ -76,8 +216,10 @@
 
 </summary>
 
-</details>
+```
+```
 
+</details>
 
 <a id="obsidian"></a>
 <details><summary>
@@ -85,6 +227,9 @@
 ## Obsidian
 
 </summary>
+
+```
+```
 
 ### app.json
 アプリケーション全体の設定を管理するファイルです。ユーザーインターフェースや基本的な動作に関する設定が含まれています。
@@ -127,6 +272,9 @@ Zettelkastenスタイルのプレフィックスに関する設定を管理し�
 
 </summary>
 
+```
+```
+
 </details>
 
 
@@ -136,6 +284,9 @@ Zettelkastenスタイルのプレフィックスに関する設定を管理し�
 ## Vim
 
 </summary>
+
+```
+```
 
 </details>
 
@@ -147,6 +298,9 @@ Zettelkastenスタイルのプレフィックスに関する設定を管理し�
 
 </summary>
 
+```
+```
+
 </details>
 
 
@@ -156,6 +310,19 @@ Zettelkastenスタイルのプレフィックスに関する設定を管理し�
 ## Z Shell
 
 </summary>
+
+```
+└──  zsh
+    ├──  cmd.shrc
+    ├──  completion.shrc
+    ├──  func.shrc
+    ├──  helpers.shrc
+    ├──  prompt.shrc
+    ├──  rprompt.shrc
+    ├──  zprofile
+    ├──  zshenv
+    └──  zshrc
+```
 
 </details>
 
