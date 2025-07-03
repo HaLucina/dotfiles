@@ -1,12 +1,20 @@
--- lua/my/core/functions.lua
+-- M is a table to store functions exposed by this module.
+local M = {}
 
-local M = {} -- M はこのモジュールが公開する関数を格納するためのテーブルです
+-- Annotation for the above line:
+-- Since Neovim uses LuaJIT 2.1 (which is compatible with Lua 5.1),
+-- this line ensures compatibility with 'table.unpack', the standard
+-- way to use unpack in Lua 5.2 and later versions.
+local unpack = table.unpack or unpack
 
-local function M.highlight_off_and_redraw()
-    vim.cmd("nohlsearch | redraw")
+function M.call(func, ...)
+    local args = { ... }
+    return function()
+        func(unpack(args))
+    end
 end
 
-local function M.highlight_text()
+M.highlight_text = function()
     local pattern
     local text
     local mode = vim.fn.mode()
@@ -23,8 +31,8 @@ local function M.highlight_text()
     vim.fn.setreg("/", pattern)
     vim.opt.hlsearch = true
 end
-    
-local function M.open_cmdline_for_substitute()
+
+M.open_cmdline_for_substitute = function()
     M.highlight_text()
     local pattern = vim.fn.getreg("/")
     local rep = string.format("%%s/%s/", pattern)
@@ -32,13 +40,13 @@ local function M.open_cmdline_for_substitute()
     vim.api.nvim_feedkeys(":" .. rep .. "/gc" .. left3, "n", false)
 end
 
-local function M.paste_as_lf(p)
+M.paste_force_lf = function(key)
     local m = vim.fn.mode()
-    local op = (p == "p") and '"+p' or '"+P'
-        if m == "n" then
-        vim.cmd('normal! ' .. op)
-    elseif m == "v" or m == "V" or m == "\22" then
+    key = (key == "p") and '"+p' or '"+P'
+    if m == "v" or m == "V" or m == "\22" then
         vim.cmd('normal! "_d' .. '"+P')
+    else -- 
+        vim.cmd('normal! ' .. key)
     end
     vim.cmd('silent! %s/\\r//g')
 end
