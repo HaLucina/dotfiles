@@ -11,7 +11,7 @@
 1. [zsh](#zsh)
 
 # Directory tree
-```
+
  dotfiles
 ├──  [ahk](#ahk)
 │   └──  bin
@@ -38,7 +38,6 @@
 ├──  [wsl](#wsl)
 │   └──  bin
 └──  [zsh](#zsh)
-```
 
 
 <a id="ahk"></a>
