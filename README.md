@@ -40,12 +40,10 @@
 └──  zsh
 ```
 
+
 <a id="ahk"></a>
-<details><summary>
 
 ## Auto Hot Key
-
-</summary>
 
 ```
  ahk
@@ -55,15 +53,10 @@
 └──  memo.md
 ```
 
-</details>
-
 
 <a id="bash"></a>
-<details><summary>
 
 ## Bash
-
-</summary>
 
 ```
  bash
@@ -72,30 +65,21 @@
     └──  hello
 ```
 
-</details>
-
 
 <a id="chgkey"></a>
 <details><summary>
 
 ## Change Key
 
-</summary>
-
 ```
  chgkey
 └──  chgkey.ini
 ```
 
-</details>
-
 
 <a id="nvim"></a>
-<details><summary>
 
 ## Neovim
-
-</summary>
 
 ```
  nvim
@@ -114,14 +98,10 @@
         └──  plugins
 ```
 
-</details>
 
 <a id="obsidian"></a>
-<details><summary>
 
 ## Obsidian
-
-</summary>
 
 ```
  obsidian
@@ -177,15 +157,10 @@ Obsidianのコアプラグインに関する設定を管理します。デフォ
 ### zk-prefixer.json
 Zettelkastenスタイルのプレフィックスに関する設定を管理します。ノートの命名規則や関連付けに影響します。
 
-</details>
-
 
 <a id="openbox"></a>
-<details><summary>
 
 ## Openbox
-
-</summary>
 
 ```
  openbox
@@ -204,18 +179,12 @@ Zettelkastenスタイルのプレフィックスに関する設定を管理し�
 └── 󱧼 src
     ├──  applications.xml
     └──  keyboard.xml
-
 ```
-
-</details>
 
 
 <a id="vim"></a>
-<details><summary>
 
 ## Vim
-
-</summary>
 
 ```
 ├──  vim
@@ -272,15 +241,10 @@ Zettelkastenスタイルのプレフィックスに関する設定を管理し�
 │       └──  plugin-vim-quickrun.vim
 ```
 
-</details>
-
 
 <a id="wsl"></a>
-<details><summary>
 
 ## Windows Subsystem for Linux
-
-</summary>
 
 ```
  wsl
@@ -291,15 +255,10 @@ Zettelkastenスタイルのプレフィックスに関する設定を管理し�
 └──  settings.json
 ```
 
-</details>
-
 
 <a id="zsh"></a>
-<details><summary>
 
 ## Z Shell
-
-</summary>
 
 ```
 └──  zsh
@@ -314,9 +273,7 @@ Zettelkastenスタイルのプレフィックスに関する設定を管理し�
     └──  zshrc
 ```
 
-</details>
-
-
+---
 
 ## memo
 https://dev.to/nexxeln/my-developer-workflow-using-wsl-tmux-and-neovim-55f5
