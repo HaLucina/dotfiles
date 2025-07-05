@@ -15,29 +15,29 @@
  dotfiles
 ├──  [ahk](#ahk)
 │   └──  bin
-├──  bash
+├──  [bash](#bash)
 │   └──  bin
-├──  chgkey
-├──  nvim
+├──  [chgkey](#chgkey)
+├──  [nvim](#nvim)
 │   └──  lua
 │       └──  my
 │           ├──  core
 │           └──  plugins
-├──  obsidian
+├──  [obsidian](#obsidian)
 │   └──  plugins  
-├──  openbox
+├──  [openbox](#openbox)
 │   ├──  bk
 │   ├──  default
 │   └── 󱧼 src
-├──  vim
+├──  [vim](#vim)
 │   ├──  autoload
 │   ├──  dein
 │   ├──  init
 │   ├──  plugged
 │   └──  plugins
-├──  wsl
+├──  [wsl](#wsl)
 │   └──  bin
-└──  zsh
+└──  [zsh](#zsh)
 ```
 
 
