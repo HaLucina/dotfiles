@@ -12,32 +12,32 @@
 
 # Directory tree
 
- dotfiles
-├──  [ahk](#ahk)
-│   └──  bin
-├──  [bash](#bash)
-│   └──  bin
-├──  [chgkey](#chgkey)
-├──  [nvim](#nvim)
-│   └──  lua
-│       └──  my
-│           ├──  core
-│           └──  plugins
-├──  [obsidian](#obsidian)
+ dotfiles  
+├──  [ahk](#ahk)  
+│   └──  bin  
+├──  [bash](#bash)  
+│   └──  bin  
+├──  [chgkey](#chgkey)  
+├──  [nvim](#nvim)  
+│   └──  lua  
+│       └──  my  
+│           ├──  core  
+│           └──  plugins  
+├──  [obsidian](#obsidian)  
 │   └──  plugins  
-├──  [openbox](#openbox)
-│   ├──  bk
-│   ├──  default
-│   └── 󱧼 src
-├──  [vim](#vim)
-│   ├──  autoload
-│   ├──  dein
-│   ├──  init
-│   ├──  plugged
-│   └──  plugins
-├──  [wsl](#wsl)
-│   └──  bin
-└──  [zsh](#zsh)
+├──  [openbox](#openbox)  
+│   ├──  bk  
+│   ├──  default  
+│   └── 󱧼 src  
+├──  [vim](#vim)  
+│   ├──  autoload  
+│   ├──  dein  
+│   ├──  init  
+│   ├──  plugged  
+│   └──  plugins  
+├──  [wsl](#wsl)  
+│   └──  bin  
+└──  [zsh](#zsh)  
 
 
 <a id="ahk"></a>
