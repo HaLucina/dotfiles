@@ -12,32 +12,34 @@
 
 # Directory tree
 
+```
  dotfiles  
-├──  [ahk](#ahk)  
+├──  ahk  
 │   └──  bin  
-├──  [bash](#bash)  
+├──  bash  
 │   └──  bin  
-├──  [chgkey](#chgkey)  
-├──  [nvim](#nvim)  
+├──  chgkey  
+├──  nvim  
 │   └──  lua  
 │       └──  my  
 │           ├──  core  
 │           └──  plugins  
-├──  [obsidian](#obsidian)  
+├──  obsidian  
 │   └──  plugins  
-├──  [openbox](#openbox)  
+├──  openbox  
 │   ├──  bk  
 │   ├──  default  
 │   └── 󱧼 src  
-├──  [vim](#vim)  
+├──  vim  
 │   ├──  autoload  
 │   ├──  dein  
 │   ├──  init  
 │   ├──  plugged  
 │   └──  plugins  
-├──  [wsl](#wsl)  
+├──  wsl  
 │   └──  bin  
-└──  [zsh](#zsh)  
+└──  zsh  
+```
 
 
 <a id="ahk"></a>
