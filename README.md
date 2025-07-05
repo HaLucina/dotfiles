@@ -17,10 +17,7 @@
 │   └──  bin
 ├──  bash
 │   └──  bin
-│       ├──  autostart.sh
-│       └──  hello
 ├──  chgkey
-│   └──  chgkey.ini
 ├──  nvim
 │   └──  lua
 │       └──  my
@@ -39,7 +36,7 @@
 │   ├──  plugged
 │   └──  plugins
 ├──  wsl
-│   ├──  bin
+│   └──  bin
 └──  zsh
 ```
 
