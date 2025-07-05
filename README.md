@@ -13,7 +13,7 @@
 # Directory tree
 ```
  dotfiles
-├──  ahk
+├──  [ahk](#ahk)
 │   └──  bin
 ├──  bash
 │   └──  bin
