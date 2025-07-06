@@ -23,27 +23,18 @@ jobs:
       - name: Generate directory tree
         id: generate_tree
         run: |
-          # tree コマンドがインストールされているので、直接 tree コマンドを使用
-          # -a は隠しファイルも表示するオプションです
           tree_output=$(tree -I ".git" -a)
 
-          # 出力をGitHub Actionsのstep outputとして保存
           echo "TREE_OUTPUT<<EOF" >> $GITHUB_OUTPUT
           echo "$tree_output" >> $GITHUB_OUTPUT
           echo "EOF" >> $GITHUB_OUTPUT
 
       - name: Update README.md
         run: |
-          # 生成されたツリーを取得
           new_tree="${{ steps.generate_tree.outputs.TREE_OUTPUT }}"
 
-          # Perl を使用して、README.md 内の # Directory tree セクションのコードブロックを置き換える
-          # ファイル全体を読み込み（-0777）、正規表現で置換（-pe）
-          # # Directory tree の見出しから次のコードブロックの閉じ ``` までを対象
           perl -i -0777 -pe '
-              # --- ここから修正 ---
-              BEGIN { $new_tree = $ENV{"NEW_TREE"}; } # ここを修正しました
-              # --- ここまで修正 ---
+              BEGIN { $new_tree = $ENV{"NEW_TREE"}; }
               if (s/^(# Directory tree\s*```).*?(```)/\1\n$new_tree\n\2/ms) {
                   # # Directory tree とその直後のコードブロックを置き換えた場合
               } elsif (s/^(# Directory tree)(\s*)/$1$2\n\n```\n$new_tree\n```/ms) {
@@ -52,20 +43,24 @@ jobs:
           ' README.md
 
           # もし # Directory tree セクションがまだ存在しない場合、ファイルの最後に追記
-          # これは上記のperlスクリプトでカバーできないケースへのフォールバック
           if ! grep -q "^# Directory tree" README.md; then
               echo -e "\n# Directory tree\n\n```\n${new_tree}\n```" >> README.md
           fi
         env:
-          NEW_TREE: ${{ steps.generate_tree.outputs.TREE_OUTPUT }} # Perlスクリプトに渡す環境変数
+          NEW_TREE: ${{ steps.generate_tree.outputs.TREE_OUTPUT }}
+
+      # --- ここから修正 ---
+      # Perlスクリプトの終了と、次のシェルコマンドの間に空行を追加することで、
+      # YAMLパーサーがコマンドを正しく解釈するようにする。
+      # これは、`run:` ブロック内の複数のコマンドが正しく区切られるようにするために重要です。
 
       - name: Commit and push changes
         run: |
           git config --local user.email "action@github.com"
           git config --local user.name "GitHub Action"
           git add README.md
-          # 変更がなければコミット・プッシュしない
           git diff --quiet && git diff --staged --quiet || (\
             git commit -m "chore: Update directory tree in README"\
             git push\
           )
+      # --- ここまで修正 ---
