@@ -1,0 +1,77 @@
+name: Update Directory Tree in README
+
+on:
+  push:
+    branches:
+      - main # 対象となるブランチを適宜変更してください (例: master)
+    paths:
+      - 'README.md' # README.md 自体が変更された時もトリガーされるようにする
+      - '**'        # その他のファイルが変更された時もツリーを更新できるようにする
+
+jobs:
+  update-directory-tree:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Generate directory tree
+        id: generate_tree
+        run: |
+          # ls --tree -d -I ".git" コマンドの出力を一時ファイルに保存
+          # エラーにならないように、lsが存在しない可能性も考慮し、treeコマンドも試す
+          if command -v ls --tree &> /dev/null; then
+              tree_output=$(ls --tree -d -I ".git")
+          elif command -v tree &> /dev/null; then
+              tree_output=$(tree -I ".git" -a) # tree コマンドがある場合はこちらを使う
+          else
+              echo "Neither 'ls --tree' nor 'tree' command found. Please install 'tree'."
+              exit 1
+          fi
+
+          # 出力をGitHub Actionsのstep outputとして保存
+          # マルチラインの出力を安全に渡すため、ヒアドキュメント形式を使用
+          echo "TREE_OUTPUT<<EOF" >> $GITHUB_OUTPUT
+          echo "$tree_output" >> $GITHUB_OUTPUT
+          echo "EOF" >> $GITHUB_OUTPUT
+
+      - name: Update README.md
+        run: |
+          # 生成されたツリーを取得
+          new_tree="${{ steps.generate_tree.outputs.TREE_OUTPUT }}"
+
+          # Perl を使用して、README.md 内の # Directory tree セクションのコードブロックを置き換える
+          # ファイル全体を読み込み（-0777）、正規表現で置換（-pe）
+          # # Directory tree の見出しから次のコードブロックの閉じ ``` までを対象
+          perl -i -0777 -pe '
+              BEGIN { $new_tree = ENV{"NEW_TREE"}; } # 環境変数から新しいツリーの内容を取得
+              if (s/^(# Directory tree\s*```).*?(```)/\1\n$new_tree\n\2/ms) {
+                  # # Directory tree とその直後のコードブロックを置き換えた場合
+                  # 何もしない（置換が成功したのでOK）
+              } elsif (s/^(# Directory tree)(\s*)/$1$2\n\n```\n$new_tree\n```/ms) {
+                  # # Directory tree はあるが、まだコードブロックがない場合に追加
+              } else {
+                  # # Directory tree が全くない場合、ファイルの末尾に新しいセクションとして追加
+                  # ただし、このスクリプトはファイル全体を処理するため、appendは最後に手動で行う方が安全
+                  # ここでは単純に何もしない（次のステップで対応することも可能）
+              }
+          ' README.md
+
+          # もし # Directory tree セクションがまだ存在しない場合、ファイルの最後に追記
+          # これは上記のperlスクリプトでカバーできないケースへのフォールバック
+          if ! grep -q "^# Directory tree" README.md; then
+              echo -e "\n# Directory tree\n\n```\n${new_tree}\n```" >> README.md
+          fi
+        env:
+          NEW_TREE: ${{ steps.generate_tree.outputs.TREE_OUTPUT }} # Perlスクリプトに渡す環境変数
+
+      - name: Commit and push changes
+        run: |
+          git config --local user.email "action@github.com"
+          git config --local user.name "GitHub Action"
+          git add README.md
+          # 変更がなければコミット・プッシュしない
+          git diff --quiet && git diff --staged --quiet || (\
+            git commit -m "chore: Update directory tree in README"\
+            git push\
+          )
