@@ -15,12 +15,10 @@ jobs:
       - name: Checkout repository
         uses: actions/checkout@v4
 
-      # --- ここから追加または修正 ---
       - name: Install tree command
         run: |
           sudo apt-get update
           sudo apt-get install -y tree
-      # --- ここまで追加または修正 ---
 
       - name: Generate directory tree
         id: generate_tree
@@ -36,10 +34,16 @@ jobs:
 
       - name: Update README.md
         run: |
+          # 生成されたツリーを取得
           new_tree="${{ steps.generate_tree.outputs.TREE_OUTPUT }}"
 
+          # Perl を使用して、README.md 内の # Directory tree セクションのコードブロックを置き換える
+          # ファイル全体を読み込み（-0777）、正規表現で置換（-pe）
+          # # Directory tree の見出しから次のコードブロックの閉じ ``` までを対象
           perl -i -0777 -pe '
-              BEGIN { $new_tree = ENV{"NEW_TREE"}; }
+              # --- ここから修正 ---
+              BEGIN { $new_tree = $ENV{"NEW_TREE"}; } # ここを修正しました
+              # --- ここまで修正 ---
               if (s/^(# Directory tree\s*```).*?(```)/\1\n$new_tree\n\2/ms) {
                   # # Directory tree とその直後のコードブロックを置き換えた場合
               } elsif (s/^(# Directory tree)(\s*)/$1$2\n\n```\n$new_tree\n```/ms) {
@@ -48,17 +52,19 @@ jobs:
           ' README.md
 
           # もし # Directory tree セクションがまだ存在しない場合、ファイルの最後に追記
+          # これは上記のperlスクリプトでカバーできないケースへのフォールバック
           if ! grep -q "^# Directory tree" README.md; then
               echo -e "\n# Directory tree\n\n```\n${new_tree}\n```" >> README.md
           fi
         env:
-          NEW_TREE: ${{ steps.generate_tree.outputs.TREE_OUTPUT }}
+          NEW_TREE: ${{ steps.generate_tree.outputs.TREE_OUTPUT }} # Perlスクリプトに渡す環境変数
 
       - name: Commit and push changes
         run: |
           git config --local user.email "action@github.com"
           git config --local user.name "GitHub Action"
           git add README.md
+          # 変更がなければコミット・プッシュしない
           git diff --quiet && git diff --staged --quiet || (\
             git commit -m "chore: Update directory tree in README"\
             git push\
