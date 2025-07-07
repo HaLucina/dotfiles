@@ -127,34 +127,48 @@
 └──  zk-prefixer.json
 ```
 
-### app.json
+#### app.json
 アプリケーション全体の設定を管理するファイルです。ユーザーインターフェースや基本的な動作に関する設定が含まれています。
-### appearance.json
+
+#### appearance.json
 テーマや配色、フォントなど、アプリの外観に関する設定を保存します。ユーザーが選んだスタイルが反映されます。
-### backlink.json
+
+#### backlink.json
 バックリンクに関する設定を管理します。リンクの表示方法やスタイルをカスタマイズするためのオプションが設定されています。
-### command-palette.json
+
+#### command-palette.json
 コマンドパレットの設定を保存するファイルです。ユーザーがアクセスするコマンドやショートカットを管理します。
-### community-plugins.json
+
+#### community-plugins.json
 コミュニティプラグインに関する設定ファイルです。インストールしたプラグインやその設定が含まれています。
+
 ### core-plugins.json
 Obsidianのコアプラグインに関する設定を管理します。デフォルトで提供されるプラグインの有効化や無効化に関する情報が含まれています。
+
 ### core-plugins-migration.json
 コアプラグインの移行に関する設定を管理します。過去のバージョンからの変更点を扱います。
+
 ### graph.json
 グラフビューの設定を保存します。ノードの表示方法やレイアウトに関するオプションが含まれています。
+
 ### hotkeys.json
 ホットキーの設定を管理するファイルです。ユーザーがカスタマイズしたショートカットキーの情報が格納されています。
+
 ### page-preview.json
 ページプレビューの設定を管理します。プレビュー表示に関するオプションや設定が含まれています。
+
 ### switcher.json
 スイッチャー機能の設定を保存するファイルです。ノート間の切り替えや表示スタイルに関する設定が含まれています。
+
 ### templates.json
 テンプレートの設定を管理します。ユーザーが作成したテンプレートやその設定が含まれています。
+
 ### types.json
 データ型に関する設定を管理します。特定のデータタイプやその扱いに関する情報が格納されています。
+
 ### workspace.json
 ワークスペースの設定を管理します。開いているノートやレイアウトに関する情報が含まれています。
+
 ### zk-prefixer.json
 Zettelkastenスタイルのプレフィックスに関する設定を管理します。ノートの命名規則や関連付けに影響します。
 
@@ -251,10 +265,44 @@ Zettelkastenスタイルのプレフィックスに関する設定を管理し�
  wsl
 ├──  bin
 │   └──  open-settings-location.sh
-├──  dircolors_NoBgColorForDirnames
+├──  dircolors_no_bg
 ├──  dircolors_src
 └──  settings.json
 ```
+
+#### bin/open-settings-location.sh
+Purpose: Modify `ls` color settings for WSL2 (Ubuntu).
+
+Description: 
+- 
+
+Reference: 
+- []()
+
+#### dircolors_no_bg
+Purpose: Modify `ls` color settings for WSL2 (Ubuntu).
+
+Description: 
+- This file is symlinked from `$HOME/.dircolors`.
+- Unlike the source file, this version is configured to prevent `ls` from displaying background colors for directory names when used in WSL.
+
+Reference: 
+- [WSLのターミナルの表示を良い感じにする](https://qiita.com/tomtwinkle/items/41c06f53e81186186e9d#%E5%8F%82%E8%80%83%E8%A8%98%E4%BA%8B)
+
+
+
+#### dircolors_src
+
+Purpose: Modify `ls` color settings for WSL2 (Ubuntu).
+
+Description: 
+- This file is symlinked from `$HOME/.dircolors`.
+- Unlike the source file, this version is configured to prevent `ls` from displaying background colors for directory names when used in WSL.
+
+Reference: 
+- https://qiita.com/tomtwinkle/items/41c06f53e81186186e9d#%E5%8F%82%E8%80%83%E8%A8%98%E4%BA%8B
+
+#### settings.json
 
 
 <a id="zsh"></a>
