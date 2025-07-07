@@ -5,8 +5,15 @@
 # 個人的に追加したパッケージを優先的に扱うため /usr/local/bin にパスを通す
 export PATH=/usr/local/bin:$PATH
 
-# fzfのプレビュー内で実行された新規シェルにも自作ラッパーが反映されるために追加
-export PATH="$HOME/dotfiles/zsh/bin:$PATH"
+# .dotfiles 内のすべての bin ディレクトリをPATHに追加
+# 例としてfzfのプレビュー内で実行された新規シェルにも自作ラッパーが反映させたい
+# wsl/bin/zenhan.exeを利用してWslでNeovimを使う時の自動IMEオフ設定を反映させたいなど:ew
+for dir in "$HOME"/dotfiles/**/bin; do
+  # ディレクトリが存在し、シンボリックリンクでなければPATHに追加
+  if [ -d "$dir" ] && ! [ -L "$dir" ]; then
+    export PATH="$dir:$PATH"
+  fi
+done
 
 # Rust製commandを使えるようにする為
 source "$HOME/.cargo/env"

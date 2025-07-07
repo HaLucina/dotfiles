@@ -8,7 +8,7 @@ f_gre() {
     grep -E "$1" -rl "$2"
 }
 
-f_gcp() {
+f_gcm() {
     # Commit and push changes with a commit message check.
     if [ -z "$*" ]; then
         echo "Please enter a commit message."
@@ -24,3 +24,36 @@ f_vz() {
     file=$(ls "$dir"/* "$dir"/.zshrc 2>/dev/null | fzf --prompt="Select zshrc part: " --height=40%) || return
     nvim "$file"
 }
+f_vn() {
+  echo 'Fuzzy open and edit Neovim config parts using fzf and nvim.'
+
+  # 選択肢となるディレクトリのパスを配列で定義
+  local core_dir="$HOME/dotfiles/nvim/lua/my/core"
+  local plugins_dir="$HOME/dotfiles/nvim/lua/my/plugins"
+  local selected_dir
+
+  # core または plugins ディレクトリを選択
+  selected_dir=$(printf "%s\n%s\n" "$core_dir" "$plugins_dir" | fzf --prompt="Select config directory: " --height=20%) || return
+
+  # 選択されなかった場合は終了
+  if [ -z "$selected_dir" ]; then
+    echo "No directory selected. Exiting."
+    return
+  fi
+
+  local file
+  # 選択されたディレクトリ内の .lua ファイルをリストアップ
+  # エラーメッセージは /dev/null にリダイレクトして非表示にする
+  file=$(ls "${selected_dir}"/*.lua 2>/dev/null | fzf --prompt="Select lua part in $(basename "$selected_dir"): " --height=40%) || return
+
+  # ファイルが選択されなかった場合は終了
+  if [ -z "$file" ]; then
+    echo "No file selected. Exiting."
+    return
+  fi
+
+  # 選択されたファイルを Neovim で開く
+  nvim "$file"
+}
+
+

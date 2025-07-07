@@ -1,9 +1,23 @@
+# Install my CLI tools
+#
+# 試したい > https://qiita.com/hwatahik/items/acdd791abeef4ed13c45
+#
+# tree
+# bat
+# lsd
+# fzf
+# 参考 > https://zenn.dev/oyatsu_karpas/articles/5a842147daf2ff#%E3%81%AF%E3%81%98%E3%82%81%E3%81%AB
+# lsd使うのにNurdFontsが必要 > https://qiita.com/hwatahik/items/acdd791abeef4ed13c45
+#                              https://www.nerdfonts.com/font-downloads
+#                              https://github.com/source-foundry/Hack
+#
+
 # Basic commands
 alias wi='which'
 alias cl='clear'
 alias to='touch'
 alias so='source'
-alias bat='batcat'
+alias cat='bat'
 alias hi='history'
 alias bu='bundle'
 alias path='echo $PATH'
@@ -15,7 +29,9 @@ alias gs='git status'
 alias ga='git add .'
 alias gp='git pull'
 alias gl='git log'
-alias gcp='f_gcp'         # git commit and push with a commit message check
+alias gcm='f_gcm'         # git commit and push with a commit message check
+alias gr='gh repo view'
+alias grw='gh repo view --web'
 
 # File Operations Commands
 alias ls='lsd'
@@ -28,11 +44,11 @@ alias ..='cd ..'
 alias rmi='rm -i'
 alias rmf='rm -fr'
 
-alias vz='f_vz'           # Fuzzy open and edit zsh config parts
 
 # Neovim commands
 alias v='nvim'
-alias vn='nvim ~/.config/nvim/init.lua'
+alias vz='f_vz' # Fuzzy open and edit zsh config parts
+alias vn='f_vn' # Fuzzy open and edit Neovim config parts
 alias sz='source ~/.zshrc'
 
 alias o='(nohup /mnt/z/launchers/obsidian/Obsidian.exe &> /dev/null &)'
