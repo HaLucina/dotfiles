@@ -47,6 +47,7 @@ alias rmf='rm -fr'
 
 # Neovim commands
 alias v='nvim'
+alias v.='nvim .'
 alias vz='f_vz' # Fuzzy open and edit zsh config parts
 alias vn='f_vn' # Fuzzy open and edit Neovim config parts
 alias sz='source ~/.zshrc'

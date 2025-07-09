@@ -1,5 +1,9 @@
-# This file is linked from ./dotfiles/wsl/dircolors_no_bg
+# This file is linked from 
+# $HOME/dotfiles/wsl/.dircolors_no_bg
 # 
+# $HOME/dotfiles/README.md:282
+#
+#
 TERM Eterm
 TERM ansi
 TERM *color*

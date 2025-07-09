@@ -1,2 +1,2 @@
 require("my.core")
--- require("my.lazy")
+require("my.lazy")
