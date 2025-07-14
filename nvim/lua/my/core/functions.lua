@@ -7,10 +7,9 @@ local M = {}
 -- way to use unpack in Lua 5.2 and later versions.
 local unpack = table.unpack or unpack
 
-function M.dispatch(func, ...)
-    local args = { ... }
+function M.push_key_is(key, func)
     return function()
-        func(unpack(args))
+        func(key)
     end
 end
 
@@ -49,10 +48,6 @@ M.paste_force_lf = function(key)
         vim.cmd('normal! ' .. key)
     end
     vim.cmd('silent! %s/\\r//g')
-end
-
-M.open_path = function()
-    return 0
 end
 
 return M

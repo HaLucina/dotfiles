@@ -100,6 +100,20 @@
 ```
 
 
+
+Note: 
+- Why use `f.push_key_is`?
+    1. This is for operations where I need to pass `Keys` as an argument.
+    2. To achieve this, I'd normally have to write an anonymous function directly in the keymap command.
+       example: `vim.keymap.set('n', 'j', function() myfunc('j') end)`
+    3. Therefore, I created a wrapper function `push_key_is` to shorten and simplify this.
+
+- Usage of `f.push_key_is`
+    `f.push_key_is('Keys', f.myfunc)` is used when `f.myfunc` needs arguments (`Keys`).
+    The `f` prefix indicates that `myfunc` is defined within the `functions.lua` module.
+
+
+
 <a id="obsidian"></a>
 
 ## Obsidian
@@ -270,32 +284,35 @@ Zettelkastenスタイルのプレフィックスに関する設定を管理し�
 └──  settings.json
 ```
 
-#### bin/open-settings-location.sh
-Purpose: Modify `ls` color settings for WSL2 (Ubuntu).
+#### open-settings-location.sh
+Purpose of the file: 
+Modify `ls` color settings for WSL2 (Ubuntu).
 
-Description: 
+Note: 
 - 
 
 Reference: 
 - []()
 
 #### dircolors_no_bg
-Purpose: Modify `ls` color settings for WSL2 (Ubuntu).
+Purpose of the file: 
+Modify `ls` color settings for WSL2 (Ubuntu).
 
-Description: 
+Note: 
 - This file is symlinked from `$HOME/.dircolors`.
 - Unlike the source file, this version is configured to prevent `ls` from displaying background colors for directory names when used in WSL.
 
 Reference: 
-- [WSLのターミナルの表示を良い感じにする](https://qiita.com/tomtwinkle/items/41c06f53e81186186e9d#%E5%8F%82%E8%80%83%E8%A8%98%E4%BA%8B)
+- [WSLのターミナルの表示を良い感じにする](https://qiita.com/tomtwinkle/items/41c06f53e81186186e9d)
 
 
 
 #### dircolors_src
 
-Purpose: Modify `ls` color settings for WSL2 (Ubuntu).
+Purpose of the file: 
+Modify `ls` color settings for WSL2 (Ubuntu).
 
-Description: 
+Note: 
 - This file is symlinked from `$HOME/.dircolors`.
 - Unlike the source file, this version is configured to prevent `ls` from displaying background colors for directory names when used in WSL.
 
