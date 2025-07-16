@@ -15,7 +15,11 @@ opt.fileencoding = 'utf-8'
 -- いちいち出てきた。
 -- 解決策は以下をnvim.luaに追記すること。
 -- 参考 ＞ https://github.com/neovim/neovim/issues/32097
--- vim.opt.termguicolors = true
+
+-- set opacity with colorscheme(tokyonight-night)
+vim.opt.termguicolors = true
+vim.opt.winblend = 0 -- window opacity
+vim.opt.pumblend = 0 -- popup menu opacity
 
 -- line numbers
 opt.relativenumber = true -- show relative line numbers
