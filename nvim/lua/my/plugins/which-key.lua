@@ -8,6 +8,8 @@ return {
     vim.o.timeoutlen = 500
   end,
   opts = {
+    auto_register = true, -- これも重要
+    defaults = {
+      ["s"] = { name = "+My S-Keymaps" },
     },
   }
-
