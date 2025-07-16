@@ -1,0 +1,17 @@
+## 以下をobsidianのwebclipに追加
+https://dev.to/nexxeln/my-developer-workflow-using-wsl-tmux-and-neovim-55f5
+https://gist.github.com/gocs/b69e689f03cf18fda219152e0e0ad422
+https://blog.tiqwab.com/2017/01/15/understand-vim-plugin-management.html
+https://wakame.hatenablog.jp/entry/2014/09/05/085345#fn-e8293d7d
+https://udemy.benesse.co.jp/development/web/shellscript.html
+https://qiita.com/dev-sabatarou/items/c0a1cf81a8c7a0dfa04a
+https://qiita.com/gorilla0513/items/bf2f78dfec67242f5bcf
+http://sawasawato.blog.fc2.com/blog-entry-57.html
+https://pc.oreda.net/software/filer/netrw
+http://atomiyama.com/linux/page/vim-tab-sousa/
+https://knowledge.sakura.ad.jp/22488/
+https://www.atmarkit.co.jp/ait/articles/1706/02/news017.html
+https://eel3.hatenablog.com/entry/20161225/1482676689
+
+
+
