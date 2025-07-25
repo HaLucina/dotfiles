@@ -27,20 +27,20 @@ return {
       {
         -- <C-Space> is Just view a list, like help. 
         mode = "i", -- insert mode mappings
-        { "<C-Space><Space>", desc = "show completion suggestions"}, 
-        { "<C-Space><C-k>", desc = "previous suggestion"},
-        { "<C-Space><C-j>", desc = "next suggestion"},
-        { "<C-Space><C-b>", desc = "scroll docs(-4)"},
-        { "<C-Space><C-f>", desc = "scroll docs(+4)"},
-        { "<C-Space><C-e>", desc = "close completion window"}, 
-        { "<C-Space><CR>", desc = "confirm"},
+        { "<C-s><Space>", desc = "show completion suggestions"}, 
+        { "<C-s><C-k>", desc = "previous suggestion"},
+        { "<C-s><C-j>", desc = "next suggestion"},
+        { "<C-s><C-b>", desc = "scroll docs(-4)"},
+        { "<C-s><C-f>", desc = "scroll docs(+4)"},
+        { "<C-s><C-e>", desc = "close completion window"}, 
+        { "<C-s><CR>", desc = "confirm"},
       },
     },
     triggers = {
       { "<leader>", mode = "nixsotc" },
       { "<leader>e", mode = "nixsotc"},
       { "<C-x>", mode = "i" },
-      { "<C-Space>", mode = "i" },
+      { "<C-s>", mode = "i" },
       { "s", mode = "nixsotc" },
     },
   },
@@ -66,27 +66,27 @@ return {
       end,
       desc = "gitsigns(gitsigns)",
     },
-    {
---      "<leader>l",
---      function()
---        require("gitsigns")
---      end,
---      desc = "LSP Commands(lspconfig)",
-    },
-    {
---      "<leader>L",
---      function()
---        require("lazygit")
---      end,
---      desc = "Lazy Commands(lazygit)"
-    },
-    {
---      "<leader>???", lintingのコマンド登録どうしようか悩む
---      function()
---        require("linting")
---      end,
---      desc = "Linting Commands(linting)"
-    },
+    -- {
+  --     "<leader>l",
+  --     function()
+  --       require("gitsigns")
+  --     end,
+  --     desc = "LSP Commands(lspconfig)",
+  -- },
+  -- {
+  --     "<leader>L",
+  --     function()
+  --       require("lazygit")
+  --     end,
+  --     desc = "Lazy Commands(lazygit)"
+  -- },
+  -- {
+  --     "<leader>???", lintingのコマンド登録どうしようか悩む
+  --     function()
+  --       require("linting")
+  --     end,
+  --     desc = "Linting Commands(linting)"
+  --   },
     {
       "<leader>f",
       function()
