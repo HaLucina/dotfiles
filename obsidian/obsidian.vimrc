@@ -46,3 +46,9 @@ nmap zM :foldall<CR>
 
 exmap foldtoggle obcommand editor:toggle-fold
 nmap za :foldtoggle<CR>
+
+" `insert_template`という別名で、Templaterのモーダルを開くコマンドを定義
+exmap insert_template obcommand templater-obsidian:Template/tCreate-new_file.md
+
+" <Space>t でtCreate-new_fileを実行する
+nmap <Space>t :insert_template<CR>
