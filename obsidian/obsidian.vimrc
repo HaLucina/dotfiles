@@ -47,6 +47,14 @@ nmap zM :foldall<CR>
 exmap foldtoggle obcommand editor:toggle-fold
 nmap za :foldtoggle<CR>
 
+
+" 自作テンプレをLeader(space)キーで実行する方法
+" 1. .obsidian\plugins\templater-obsidian\data.jsonに"enabled_templates_hotkeys": [],を追記
+" 2. 要素に実行したいテンプレファイルを追記　例：　"Template/hoge.md"
+" 3. obsidian.vimrcにexmapとしてobcommand templater-obsidian:Template/hoge.mdを登録
+" 4. nmap <Space> で好きなkey登録をする。
+" 1~2に関してはプラグインTemplaterの設定画面から「Template hotkes」> 「Add new hotkey for template」ボタンでhoge.mdを登録でもOK
+
 " `insert_template`という別名で、Templaterのモーダルを開くコマンドを定義
 exmap insert_template obcommand templater-obsidian:Template/tCreate-new_file.md
 
