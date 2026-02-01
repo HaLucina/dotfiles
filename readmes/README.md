@@ -1,7 +1,7 @@
 # Directory tree
 
 ```
-
+curl -sL https://raw.githubusercontent.com/HaLucina/dotfiles/main/install.sh | bash
 ```
 
 ## [bin](./bin/README_bin.md)
