@@ -1,3 +1,8 @@
+# First commands
+```
+curl -sL https://raw.githubusercontent.com/HaLucina/dotfiles/main/setup/install.sh | bash
+```
+
 # TOC
 
 1. [ahk](#ahk)
