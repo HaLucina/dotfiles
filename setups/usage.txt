@@ -1,0 +1,6 @@
+===============================================================================
+"Usage: ./install.sh [options]"
+   Options:
+     -h, --help      Show this help message
+     -d, --dry-run   Show commands without executing them
+===============================================================================
