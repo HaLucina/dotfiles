@@ -59,7 +59,7 @@
 ### lazy.nvim (プラグインマネージャー)
 
 path:
-[nvim/lua/my/lazy.lua](nvim/lua/my/lazy.lua)
+[nvim/lua/my/lazy.lua](../nvim/lua/my/lazy.lua)
 
 機能と目的: 
 Neovimのプラグインマネージャー。すべてのプラグインのインストール、更新、および個別設定の管理を一括して行う
