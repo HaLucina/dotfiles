@@ -1,24 +1,49 @@
 # File tree
 
 ```
- nvim
-├──  init.lua
-├──  lazy-lock.json
-└──  lua
-    └──  my
-        ├──  core
-        │   ├──  functions.lua
-        │   ├──  highlights.lua
-        │   ├──  ime.lua
-        │   ├──  init.lua
-        │   ├──  keymaps.lua
-        │   └──  options.lua
-        ├──  lazy.lua
-        └──  plugins
+.
+├── init.lua
+├── lazy-lock.json
+└── lua
+    ├── err.md
+    └── my
+        ├── core
+        │   ├── functions.lua
+        │   ├── highlights.lua
+        │   ├── ime.lua
+        │   ├── init.lua
+        │   ├── keymaps.lua
+        │   └── options.lua
+        ├── lazy.lua
+        └── plugins
+            ├── alpha.lua
+            ├── auto-session.lua
+            ├── autopairs.lua
+            ├── bufferline.lua
+            ├── colorscheme.lua
+            ├── comment.lua
+            ├── dressing.lua
+            ├── formatting.lua
+            ├── gitsigns.lua
+            ├── indent-blankline.lua
+            ├── init.lua
+            ├── lazygit.lua
+            ├── linting.lua
+            ├── lsp
+            │   └── mason.lua
+            ├── lualine.lua
+            ├── nvim-cmp.lua
+            ├── nvim-tree.lua
+            ├── surround.lua
+            ├── telescope.lua
+            ├── todo-comments.lua
+            ├── treesitter.lua
+            ├── trouble.lua
+            ├── vim-maximizer.lua
+            └── which-key.lua
 ```
 
-
-Note: 
+## Note
 - Why use `f.push_key_is`?
     1. This is for operations where I need to pass `Keys` as an argument.
     2. To achieve this, I'd normally have to write an anonymous function directly in the keymap command.
@@ -30,24 +55,29 @@ Note:
     The `f` prefix indicates that `myfunc` is defined within the `functions.lua` module.
 
 
-
+## Plugin Management Platform 
 ### lazy.nvim (プラグインマネージャー)
 
--   目的: Neovimとエコシステムが進化したため、この更新されたセットアップガイドで、Neovimをゼロから素晴らしいものにするために使用されます。このプラグインマネージャーは、すべてのプラグインのインストールと設定に使用されます。
--   設定:
-    -   lazyをブートストラップし、Neovimを開いたときにインストールされていない場合にインストールされるようにします。
-    -   `require("lazy")`を呼び出し、`setup()`関数にプラグイン設定を保持するフォルダへのパス（`josean.plugins`）を渡します。
-    -   `init.lua`ファイルに`require("josean.lazy")`を追加し、Neovimの起動時に`lazy.lua`ファイルがロードされるようにします。
--   操作:
-    -   `:lazy`と入力し、`Enter`を押すとlazy.nvimのUIが開きます。
-    -   不足しているプラグインをインストールするには、`大文字のI`を押します。
-    -   UIを閉じるには、`Q`を押します。
-    -   Neovimを再起動せずにプラグインをロードするには、`:lazy reload <プラグイン名>`と入力します。
-    -   プラグインの変更を自動的に検出する機能を無効にするには、`lazy.lua`ファイルに`change_detection = { notify = false }`を追加します。
-    -   ステータスラインで保留中のプラグイン更新の数を確認できます。
+path:
+[nvim/lua/my/lazy.lua](nvim/lua/my/lazy.lua)
+
+機能と目的: 
+Neovimのプラグインマネージャー。すべてのプラグインのインストール、更新、および個別設定の管理を一括して行う
+ -   lazyをブートストラップし、Neovimを開いたときにインストールされていない場合にインストールされるようにします。
+ -   `require("lazy")`を呼び出し、`setup()`関数にプラグイン設定を保持するフォルダへのパス（`josean.plugins`）を渡します。
+ -   `init.lua`ファイルに`require("josean.lazy")`を追加し、Neovimの起動時に`lazy.lua`ファイルがロードされるようにします。
+
+操作:
+ -   `:lazy`と入力し、`Enter`を押すとlazy.nvimのUIが開きます。
+ -   不足しているプラグインをインストールするには、`大文字のI`を押します。
+ -   UIを閉じるには、`Q`を押します。
+ -   Neovimを再起動せずにプラグインをロードするには、`:lazy reload <プラグイン名>`と入力します。
+ -   プラグインの変更を自動的に検出する機能を無効にするには、`lazy.lua`ファイルに`change_detection = { notify = false }`を追加します。
+ -   ステータスラインで保留中のプラグイン更新の数を確認できます。
 
 ### plenary.nvim
-
+path: lua/my/plugins/init.lua
+機能と目的: 多くのLuaプラグイン（Telescope, todo-comments, lazygitなど）が共通で利用するユーティリティライブラリ。
 -   目的: 多くの他のプラグインが利用するLuaプラグインです。
 -   依存関係: Telescope、todo-comments、lazygit.nvimの依存関係として使用されます。
 
@@ -400,6 +430,5 @@ Note:
     -   `C`: コミットメッセージを書き込みます。
     -   `Q`: UIを閉じます。
 
-**参考元:**
+参考元:
 [How I Setup Neovim To Make It AMAZING in 2024: The Ultimate Guide - Josean Martinez](https://www.youtube.com/watch?v=JcE_F1nLqCg)
-このYouTubeのURLは、提供されたソース内の動画タイトルとチャンネル名に基づき、外部情報として検索して追記しています。ご自身で内容を別途ご確認ください。

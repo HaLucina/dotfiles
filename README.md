@@ -86,6 +86,7 @@ curl -sL https://raw.githubusercontent.com/HaLucina/dotfiles/main/setup/install.
 <a id="nvim"></a>
 
 ## Neovim
+- [Neovim Setup](readmes/nvim.md)
 
 ```
  nvim
