@@ -51,6 +51,9 @@ fi
 
 # Windows assets (WSL -> Windows copy)
 handle_windows_assets
+#
+# Font and Terminal setup
+setup_fonts_ptyxis
 
 # stow / linking
 if [ "${NO_STOW:-0}" -eq 0 ]; then

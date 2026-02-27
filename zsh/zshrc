@@ -1,7 +1,9 @@
 # .zshrc（dotfiles/zshrc と同階層の *.shrc を自動で全て読み込み）
 
-# dircolors 設定
-eval $(dircolors -b ~/.dircolors)
+# dircolorsコマンドが存在し、かつ設定ファイルがある場合のみ実行
+if (( $+commands[dircolors] )) && [ -f ~/.dircolors ]; then
+    eval "$(dircolors -b ~/.dircolors)"
+fi
 
 # 補完と履歴など基本設定
 setopt histignorealldups sharehistory
