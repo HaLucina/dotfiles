@@ -161,6 +161,39 @@ Neovimのカラースキームを設定します。
     -   `Ctrl + C`: Telescopeを閉じます。
     -   `Tab`: 特定の検索結果を選択/選択解除します。
 
+- Telescopeでキーマップを出す
+
+```vim
+:Telescope keymaps
+```
+
+そのまま `Ctrl + q` を叩く
+
+（画面が閉じ、代わりに画面の一番下に「文字のリスト」が並びます。これが**Quickfix**に転送された状態です）
+
+ファイルに書き出す
+
+```vim
+:cgetexpr getqflist()->map({_, v -> v.text}) | w keymaps.txt
+```
+
+もし頻繁にやりたいなら、`init.lua`（設定ファイル）に以下をコピペしておくと、`:SaveQuickfix` と打つだけで保存できるようになります。
+
+```lua
+-- Quickfixの中身をファイルに保存するコマンドを作る
+vim.api.nvim_create_user_command('SaveQuickfix', function()
+    local qflist = vim.fn.getqflist()
+    local lines = {}
+    for _, item in ipairs(qflist) do
+        table.insert(lines, item.text)
+    end
+    vim.fn.writefile(lines, 'telescope_results.txt')
+    print("Saved to telescope_results.txt")
+end, {})
+```
+
+これなら、`Ctrl + q` のあとに `:SaveQuickfix` と打つだけで完了です。
+
 ### alpha.nvim (グリーター)
 
 -   目的: Neovimの起動時に表示されるグリーター（ダッシュボード）を設定します。
@@ -446,3 +479,4 @@ Neovimのカラースキームを設定します。
 
 参考元:
 [How I Setup Neovim To Make It AMAZING in 2024: The Ultimate Guide - Josean Martinez](https://www.youtube.com/watch?v=JcE_F1nLqCg)
+
