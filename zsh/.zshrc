@@ -17,7 +17,7 @@ autoload -Uz compinit
 compinit
 
 # --- 分割ファイル一括読み込み ---
-shrc_dir="${HOME}/dotfiles/zsh"  # ここを配置場所に合わせて修正
+shrc_dir="${HOME}/dotfiles/zsh/.shrc"  # ここを配置場所に合わせて修正
 
 for shrc_file in "$shrc_dir"/*.shrc; do
   [ -r "$shrc_file" ] && source "$shrc_file"

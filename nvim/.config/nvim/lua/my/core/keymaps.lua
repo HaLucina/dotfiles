@@ -1,5 +1,3 @@
--- For more details > $HOME/dotfiles/README.md:104
-
 vim.g.mapleader = " " -- <leader> set space key
 
 local f = require('my.core.functions') -- functions.lua
