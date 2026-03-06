@@ -63,3 +63,13 @@ f_vn() {
 }
 
 
+# --- Yazi Shell Wrapper ---
+# yaziを閉じた時に、最後に開いていたディレクトリへcdするための関数
+f_y() {
+    local tmp="$(mktemp -t "yazi-cwd.XXXXXX")" cwd
+    yazi "$@" --cwd-file="$tmp"
+    if cwd="$(command cat -- "$tmp")" && [ -n "$cwd" ] && [ "$cwd" != "$PWD" ]; then
+        builtin cd -- "$cwd"
+    fi
+    rm -f -- "$tmp"
+}
