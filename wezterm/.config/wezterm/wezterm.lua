@@ -9,7 +9,7 @@ local config = wezterm.config_builder()
 config.font = wezterm.font("JetBrainsMono Nerd Font Mono")
 
 -- Prevent bottom row from being clipped when maximized
-config.line_height = 1.00
+config.line_height = 0.98
 config.font_size = 14
 
 config.enable_tab_bar = false
