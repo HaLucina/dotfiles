@@ -57,3 +57,4 @@ alias o='(nohup /mnt/z/launchers/obsidian/Obsidian.exe &> /dev/null &)'
 # Custom utility functions
 alias pss='f_pss'         # Search for processes by pattern
 alias gre='f_gre'         # Recursively grep for pattern in files
+alias y='f_y'             # Open Yazi ($HOME/.zsh/script/func.shrc)
