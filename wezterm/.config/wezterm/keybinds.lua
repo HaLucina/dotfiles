@@ -61,20 +61,14 @@ local mode_definitions = {
 local key_groups = {
   workspace = {
     { key = "w", mods = "LEADER", action = act.ShowLauncherArgs({ flags = "WORKSPACES", title = "Select workspace" }) },
-    {
-      key = "$",
-      mods = "LEADER",
-      action = act.PromptInputLine({
+    { key = "$", mods = "LEADER", action = act.PromptInputLine({
         description = "(wezterm) Set workspace title:",
         action = wezterm.action_callback(function(win, pane, line)
           if line then wezterm.mux.rename_workspace(wezterm.mux.get_active_workspace(), line) end
         end),
       }),
     },
-    {
-      key = "W",
-      mods = "LEADER|SHIFT",
-      action = act.PromptInputLine({
+    { key = "W", mods = "LEADER|SHIFT", action = act.PromptInputLine({
         description = "(wezterm) Create new workspace:",
         action = wezterm.action_callback(function(window, pane, line)
           if line then window:perform_action(act.SwitchToWorkspace({ name = line }), pane) end
