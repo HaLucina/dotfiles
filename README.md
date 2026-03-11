@@ -63,20 +63,143 @@ return {
 
 ---
 
-## 注意点： `nvim-tree` が恋しくなる可能性
 
-もしあなたが「常に画面の左側にフォルダツリーが出ていないと不安だ」というタイプであれば、最初は戸惑うかもしれません。
-
-しかし、**「名前がわかれば fzf で飛ぶ」という習慣が身についていれば、左側のツリーは「画面を狭くしているだけの飾り」に変わります。Yazi への移行は、「ツリーを見ながら探す」という古い習慣を脱却するチャンス**でもあります。
+「WezTerm ⇔ Neovim シームレス移動」を実現するための最終的なソースコード一式をまとめました。
 
 ---
 
-### 次のアクション
+### 1. Neovim 側の設定
 
-まずは `nvim-tree.lua` を `plugins` フォルダから外して（別の場所にバックアップして）、`yazi.nvim` をインストールしてみませんか？
+`lazy.nvim` の構成に合わせて、新しいプラグイン設定ファイルを作成します。
 
-もしインストール中にエラーが出たり、WezTerm での画像プレビューがうまくいかない場合は、設定を一緒に見直しましょう。**`yazi.nvim` の導入、やってみますか？**
+**ファイルパス:** `nvim/lua/my/plugins/smart-splits.lua`
 
+```lua
+return {
+  'mrjones2014/smart-splits.nvim',
+  lazy = false,
+  config = function()
+    local ss = require('smart-splits')
+    ss.setup({
+      -- WezTermの端に到達した時に、WezTermのペイン移動を発動させる設定
+      at_edge = 'wrap', 
+    })
+
+    -- キーバインド設定 (Ctrl + hjkl)
+    -- Neovim内ではウィンドウ移動、端ではWezTermへ移動
+    vim.keymap.set('n', '<C-h>', ss.move_cursor_left)
+    vim.keymap.set('n', '<C-j>', ss.move_cursor_down)
+    vim.keymap.set('n', '<C-k>', ss.move_cursor_up)
+    vim.keymap.set('n', '<C-l>', ss.move_cursor_right)
+  end,
+}
+
+```
+
+---
+
+### 2. WezTerm 側の設定
+
+既存の `keybinds.lua` の構造を活かし、判定ロジックを関数として外に切り出します。
+
+**ファイルパス:** `wezterm/.config/wezterm/keybinds.lua`
+
+```lua
+local wezterm = require("wezterm")
+local act = wezterm.action
+
+-- ==========================================================
+-- ヘルパー関数 (判定ロジック)
+-- ==========================================================
+local function is_vim(pane)
+  -- Neovim側から渡される変数、またはプロセス名で判定
+  return pane:get_user_vars().IS_NVIM == 'true' or
+         pane:get_foreground_process_name():find('n?vim') ~= nil
+end
+
+local function split_nav(key, direction)
+  return {
+    key = key,
+    mods = "CTRL",
+    action = wezterm.action_callback(function(win, pane)
+      if is_vim(pane) then
+        -- Neovim実行中なら、Ctrl-hjklをそのまま送信（smart-splits.nvimが処理）
+        win:perform_action(act.SendKey({ key = key, mods = "CTRL" }), pane)
+      else
+        -- それ以外（シェル等）なら、WezTermのペインを直接移動
+        win:perform_action(act.ActivatePaneDirection(direction), pane)
+      end
+    end),
+  }
+end
+
+-- ==========================================================
+-- 1. モード定義 (KeyTable)
+-- ==========================================================
+local mode_definitions = {
+  -- (copy_mode, resize_pane_mode, activate_pane_mode の内容は既存のまま)
+  -- ※ 既存の activate_pane_mode は LEADER+a 用としてそのまま残せます
+}
+
+-- ==========================================================
+-- 2. 通常のキーバインド (Workspace, Tab 等)
+-- ==========================================================
+local key_groups = {
+  -- (workspace, tabs の内容は既存のまま)
+
+  panes = {
+    { key = "d", mods = "LEADER", action = act.SplitVertical({ domain = "CurrentPaneDomain" }) },
+    { key = "r", mods = "LEADER", action = act.SplitHorizontal({ domain = "CurrentPaneDomain" }) },
+    { key = "x", mods = "LEADER", action = act({ CloseCurrentPane = { confirm = true } }) },
+    { key = "z", mods = "LEADER", action = act.TogglePaneZoomState },
+    
+    -- --- シームレス移動の登録 ---
+    split_nav("h", "Left"),
+    split_nav("j", "Down"),
+    split_nav("k", "Up"),
+    split_nav("l", "Right"),
+  },
+
+  -- (clipboard, system の内容は既存のまま)
+}
+
+-- ==========================================================
+-- 3. データの自動展開
+-- ==========================================================
+local M = {}
+M.keys = {}
+M.key_tables = {}
+
+for mode, group in pairs(mode_definitions) do
+  table.insert(M.keys, group.trigger)
+  M.key_tables[mode] = group.map
+end
+
+for _, single_group in pairs(key_groups) do
+  for _, key_def in ipairs(single_group) do
+    table.insert(M.keys, key_def)
+  end
+end
+
+return M
+
+```
+
+---
+
+### 3. 設定の反映と確認
+
+1. **ファイルを保存**: 上記2つのファイルをそれぞれ保存します。
+2. **WezTermを再起動**: または `Ctrl+Shift+R` で設定をリロードします。
+3. **テスト**:
+* WezTermのペインを左右に分割（`LEADER + r`）して、`Ctrl-h/l` で行き来できるか確認。
+* 片方のペインで `nvim` を起動し、さらに `nvim` 内で `:vsplit` して分割。
+* `Ctrl-l` を連打して、**「Neovim内のウィンドウ移動」から「WezTermの隣のペイン」へ勝手にフォーカスが移るか**を確認してください。
+
+
+これで、あなたの綺麗なコード規約を保ったまま、最強の移動環境が整います！
+
+もしリサイズ（`Alt-hjkl` など）も同様にシームレス化したい場合は、同じ `split_nav` の仕組みを応用できますので、いつでもお声がけください。
 
 # First commands
 ```
