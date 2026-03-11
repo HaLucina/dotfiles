@@ -97,14 +97,10 @@ local key_groups = {
   },
 
   panes = {
-    { key = "d", mods = "LEADER", action = act.SplitVertical({ domain = "CurrentPaneDomain" }) },
-    { key = "r", mods = "LEADER", action = act.SplitHorizontal({ domain = "CurrentPaneDomain" }) },
+    { key = "|", mods = "LEADER", action = act.SplitVertical({ domain = "CurrentPaneDomain" }) },
+    { key = "-", mods = "LEADER", action = act.SplitHorizontal({ domain = "CurrentPaneDomain" }) },
     { key = "x", mods = "LEADER", action = act({ CloseCurrentPane = { confirm = true } }) },
     { key = "z", mods = "LEADER", action = act.TogglePaneZoomState },
-    { key = "h", mods = "CTRL", action=act.SendKey{key="h", mods="CTRL"} },
-    { key = "j", mods = "CTRL", action=act.SendKey{key="j", mods="CTRL"} },
-    { key = "k", mods = "CTRL", action=act.SendKey{key="k", mods="CTRL"} },
-    { key = "l", mods = "CTRL", action=act.SendKey{key="l", mods="CTRL"} },
   },
 
   clipboard = {
@@ -128,18 +124,11 @@ local M = {}
 M.keys = {}
 M.key_tables = {}
 
--- mode(名前) と group(設定一式) をペアで取り出して仕分け
 for mode, group in pairs(mode_definitions) do
-  
-  -- モードに入るためのトリガー(group.trigger)を登録
   table.insert(M.keys, group.trigger)
-  
-  -- モード中のキー対応表(group.map)を、そのmode名で登録
-  M.key_tables[mode] = group.map
-  
+  M.key_tables[mode] = group.map  
 end
 
--- 通常のキーグループ(key_groups)も一気に登録
 for _, single_group in pairs(key_groups) do
   for _, key_def in ipairs(single_group) do
     table.insert(M.keys, key_def)
