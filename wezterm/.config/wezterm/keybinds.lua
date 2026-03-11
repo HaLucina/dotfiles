@@ -40,49 +40,49 @@ local mode_definitions = {
       { key = "Escape", action = "PopKeyTable" },
     },
   },
---
---  -- 【ペイン選択・移動モード】
---  activate_pane_mode = {
---    -- きっかけ: LEADER + a
---    trigger = { key = "a", mods = "LEADER", action = act.ActivateKeyTable({ name = "activate_pane_mode", timeout_milliseconds = 1000 }) },
---    -- 対応表: モード中の移動操作
---    map = {
---      { key = "h", action = act.ActivatePaneDirection("Left") },
---      { key = "l", action = act.ActivatePaneDirection("Right") },
---      { key = "k", action = act.ActivatePaneDirection("Up") },
---      { key = "j", action = act.ActivatePaneDirection("Down") },
---    },
---  },
+
+  -- 【ペイン選択・移動モード】
+  activate_pane_mode = {
+    -- きっかけ: LEADER + a
+    trigger = { key = "a", mods = "LEADER", action = act.ActivateKeyTable({ name = "activate_pane_mode", timeout_milliseconds = 1000 }) },
+    -- 対応表: モード中の移動操作
+    map = {
+      { key = "h", action = act.ActivatePaneDirection("Left") },
+      { key = "l", action = act.ActivatePaneDirection("Right") },
+      { key = "k", action = act.ActivatePaneDirection("Up") },
+      { key = "j", action = act.ActivatePaneDirection("Down") },
+    },
+  },
 }
 
 -- ==========================================================
 -- 2. 通常のキーバインド (Workspace, Tab 等)
 -- ==========================================================
 local key_groups = {
---  workspace = {
---    { key = "w", mods = "LEADER", action = act.ShowLauncherArgs({ flags = "WORKSPACES", title = "Select workspace" }) },
---    {
---      key = "$",
---      mods = "LEADER",
---      action = act.PromptInputLine({
---        description = "(wezterm) Set workspace title:",
---        action = wezterm.action_callback(function(win, pane, line)
---          if line then wezterm.mux.rename_workspace(wezterm.mux.get_active_workspace(), line) end
---        end),
---      }),
---    },
---    {
---      key = "W",
---      mods = "LEADER|SHIFT",
---      action = act.PromptInputLine({
---        description = "(wezterm) Create new workspace:",
---        action = wezterm.action_callback(function(window, pane, line)
---          if line then window:perform_action(act.SwitchToWorkspace({ name = line }), pane) end
---        end),
---      }),
---    },
---  },
---
+  workspace = {
+    { key = "w", mods = "LEADER", action = act.ShowLauncherArgs({ flags = "WORKSPACES", title = "Select workspace" }) },
+    {
+      key = "$",
+      mods = "LEADER",
+      action = act.PromptInputLine({
+        description = "(wezterm) Set workspace title:",
+        action = wezterm.action_callback(function(win, pane, line)
+          if line then wezterm.mux.rename_workspace(wezterm.mux.get_active_workspace(), line) end
+        end),
+      }),
+    },
+    {
+      key = "W",
+      mods = "LEADER|SHIFT",
+      action = act.PromptInputLine({
+        description = "(wezterm) Create new workspace:",
+        action = wezterm.action_callback(function(window, pane, line)
+          if line then window:perform_action(act.SwitchToWorkspace({ name = line }), pane) end
+        end),
+      }),
+    },
+  },
+
   tabs = {
     { key = "p", mods = "CTRL|SHIFT", action = act.ActivateCommandPalette },
     { key = "Tab", mods = "CTRL", action = act.ActivateTabRelative(1) },
