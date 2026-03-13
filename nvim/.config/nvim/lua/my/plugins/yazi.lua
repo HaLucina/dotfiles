@@ -5,12 +5,10 @@ return {
     {
       "<leader>e",
       function() require("yazi").yazi() end,
-      --[[
-          require("yazi").yazi() を使うことで、NeovimのCWD（作業ディレクトリ）ではなく、
-          現在開いているファイルが存在するディレクトリを起点に Yazi を起動させる。
-          以下の書き方だと常にNeovimを起動した場所（プロジェクトルート等）が起点になる
-          "<cmd>Yazi<cr>",
-      --]]
+      -- require("yazi").yazi() を使うことで、NeovimのCWD（作業ディレクトリ）ではなく、
+      -- 現在開いているファイルが存在するディレクトリを起点に Yazi を起動させる。
+      -- 以下の書き方だと常にNeovimを起動した場所（プロジェクトルート等）が起点になる
+      -- "<cmd>Yazi<cr>",
       mode = { "n", "v" },
       desc = "Open yazi at the current file",
     },
