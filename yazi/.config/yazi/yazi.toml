@@ -10,3 +10,5 @@ sort_reverse   = false
 
 [manager]
 show_hidden = true
+# 特定のパターンを隠したい場合（例）
+scryp = ["*.tmp", ".git"]
