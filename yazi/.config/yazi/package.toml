@@ -1,6 +1,6 @@
 [plugin]
 deps = [
-	{ id = "yazi-rs/plugins:fzf", rev = "main" },
+	{ id = "yazi-rs/plugins:fzf", rev = "main" }, # `ya pack -i` を1回実行して同期しておく
 ]
 [[flavor.deps]]
 use = "yazi-rs/flavors:catppuccin-mocha"
