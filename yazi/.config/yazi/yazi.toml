@@ -1,14 +1,7 @@
-[mgr]
-# ディレクトリを先に、ファイルを後に表示
-sort_dir_first = true
-# 自然順ソート（file1, file2, file10 の順になる）
-sort_by        = "natural"
-# 大文字小文字を区別せずソート（お好みで。falseなら A, a, B, b の順）
-sort_sensitive = false
-# 逆順にする場合はここを true に
-sort_reverse   = false
-
 [manager]
-show_hidden = true
-# 特定のパターンを隠したい場合（例）
-scryp = ["*.tmp", ".git"]
+sort_by        = "natural"
+sort_sensitive = false # 大文字小文字を区別せずソート
+sort_reverse   = false
+sort_dir_first = true # ディレクトリを先に、ファイルを後に表示
+show_hidden    = true
+scryp          = ["*.tmp", ".git"] # 特定の拡張子を隠す
