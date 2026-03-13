@@ -2,7 +2,34 @@
 local wezterm = require("wezterm")
 local act = wezterm.action
 
+-- ==========================================================
+-- ヘルパー関数 (判定ロジック)
+-- ==========================================================
+local function is_vim(pane)
+  -- Neovim側から渡される変数、またはプロセス名で判定
+  return pane:get_user_vars().IS_NVIM == 'true' or
+         pane:get_foreground_process_name():find('n?vim') ~= nil
+end
 
+local function split_nav(key, direction)
+  return {
+    key = key,
+    mods = "CTRL",
+    action = wezterm.action_callback(function(win, pane)
+      if is_vim(pane) then
+        -- Neovim実行中なら、Ctrl-hjklをそのまま送信（smart-splits.nvimが処理）
+        win:perform_action(act.SendKey({ key = key, mods = "CTRL" }), pane)
+      else
+        -- それ以外（シェル等）なら、WezTermのペインを直接移動
+        win:perform_action(act.ActivatePaneDirection(direction), pane)
+      end
+    end),
+  }
+end
+
+-- ==========================================================
+-- 1. モード定義 (KeyTable)
+-- ==========================================================
 local mode_definitions = {
 -- 【コピーモード】
   copy_mode = {
@@ -40,25 +67,12 @@ local mode_definitions = {
       { key = "Escape", action = "PopKeyTable" },
     },
   },
-
-  -- 【ペイン選択・移動モード】
-  activate_pane_mode = {
-    -- きっかけ: LEADER + a
-    trigger = { key = "a", mods = "LEADER", action = act.ActivateKeyTable({ name = "activate_pane_mode", timeout_milliseconds = 1000 }) },
-    -- 対応表: モード中の移動操作
-    map = {
-      { key = "h", action = act.ActivatePaneDirection("Left") },
-      { key = "l", action = act.ActivatePaneDirection("Right") },
-      { key = "k", action = act.ActivatePaneDirection("Up") },
-      { key = "j", action = act.ActivatePaneDirection("Down") },
-    },
-  },
 }
 
 -- ==========================================================
 -- 2. 通常のキーバインド (Workspace, Tab 等)
 -- ==========================================================
-local key_groups = {
+local triggerless_keys = {
   workspace = {
     { key = "w", mods = "LEADER", action = act.ShowLauncherArgs({ flags = "WORKSPACES", title = "Select workspace" }) },
     { key = "$", mods = "LEADER", action = act.PromptInputLine({
@@ -91,10 +105,15 @@ local key_groups = {
   },
 
   panes = {
-    { key = "|", mods = "LEADER", action = act.SplitVertical({ domain = "CurrentPaneDomain" }) },
-    { key = "-", mods = "LEADER", action = act.SplitHorizontal({ domain = "CurrentPaneDomain" }) },
+    { key = "-", mods = "LEADER", action = act.SplitVertical({ domain = "CurrentPaneDomain" }) },
+    { key = "|", mods = "LEADER|SHIFT", action = act.SplitHorizontal({ domain = "CurrentPaneDomain" }) },
     { key = "x", mods = "LEADER", action = act({ CloseCurrentPane = { confirm = true } }) },
     { key = "z", mods = "LEADER", action = act.TogglePaneZoomState },
+    -- --- シームレス移動の登録 ---
+    split_nav("h", "Left"),
+    split_nav("j", "Down"),
+    split_nav("k", "Up"),
+    split_nav("l", "Right"),
   },
 
   clipboard = {
@@ -118,14 +137,14 @@ local M = {}
 M.keys = {}
 M.key_tables = {}
 
-for mode, group in pairs(mode_definitions) do
-  table.insert(M.keys, group.trigger)
-  M.key_tables[mode] = group.map  
+for mode, key in pairs(mode_definitions) do
+  table.insert(M.keys, key.trigger)
+  M.key_tables[mode] = key.map  
 end
 
-for _, single_group in pairs(key_groups) do
-  for _, key_def in ipairs(single_group) do
-    table.insert(M.keys, key_def)
+for _, keys in pairs(triggerless_keys) do
+  for _, key in ipairs(keys) do
+    table.insert(M.keys, key)
   end
 end
 

@@ -1,4 +1,4 @@
-[manager]
+[mgr]
 # ディレクトリを先に、ファイルを後に表示
 sort_dir_first = true
 # 自然順ソート（file1, file2, file10 の順になる）
@@ -7,3 +7,6 @@ sort_by        = "natural"
 sort_sensitive = false
 # 逆順にする場合はここを true に
 sort_reverse   = false
+
+[manager]
+show_hidden = true

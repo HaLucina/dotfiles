@@ -3,20 +3,20 @@
 # -----------------------------------------------------------
 
 # 誤削除防止：d 1回では何もしないようにし、dd でゴミ箱へ
-[[manager.prepend_keymap]]
+[[mgr.prepend_keymap]]
 on   = [ "d", "d" ]
 run  = "remove"
 desc = "Move selected files to trash"
 
 # 環境に依存しないパスコピー
 # shellコマンドを使わず、Yazi標準の `copy path` を使うのがベストです
-[[manager.prepend_keymap]]
+[[mgr.prepend_keymap]]
 on   = [ "y", "p" ]
 run  = "copy path"
 desc = "Copy path to clipboard"
 
 # [おまけ] もし「ファイル名だけ」をコピーしたい場合も y n などで追加可能です
-[[manager.prepend_keymap]]
+[[mgr.prepend_keymap]]
 on   = [ "y", "n" ]
 run  = "copy filename"
 desc = "Copy filename to clipboard"
