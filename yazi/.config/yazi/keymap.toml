@@ -20,3 +20,10 @@ desc = "Copy path to clipboard"
 on   = [ "y", "n" ]
 run  = "copy filename"
 desc = "Copy filename to clipboard"
+
+# デフォルトだとEnterがopenでフォルダにEnterするとフォルダ名のファイルを作成してnvimで開いてしまう。
+# 対策として`l`と同じ挙動の`exec = "enter"`を割り当てる。
+[[manager.prepend_keymap]]
+on   = [ "<Enter>" ]
+exec = "enter"
+desc = "Enter the child directory, or open the file"
