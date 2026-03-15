@@ -2,8 +2,8 @@
 local wezterm = require("wezterm")
 local config = wezterm.config_builder()
 
-config.initial_cols = 200    -- Screen width
-config.initial_rows = 60     -- Screen height
+config.initial_cols = 200 -- Screen width
+config.initial_rows = 60 -- Screen height
 
 --[[ Reasoning for initial_cols=200, initial_rows=60:
  These are approximate values assuming JetBrainsMono Nerd Font Mono 10pt on a Full HD (1920x1080) display.
@@ -12,7 +12,7 @@ config.initial_rows = 60     -- Screen height
  2. Font size: 10pt (character width ≈ 9px, character height ≈ 18px)
  3. Number of columns (cols) = floor(1920 / 9) ≈ 213 → rounded down to 200 for some margin
  4. Number of rows (rows) = floor(1080 / 18) ≈ 60
- ]] 
+ ]]
 
 ----------------------------------------------------
 -- base
@@ -21,7 +21,7 @@ config.font = wezterm.font("JetBrainsMono Nerd Font Mono")
 config.font_size = 10
 config.line_height = 0.90
 config.window_background_opacity = 0.8
-config.color_scheme = 'GitHub Dark'
+config.color_scheme = "GitHub Dark"
 config.automatically_reload_config = true
 config.use_ime = true
 
@@ -37,17 +37,17 @@ config.show_new_tab_button_in_tab_bar = false
 config.show_close_tab_button_in_tabs = false
 
 config.window_frame = {
-  inactive_titlebar_bg = "none",
-  active_titlebar_bg = "none",
+	inactive_titlebar_bg = "none",
+	active_titlebar_bg = "none",
 }
 
 config.window_background_gradient = {
-  colors = { "#000000" },
+	colors = { "#000000" },
 }
 config.colors = {
-  tab_bar = {
-    inactive_tab_edge = "none",
-  },
+	tab_bar = {
+		inactive_tab_edge = "none",
+	},
 }
 
 ----------------------------------------------------
