@@ -1,0 +1,106 @@
+# -----------------------------------------------------------
+# キーバインドのカスタマイズ (manager)
+# -----------------------------------------------------------
+[[mgr.prepend_keymap]]
+on   = [ "z" ]
+run  = "plugin fzf --args=files"
+desc = "fzf file search"
+
+[[mgr.prepend_keymap]]
+on   = [ "<C-f>" ]
+run  = "plugin fzf --args=all"
+desc = "fzf recursive search"
+
+[[mgr.prepend_keymap]]
+on   = [ "<C-g>" ]
+run  = "plugin fzf --args=git"
+desc = "fzf git search"
+
+[[manager.prepend_keymap]]
+on   = [ "Z" ]
+exec = "plugin fzf" # plugin というキーワードを付けて呼び出す
+desc = "fzfプラグインを起動"
+
+[[manager.prepend_keymap]]
+on   = [ "D" ]
+exec = "" # 完全削除を無効化
+
+# 誤削除防止：d 1回では何もしないようにし、dd でゴミ箱へ
+[[mgr.prepend_keymap]]
+on   = [ "d", "d" ]
+run  = "remove"
+desc = "Move selected files to trash"
+
+# 環境に依存しないパスコピー
+# shellコマンドを使わず、Yazi標準の `copy path` を使うのがベストです
+[[mgr.prepend_keymap]]
+on   = [ "y", "p" ]
+run  = "copy path"
+desc = "Copy path to clipboard"
+
+# [おまけ] もし「ファイル名だけ」をコピーしたい場合も y n などで追加可能です
+[[mgr.prepend_keymap]]
+on   = [ "y", "n" ]
+run  = "copy filename"
+desc = "Copy filename to clipboard"
+
+# ==============================================================================
+# タブ関連機能の完全無効化設定
+# ==============================================================================
+
+[[manager.prepend_keymap]]
+# 新しいタブを作成 (t)
+on   = [ "t" ]
+exec = ""
+
+[[manager.prepend_keymap]]
+# 現在のタブを閉じる (w)
+on   = [ "w" ]
+exec = ""
+
+[[manager.prepend_keymap]]
+# 前後のタブへ移動 ([ / ])
+on   = [ "[" ]
+exec = ""
+[[manager.prepend_keymap]]
+on   = [ "]" ]
+exec = ""
+
+[[manager.prepend_keymap]]
+# タブ間の移動 ({ / })
+on   = [ "{" ]
+exec = ""
+[[manager.prepend_keymap]]
+on   = [ "}" ]
+exec = ""
+
+# ------------------------------------------------------------------------------
+# 数字キーによるタブ切り替え (1-9) の無効化
+# ------------------------------------------------------------------------------
+[[manager.prepend_keymap]]
+on = [ "1" ]
+exec = ""
+[[manager.prepend_keymap]]
+on = [ "2" ]
+exec = ""
+[[manager.prepend_keymap]]
+on = [ "3" ]
+exec = ""
+[[manager.prepend_keymap]]
+on = [ "4" ]
+exec = ""
+[[manager.prepend_keymap]]
+on = [ "5" ]
+exec = ""
+[[manager.prepend_keymap]]
+on = [ "6" ]
+exec = ""
+[[manager.prepend_keymap]]
+on = [ "7" ]
+exec = ""
+[[manager.prepend_keymap]]
+on = [ "8" ]
+exec = ""
+[[manager.prepend_keymap]]
+on = [ "9" ]
+exec = ""

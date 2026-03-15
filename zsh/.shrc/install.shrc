@@ -1,0 +1,43 @@
+# =============================================================================
+# zsh 起動時に実行される初期化スクリプト
+# 必要なツールのインストール管理を zsh 側に委譲
+# =============================================================================
+
+# -----  Rust / Cargo のセットアップ -----
+# 例: Rust製CLIツール（ripgrep, fd, bat など）を使えるようにする
+ensure_rust_installed() {
+    local cargo_env="$HOME/.cargo/env"
+    
+    if [ -f "$cargo_env" ]; then
+        # すでにインストール済みなら読み込む
+        source "$cargo_env"
+    elif ! (( $+commands[cargo] )); then
+        # cargoコマンドがなく、設定ファイルもない場合はインストール
+        echo "🦀 Rust not found. Installing rustup..."
+        
+        # -s -- -y は「インタラクティブな質問をスキップしてデフォルトで進める」オプション
+        curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs | sh -s -- -y
+        
+        # インストール直後はパスが通っていないので、今すぐ使えるように読み込む
+        if [ -f "$cargo_env" ]; then
+            source "$cargo_env"
+        fi
+    fi
+}
+
+# ----- Node.js / npm のセットアップ（例） -----
+# 必要に応じて同様のパターンで拡張可能
+ensure_node_installed() {
+    if ! (( $+commands[node] )); then
+        echo "📦 Node.js not found. Installing nvm..."
+        # nvm のインストール例
+        curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.39.0/install.sh | bash
+        # 新しい PATH を反映
+        export NVM_DIR="$HOME/.nvm"
+        [ -s "$NVM_DIR/nvm.sh" ] && source "$NVM_DIR/nvm.sh"
+    fi
+}
+
+# 起動時に実行
+ensure_rust_installed
+# ensure_node_installed  # 必要に応じてコメント解除

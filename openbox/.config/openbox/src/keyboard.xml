@@ -1,0 +1,16 @@
+<!-- src area -->
+<keybind key = "W-f">
+  <keybind key = "x">
+    <action name = "ToggleMaximizeFull" />
+  </keybind>
+  <keybind key = "s">
+    <action name = "ToggleShade" />
+  </keybind>
+</keybind>
+<!-- # http://qastack.jp/ubuntu/305767/how-i-can-create-a-shortcut-to-maximize-minimize-windows-in-lubuntu -->
+<keybind key="W-Up">
+  <action name="ToggleMaximize"/>
+</keybind>
+<keybind key="W-Down">
+  <action name="Iconify"/>
+</keybind>

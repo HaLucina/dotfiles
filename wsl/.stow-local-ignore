@@ -1,0 +1,6 @@
+# 1. まず「.dircolors」以外のすべてのファイル・ディレクトリを無視対象にする
+# (行頭から始まり、.dircolors ではない文字列すべてにマッチ)
+^(?!\.dircolors$).*
+
+# 2. 自分自身（.stow-local-ignore）もリンクされないように明示的に無視
+^\.stow-local-ignore$

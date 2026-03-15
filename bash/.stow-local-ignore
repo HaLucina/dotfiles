@@ -1,0 +1,3 @@
+#Link './dot' files, excluding '.stow-local-ignore.' 
+^[^.].*
+^\.stow-local-ignore$

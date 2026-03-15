@@ -1,0 +1,25 @@
+# PATHやLANG、EDITORなど「どんな場面でも反映させたい環境変数の設定」
+# .zshenvには重い処理やエイリアス・プロンプト設定など���書かない
+# → すべてのzsh起動で必ず実行されるので、最低限の「いつでも必要な設定」だけにしましょう
+
+# 個人的に追加したパッケージを優先的に扱うため /usr/local/bin にパスを通す
+export PATH=/usr/local/bin:$PATH
+
+# .dotfiles 内のすべての bin ディレクトリをPATHに追加
+# 例としてfzfのプレビュー内で実行された新規シェルにも自作ラッパーが反映させたい
+# wsl/bin/zenhan.exeを利用してWslでNeovimを使う時の自動IMEオフ設定を反映させたいなど:ew
+for dir in "$HOME"/dotfiles/**/bin; do
+  # ディレクトリが存在し、シンボリックリンクでなければPATHに追加
+  if [ -d "$dir" ] && ! [ -L "$dir" ]; then
+    export PATH="$dir:$PATH"
+  fi
+done
+
+# Rust製commandを使えるようにする為
+source "$HOME/.cargo/env"
+
+# デフォルトのエディター
+export EDITOR=nvim
+
+# 文字コードの指定
+export LANG=ja_JP.UTF-8

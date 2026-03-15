@@ -1,0 +1,88 @@
+#参考：https://qiita.com/GenUchiyama/items/aeef89acd511b4db370c
+#参考：https://qiita.com/ahiruman5/items/4f3c845500c172a02935#:~:text=neocomplete%E3%81%AF%E3%82%B3%E3%83%BC%E3%83%89%E3%81%AE%E8%87%AA%E5%8B%95%E8%A3%9C%E5%AE%8C%E3%82%92%E8%A1%8C%E3%81%86Vim%E3%83%97%E3%83%A9%E3%82%B0%E3%82%A4%E3%83%B3%E3%81%A7%E3%81%99%E3%80%82&text=neosnippet%E3%81%A8%E3%81%AF%E3%80%81%E3%82%B9%E3%83%8B%E3%83%9A%E3%83%83%E3%83%88%E8%A3%9C%E5%AE%8C,%E3%81%8F%E3%82%8C%E3%82%8BVim%E3%83%97%E3%83%A9%E3%82%B0%E3%82%A4%E3%83%B3%E3%81%A7%E3%81%99%E3%80%82
+[[plugins]]
+repo = 'Shougo/neocomplete.vim'
+hook_add = '''
+let g:neocomplete#enable_at_startup = 1
+let g:neocomplete#sources#syntax#min_keyword_length = 3
+'''
+
+[[plugins]]
+repo = 'Shougo/neosnippet'
+
+[[plugins]]
+repo = 'Shougo/neosnippet-snippets'
+hook_add = '''
+let g:neosnippet#snippets_directory = [
+\   $HOME . '/.cache/dein/repos/github.com/Shougo/neosnippet-snippets/neosnippets/',
+\   $HOME . '/.vim/snippets/',
+\]
+'''
+
+[[plugins]]
+repo = 'tpope/vim-fugitive'
+
+[[plugins]]
+repo = 'gregsexton/gitv'
+
+[[plugins]]
+repo = 'vim-scripts/sudo.vim'
+
+[[plugins]]
+repo = 'tyru/open-browser.vim'
+
+[[plugins]]
+repo = 'kannokanno/previm'
+
+[[plugins]]
+repo = 'thinca/vim-quickrun'
+
+[[plugins]]
+repo = 'tpope/vim-markdown'
+
+[[plugins]] # カラースキーマ 
+repo = 'w0ng/vim-hybrid'
+##参考：https://qiita.com/kawaz/items/ee725f6214f91337b42b
+#hook_add = '''
+#	au SetHybrid VimEnter * nested colorscheme codedark
+#	'''
+#ただし、source ~/.bashrcによる再読込と相性が悪い方法である
+
+[[plugins]]
+repo = 'dhruvasagar/vim-table-mode'
+
+[[plugins]]
+repo = 'basyura/TweetVim'
+
+[[plugins]]
+repo = 'mattn/webapi-vim'
+
+[[plugins]]
+repo = 'basyura/twibill.vim'
+
+[[plugins]]
+repo = 'h1mesuke/unite-outline'
+
+[[plugins]]
+repo = 'basyura/bitly.vim'
+
+[[plugins]]
+repo = 'Shougo/unite.vim'
+
+#[[plugins]]
+#repo = 'lambdalisue/fern.vim' 
+#
+#[[plugins]]
+#repo = 'vim-airline/vim-airline'
+#
+#[[plugins]]
+#repo = 'vim-airline/vim-airline-themes'
+#
+#[[plugins]]
+#repo = 'lambdalisue/nerdfont.vim'
+#
+#[[plugins]]
+#repo = 'lambdalisue/fern-renderer-nerdfont.vim'
+#
+#[[plugins]]
+#repo = 'lambdalisue/glyph-palette.vim'
