@@ -1,3 +1,9 @@
+wezterm参考
+- [tmuxのようにWezTermを扱う](https://zenn.dev/khasegawa/articles/a11ebfbabeabaa)
+- [WezTermのworkspace管理の活用法](https://zenn.dev/neko_basu/articles/wezterm_workspace)
+
+---
+
 # 🛠️ HaLucina's Dotfiles
 
 私のFedora環境を構築するための構成ファイル群です。
