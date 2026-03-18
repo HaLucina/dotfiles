@@ -62,78 +62,61 @@ path:
 [nvim/lua/my/lazy.lua](../nvim/lua/my/lazy.lua)
 
 機能と目的: 
-Neovimのプラグインマネージャー。すべてのプラグインのインストール、更新、および個別設定の管理を一括して行う
- -   lazyをブートストラップし、Neovimを開いたときにインストールされていない場合にインストールされるようにします。
- -   `require("lazy")`を呼び出し、`setup()`関数にプラグイン設定を保持するフォルダへのパス（`josean.plugins`）を渡します。
- -   `init.lua`ファイルに`require("josean.lazy")`を追加し、Neovimの起動時に`lazy.lua`ファイルがロードされるようにします。
-
+Neovimのプラグインマネージャー。プラグインのインストール、更新、個別設定の管理を一括して行う。
 操作:
- -   `:lazy`と入力し、`Enter`を押すとlazy.nvimのUIが開きます。
+ -   `:Lazy`と入力し、`Enter`を押すとlazy.nvimのUIが開きます。
  -   不足しているプラグインをインストールするには、`大文字のI`を押します。
  -   UIを閉じるには、`Q`を押します。
- -   Neovimを再起動せずにプラグインをロードするには、`:lazy reload <プラグイン名>`と入力します。
- -   プラグインの変更を自動的に検出する機能を無効にするには、`lazy.lua`ファイルに`change_detection = { notify = false }`を追加します。
- -   ステータスラインで保留中のプラグイン更新の数を確認できます。
+ -   Neovimを再起動せずにプラグインをロードするには、`:Lazy reload <プラグイン名>`と入力します。
 
 ### plenary.nvim
 
 path: 
-lua/my/plugins/init.lua
+[lua/my/plugins/init.lua](lua/my/plugins/init.lua)
 
 機能と目的: 
- - 多くのLuaプラグイン（Telescope, todo-comments, lazygitなど）が共通で利用するユーティリティライブラリ。
+Luaプラグインが共通で利用するユーティリティライブラリ。利用しているプラグインは以下の通り。
+ - lazygit.nvim
  - Telescope
  - todo-comments
- - lazygit.nvimの依存関係として使用されます。
-
+ 
 ## 2. UI・外観改善
-### vim-tmux-navigator
+### smart-splits.lua
 
--   目的: Neovim内の分割画面とtmuxペイン間を簡単に移動できるようにします。
--   操作:
-    -   `Ctrl + H`: 左のペインに移動します。
-    -   `Ctrl + J`: 下のペインに移動します。
-    -   `Ctrl + K`: 上のペインに移動します。
-    -   `Ctrl + L`: 右のペインに移動します。
+path:
+[nvim/lua/my/plugins/smart-splits.lua](nvim/lua/my/plugins/smart-splits.lua)
+機能と目的: 
+Neovim内の分割画面の移動できるようするが、メインの目的は「Neovim <-> WezTerm」の画面移動を成立させる為。
+
+操作: 
+    -  `Ctrl + H`: 左のペインに移動。
+    -  `Ctrl + J`: 下のペインに移動。
+    -  `Ctrl + K`: 上のペインに移動。
+    -  `Ctrl + L`: 右のペインに移動。
 
 ### tokyonight (カラースキーム)
 
-格納場所: lua/josean/plugins/color-scheme.lua
+path: 
+[lua/josean/plugins/color-scheme.lua](lua/josean/plugins/color-scheme.lua)
 
 機能と目的:
-Neovimのカラースキームを設定します。
+Neovimのカラースキームを設定。ダークテーマにしたかっただけでオススメに出てきたこれを使ってみた。
 
 設定:
- - 他のプラグインより先にロードされるように`priorityを1000`に設定します。
- - `config`フィールドに関数を渡し、その中で`vim.cmd("colorscheme TokyoNight")`を実行します。
- - `style`を`Knight`に設定したり、`on_colors`フィールドを使用してカラースキームの色を修正したりできます。
-
-### nvim-tree (ファイルエクスプローラー)
-
-格納場所: lua/josean/plugins/nvim-tree.lua
-
-機能と目的: ファイルエクスプローラー。アイコン表示、相対行番号、Git連携などの機能を備える。
-
-依存関係:
-ファイルアイコンを表示するために`nvim-web-devicons`が必要です。
-設定:
--   ファイルエクスプローラーのデフォルトの幅を設定します。
--   相対行番号を表示します。
--   フォルダが閉じているときと開いているときのアイコンを変更します。
--   ウィンドウピッカーを無効にして、ウィンドウ分割とうまく連携するようにします。
--   Gitによって無視されるファイルを表示するように`ignore`を`false`に設定します。
-キーマップ (リーダーキー Space と E プレフィックス):
--   `Space E`: nvim-treeをトグルします（開いたり閉じたりします）。
--   `Space EF`: 現在のファイルがある場所でファイルエクスプローラーを開きます。
--   `Space EC`: すべてを折りたたみます。
--   `Space ER`: nvim-treeをリロードします。
-ヘルプ: `colon H nvim-tree`と入力すると、設定可能なオプションの詳細が表示されます。
+ - 他のプラグインより先にロードされるように`priorityを1000`に設定。
+ - `config`フィールドに関数を渡し、その中で`vim.cmd("colorscheme TokyoNight")`を実行。
+ - `style`を`Knight`に設定したり、`on_colors`フィールドを使用してカラースキームの色を修正できる。
 
 ### which-key
 
--   目的: 設定で定義したキーマップを覚えやすくします。リーダーキーを押した後に使用可能なオプションを表示します。
+path: 
+[lua/my/plugins/which-key.lua](lua/my/plugins/which-key.lua)
+
+機能と目的: 
+設定で定義したキーマップ一覧を表示してくれる。例えばリーダーキー（Space）などを押した後に、次に押せるキーとその説明をポップアップ表示できる。
+
 -   遅延ロード: `VeryLazy`イベントを使用します。これは、初期UIにとって重要ではないため、後でロードされることをlazy.nvimに伝えます。
--   設定:
+設定:
     -   `init`フィールドはNeovimの起動時に実行されます。
     -   `timeout`を`true`に、`timeoutlen`を`500ミリ秒`に設定します。これはwhich-keyがアクティブになるまでの待機時間です。
     -   `opts`フィールドでデフォルト設定を使用します。
