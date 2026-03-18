@@ -17,7 +17,13 @@ config.initial_rows = 60 -- Screen height
 ----------------------------------------------------
 -- base
 ----------------------------------------------------
-config.font = wezterm.font("JetBrainsMono Nerd Font Mono")
+config.font = wezterm.font_with_fallback({
+	-- Language EN
+	{ family = "JetBrainsMono Nerd Font Mono", weight = "Medium" },
+	-- Force JP font to fix punctuation alignment (preventing center-aligned '。' from TC fonts)
+	-- Explicitly prioritizes the JP variant over TC to ensure correct glyph positioning.
+	{ family = "Noto Sans CJK JP", scale = 0.9 },
+})
 config.font_size = 10
 config.line_height = 0.90
 config.window_background_opacity = 0.8
