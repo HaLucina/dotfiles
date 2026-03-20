@@ -17,6 +17,7 @@ end
 -- kmap( { 'n', 'i', 'c' }, ';', ':', opts(tf, "Remap ; to :")
 -- kmap( { 'n', 'i', 'c' }, ':', ';', opts(tf, "Remap : to ;")
 
+-- stylua: ignore start
 ----- |------------- |-------- |------------------------------------ |-----------
 --    |Mode          |Keys     |Command                              |Description
 ----- |------------- |-------- |------------------------------------ |-----------
@@ -63,3 +64,4 @@ kmap({ "c"         }, "<C-a>",  "<Home>",                             opts("tt",
 kmap({ "c"         }, "<C-e>",  "<End>",                              opts("tt", "Cmdline: move cursor to end"))
 kmap({ "c", "i"    }, "<C-d>",  "<Del>",                              opts("tt", "Delete character forward"))
 kmap({ "c", "i"    }, "<C-h>",  "<BS>",                               opts("tt", "Delete character backward"))
+-- stylua: ignore end
