@@ -1,3 +1,7 @@
+https://eiji.page/blog/neovim-mini-align/
+
+---
+
 wezterm参考
 - [tmuxのようにWezTermを扱う](https://zenn.dev/khasegawa/articles/a11ebfbabeabaa)
 - [WezTermのworkspace管理の活用法](https://zenn.dev/neko_basu/articles/wezterm_workspace)
