@@ -1,4 +1,105 @@
+ソースコードとREADMEを双方向に繋ぐ仕組みの導入手順を、3つのフェーズに整理してまとめました。
+
+---
+
+## Phase 1: 基本の仕組みづくり（手動ベース）
+
+まずは、コードからREADMEへジャンプできる土台を作ります。
+
+### 1. リンクの命名規則（アンカー）の作成
+README内の特定の場所に飛ぶために、HTMLのアンカータグを埋め込みます。
+
+* **README側:**
+    ```markdown
+    ## Why use f.push_key_is? <a name="why-push-key"></a>
+    ...ここに詳細な理由を書く...
+    ```
+* **ソースコード側:**
+    ```lua
+    -- [Why?](readmes/toc_nvim.md#why-push-key)
+    f.push_key_is(...)
+    ```
+
+### 2. Neovimからジャンプするための設定
+コメント内のファイルパスの上で `gx` を押すと、そのファイル（およびアンカー位置）を開く設定を `init.lua` に追加します。
+
+```lua
+vim.keymap.set("n", "gx", function()
+  local file = vim.fn.expand("<cfile>")
+  if file:match("^https?://") then
+    vim.ui.open(file) -- URLならブラウザで開く
+  else
+    vim.cmd("edit " .. file) -- ローカルファイルならNeovimで開く
+  end
+end, { desc = "Open link under cursor" })
+```
+
+---
+
+## Phase 2: 運用を楽にする（自動化・効率化）
+
+毎回手動でパスを書くのは大変なので、自動化ツールを導入します。
+
+### 3. スニペットで入力を高速化 (LuaSnip)
+「特定のキーワード（`why`）」を打つだけで、リンクの型を自動入力します。
+
+```lua
+-- LuaSnipの設定に追加
+ls.add_snippets("lua", {
+  s("why", {
+    t("-- [Why?](readmes/toc_nvim.md#"),
+    i(1, "anchor_name"), -- ここにカーソルが止まる
+    t(")"),
+  }),
+})
+```
+
+### 4. Comment.nvim との連携 (post_hook)
+`Comment.nvim` でコメント化した瞬間に、READMEに貼り付けるためのリンクをクリップボードに自動コピーします。
+
+```lua
+require('Comment').setup({
+    post_hook = function(ctx)
+        local line_start = ctx.range.srow
+        local line_content = vim.api.nvim_buf_get_lines(0, line_start - 1, line_start, false)[1]
+
+        if line_content:match("WHY") then
+            local file_path = vim.fn.expand("%:.")
+            local link = string.format("[%s:%d](%s#L%d)", file_path, line_start, file_path, line_start)
+            vim.fn.setreg('+', link) -- クリップボードへ
+            print("README用のリンクをコピーしました！")
+        end
+    end,
+})
+```
+
+---
+
+## Phase 3: READMEからコードへの逆引き
+
+### 5. Telescope でコードを検索
+READMEを読んでいる時に、「このコードはどこだっけ？」となったら、単語検索でコードへ戻ります。
+
+```lua
+-- leader + fw でカーソル下の単語をプロジェクト全検索
+vim.keymap.set("n", "<leader>fw", function()
+  require('telescope.builtin').grep_string({ search = vim.fn.expand("<cword>") })
+end)
+```
+
+---
+
+### 導入後のワークフロー
+1.  **書く:** コードに `-- WHY ...` と書き、`gcc` でコメントアウト。
+2.  **貼る:** 自動コピーされたリンクをREADMEにペースト。
+3.  **飛ぶ:**
+    * コードからREADMEへ：`gx`
+    * READMEからコードへ：`<leader>fw`
+
+---
+
 https://eiji.page/blog/neovim-mini-align/
+上記を参考にmini-alignの説明をreadme/toc_neovimに作る
 
 ---
 
