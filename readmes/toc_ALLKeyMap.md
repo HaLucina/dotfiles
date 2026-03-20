@@ -325,4 +325,78 @@ Yazi ファイルマネージャーの各モードにおける完全なキーバ
 
 ---
 
-※ この表は、TOML内の `on = [ ... ]` 配列および `<...>` 表記の特殊キーをすべて正確にマッピングし、1つも漏らさず記載しています。
+## Weztermキー操作
+
+##### 1. コピーモード (Copy Mode)
+`LEADER` + `[` で起動する、バッファを閲覧・選択するためのモードです。
+
+| モード | キー | 機能 | 設定ファイル |
+| :--- | :--- | :--- | :--- |
+| Normal | `<Leader>` + `[` | コピーモードを起動 | wezterm.lua |
+| Copy Mode | `h` | 左へ移動 (MoveLeft) | wezterm.lua |
+| Copy Mode | `j` | 下へ移動 (MoveDown) | wezterm.lua |
+| Copy Mode | `k` | 上へ移動 (MoveUp) | wezterm.lua |
+| Copy Mode | `l` | 右へ移動 (MoveRight) | wezterm.lua |
+| Copy Mode | `<S-h>` (H) | 行頭のコンテンツへ移動 (MoveToStartOfLineContent) | wezterm.lua |
+| Copy Mode | `<S-l>` (L) | 行末のコンテンツへ移動 (MoveToEndOfLineContent) | wezterm.lua |
+| Copy Mode | `0` | 行頭へ移動 (MoveToStartOfLine) | wezterm.lua |
+| Copy Mode | `v` | セル選択モードを開始 (SetSelectionMode = "Cell") | wezterm.lua |
+| Copy Mode | `<C-v>` | ブロック選択モードを開始 (SetSelectionMode = "Block") | wezterm.lua |
+| Copy Mode | `<S-v>` (V) | 行選択モードを開始 (SetSelectionMode = "Line") | wezterm.lua |
+| Copy Mode | `y` | クリップボードにコピー (CopyTo = "Clipboard") | wezterm.lua |
+| Copy Mode | `q` | コピーモードを閉じる (Close) | wezterm.lua |
+| Copy Mode | `<Esc>` | コピーモードを閉じる (Close) | wezterm.lua |
+| Copy Mode | `<Enter>` | クリップボードとプライマリにコピーして閉じる | wezterm.lua |
+
+##### 2. ワークスペース管理 (Workspace)
+複数の作業状態を切り替えるための操作です。
+
+| モード | キー | 機能 | 設定ファイル |
+| :--- | :--- | :--- | :--- |
+| Normal | `<Leader>` + `w` | ワークスペース選択ランチャーを表示 | wezterm.lua |
+| Normal | `<Leader>` + `$` | 現在のワークスペース名を変更 | wezterm.lua |
+| Normal | `<Leader>` + `<S-w>` (W) | 新しいワークスペースを作成 | wezterm.lua |
+
+##### 3. タブ管理 (Tabs)
+タブの作成、閉鎖、および切り替え操作です。
+
+| モード | キー | 機能 | 設定ファイル |
+| :--- | :--- | :--- | :--- |
+| Normal | `<C-S-p>` | コマンドパレットを表示 (ActivateCommandPalette) | wezterm.lua |
+| Normal | `<C-Tab>` | 次のタブへ移動 (ActivateTabRelative(1)) | wezterm.lua |
+| Normal | `<C-S-Tab>` | 前のタブへ移動 (ActivateTabRelative(-1)) | wezterm.lua |
+| Normal | `<C-S-t>` | 現在のドメインで新しいタブを作成 | wezterm.lua |
+| Normal | `<C-S-w>` | 現在のタブを閉じる (確認あり) | wezterm.lua |
+| Normal | `<A-1>` | 1番目のタブへ切り替え | wezterm.lua |
+| Normal | `<A-2>` | 2番目のタブへ切り替え | wezterm.lua |
+| Normal | `<A-3>` | 3番目のタブへ切り替え | wezterm.lua |
+| Normal | `<A-9>` | 最後のタブへ切り替え | wezterm.lua |
+
+##### 4. ペイン操作 (Panes)
+画面分割と移動に関する操作です。
+
+| モード | キー | 機能 | 設定ファイル |
+| :--- | :--- | :--- | :--- |
+| Normal | `<Leader>` + `-` | ウィンドウを上下に分割 (SplitVertical) | wezterm.lua |
+| Normal | `<Leader>` + `\` | ウィンドウを左右に分割 (SplitHorizontal) | wezterm.lua |
+| Normal | `<Leader>` + `x` | 現在のペインを閉じる (確認あり) | wezterm.lua |
+| Normal | `<Leader>` + `z` | ペインのズーム状態を切り替え | wezterm.lua |
+| Normal | `h` (Navigator) | 左のペイン/ウィンドウへ移動 (split_nav) | wezterm.lua |
+| Normal | `j` (Navigator) | 下のペイン/ウィンドウへ移動 (split_nav) | wezterm.lua |
+| Normal | `k` (Navigator) | 上のペイン/ウィンドウへ移動 (split_nav) | wezterm.lua |
+| Normal | `l` (Navigator) | 右のペイン/ウィンドウへ移動 (split_nav) | wezterm.lua |
+
+##### 5. クリップボード操作 (Clipboard)
+| モード | キー | 機能 | 設定ファイル |
+| :--- | :--- | :--- | :--- |
+| Normal | `<C-S-c>` | クリップボードへコピー | wezterm.lua |
+| Normal | `<C-S-v>` | クリップボードから貼り付け | wezterm.lua |
+
+##### 6. システム・設定 (System)
+| モード | キー | 機能 | 設定ファイル |
+| :--- | :--- | :--- | :--- |
+| Normal | `<C-S-r>` | 設定ファイルの再読み込み | wezterm.lua |
+| Normal | `<C-S-+>` | フォントサイズを拡大 | wezterm.lua |
+| Normal | `<C-->` | フォントサイズを縮小 | wezterm.lua |
+| Normal | `<C-0>` | フォントサイズをリセット | wezterm.lua |
+| Normal | `<A-Enter>` | フルスクリーン表示の切り替え | wezterm.lua |
