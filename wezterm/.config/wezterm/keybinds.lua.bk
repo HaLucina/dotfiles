@@ -113,29 +113,8 @@ local triggerless_keys = {
 
 	tabs = {
 		{ key = "p", mods = "CTRL|SHIFT", action = act.ActivateCommandPalette },
-		{
-			key = "Tab",
-			mods = "CTRL",
-			action = wezterm.action_callback(function(win, pane)
-				if is_vim(pane) then
-					win:perform_action(act.SendKey({ key = "Tab", mods = "CTRL" }), pane)
-				else
-					win:perform_action(act.ActivateTabRelative(1), pane)
-				end
-			end),
-		},
-		{
-			key = "Tab",
-			mods = "CTRL|SHIFT",
-			action = wezterm.action_callback(function(win, pane)
-				if is_vim(pane) then
-					win:perform_action(act.SendKey({ key = "Tab", mods = "CTRL|SHIFT" }), pane)
-				else
-					win:perform_action(act.ActivateTabRelative(-1), pane)
-				end
-			end),
-		},
-
+		{ key = "Tab", mods = "CTRL", action = act.ActivateTabRelative(1) },
+		{ key = "Tab", mods = "SHIFT|CTRL", action = act.ActivateTabRelative(-1) },
 		{ key = "t", mods = "CTRL|SHIFT", action = act({ SpawnTab = "CurrentPaneDomain" }) },
 		{ key = "w", mods = "CTRL|SHIFT", action = act({ CloseCurrentTab = { confirm = true } }) },
 		-- ALT + 数字でのタブ切り替え

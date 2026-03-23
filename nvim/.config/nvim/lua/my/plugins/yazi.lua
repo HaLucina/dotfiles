@@ -1,6 +1,6 @@
 return {
 	"mikavilpas/yazi.nvim",
-	event = "VeryLazy",
+	event = "BufReadPost",
 	keys = {
 		{
 			"<leader>ff",

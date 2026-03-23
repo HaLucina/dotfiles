@@ -66,27 +66,27 @@ return {
 			end,
 			desc = "gitsigns(gitsigns)",
 		},
-		-- {
-		--     "<leader>l",
-		--     function()
-		--       require("gitsigns")
-		--     end,
-		--     desc = "LSP Commands(lspconfig)",
-		-- },
-		-- {
-		--     "<leader>L",
-		--     function()
-		--       require("lazygit")
-		--     end,
-		--     desc = "Lazy Commands(lazygit)"
-		-- },
+		{
+			"<leader>l",
+			function()
+				require("gitsigns")
+			end,
+			desc = "LSP Commands(lspconfig)",
+		},
+		{
+			"<leader>L",
+			function()
+				require("lazygit")
+			end,
+			desc = "Lazy Commands(lazygit)",
+		},
 		-- {
 		--     "<leader>???", lintingのコマンド登録どうしようか悩む
 		--     function()
 		--       require("linting")
 		--     end,
 		--     desc = "Linting Commands(linting)"
-		--   },
+		-- },
 		{
 			"<leader>f",
 			function()

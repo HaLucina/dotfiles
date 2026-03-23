@@ -7,20 +7,23 @@
 まずは、コードからREADMEへジャンプできる土台を作ります。
 
 ### 1. リンクの命名規則（アンカー）の作成
+
 README内の特定の場所に飛ぶために、HTMLのアンカータグを埋め込みます。
 
-* **README側:**
-    ```markdown
-    ## Why use f.push_key_is? <a name="why-push-key"></a>
-    ...ここに詳細な理由を書く...
-    ```
-* **ソースコード側:**
-    ```lua
-    -- [Why?](readmes/toc_nvim.md#why-push-key)
-    f.push_key_is(...)
-    ```
+- **README側:**
+  ```markdown
+  ## Why use f.push_key_is? <a name="why-push-key"></a>
+
+  ...ここに詳細な理由を書く...
+  ```
+- **ソースコード側:**
+  ```lua
+  -- [Why?](readmes/toc_nvim.md#why-push-key)
+  f.push_key_is(...)
+  ```
 
 ### 2. Neovimからジャンプするための設定
+
 コメント内のファイルパスの上で `gx` を押すと、そのファイル（およびアンカー位置）を開く設定を `init.lua` に追加します。
 
 ```lua
@@ -41,6 +44,7 @@ end, { desc = "Open link under cursor" })
 毎回手動でパスを書くのは大変なので、自動化ツールを導入します。
 
 ### 3. スニペットで入力を高速化 (LuaSnip)
+
 「特定のキーワード（`why`）」を打つだけで、リンクの型を自動入力します。
 
 ```lua
@@ -55,6 +59,7 @@ ls.add_snippets("lua", {
 ```
 
 ### 4. Comment.nvim との連携 (post_hook)
+
 `Comment.nvim` でコメント化した瞬間に、READMEに貼り付けるためのリンクをクリップボードに自動コピーします。
 
 ```lua
@@ -78,6 +83,7 @@ require('Comment').setup({
 ## Phase 3: READMEからコードへの逆引き
 
 ### 5. Telescope でコードを検索
+
 READMEを読んでいる時に、「このコードはどこだっけ？」となったら、単語検索でコードへ戻ります。
 
 ```lua
@@ -90,11 +96,12 @@ end)
 ---
 
 ### 導入後のワークフロー
+
 1.  **書く:** コードに `-- WHY ...` と書き、`gcc` でコメントアウト。
 2.  **貼る:** 自動コピーされたリンクをREADMEにペースト。
 3.  **飛ぶ:**
-    * コードからREADMEへ：`gx`
-    * READMEからコードへ：`<leader>fw`
+    - コードからREADMEへ：`gx`
+    - READMEからコードへ：`<leader>fw`
 
 ---
 
@@ -104,6 +111,7 @@ https://eiji.page/blog/neovim-mini-align/
 ---
 
 wezterm参考
+
 - [tmuxのようにWezTermを扱う](https://zenn.dev/khasegawa/articles/a11ebfbabeabaa)
 - [WezTermのworkspace管理の活用法](https://zenn.dev/neko_basu/articles/wezterm_workspace)
 
