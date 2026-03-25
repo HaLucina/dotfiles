@@ -45,7 +45,7 @@
 
 ## Note
 
-- Why use `f.push_key_is`? <agname="why-push-key"></a>
+- Why use `f.push_key_is`? <a name="keymap-lua"></a>
   1. This is for operations where I need to pass `Keys` as an argument.
   2. To achieve this, I'd normally have to write an anonymous function directly in the keymap command.
      example: `vim.keymap.set('n', 'j', function() myfunc('j') end)`

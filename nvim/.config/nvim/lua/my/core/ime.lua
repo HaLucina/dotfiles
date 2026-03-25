@@ -1,3 +1,7 @@
+-- Documents
+-- (~/dotfiles/readmes/toc_nvim.md)
+-- (~/dotfiles/readmes/toc_ALLKeyMap.md)
+
 -- 実行環境を判定する関数
 local function detect_environment()
 	local env = {}

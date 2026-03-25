@@ -1,16 +1,18 @@
-
+-- Documents
+-- (~/dotfiles/readmes/toc_nvim.md)
+-- (~/dotfiles/readmes/toc_ALLKeyMap.md)
 vim.cmd("let g:netrw_liststyle = 3")
 
 local opt = vim.opt -- for conciseness
 
-opt.encoding = 'utf-8'
-opt.fileencoding = 'utf-8'
+opt.encoding = "utf-8"
+opt.fileencoding = "utf-8"
 
--- Error detected while processing CursorMoved Autocommands for 
+-- Error detected while processing CursorMoved Autocommands for
 -- "<buffer=1>"..function <SNR>22_preview_color[41]..<SNR>22_get_hi_str:
 -- line    3:
 -- E121: Undefined variable: s:termguicolors
--- 
+--
 -- nvimで~/.dircolors を編集してカーソルを下に移動していくと上記のエラーが
 -- いちいち出てきた。
 -- 解決策は以下をnvim.luaに追記すること。
@@ -61,3 +63,4 @@ opt.splitbelow = true -- split horizontal window to the bottom
 
 -- turn off swapfile
 opt.swapfile = false
+vim.opt.virtualedit = "block" -- もしくは "all"

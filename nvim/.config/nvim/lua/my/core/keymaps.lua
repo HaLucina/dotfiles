@@ -1,6 +1,6 @@
 -- Documents
--- (~/dotfiles/readmes/toc_nvim.md)
--- (~/dotfiles/readmes/toc_ALLKeyMap.md #基本)
+-- (~/dotfiles/readmes/toc_nvim.md #keymap-lua)
+-- (~/dotfiles/readmes/toc_ALLKeyMap.md #why-push-key)
 
 local myf = require("my.core.functions")
 local kmap = vim.keymap.set
@@ -23,13 +23,13 @@ vim.g.mapleader = " "
 -- kmap({ 'n', 'i', 'c' }, ';', ':', opts(tf, "Remap ; to :")
 -- kmap({ 'n', 'i', 'c' }, ':', ';', opts(tf, "Remap : to ;")
 
--- stylua: ignore start
 ----- |--------------- |------------ |----------------------------------------- |--------
 --    |Mode            |Keys         |Command                                   |Description
 ----- |--------------- |------------ |----------------------------------------- |--------
 kmap({ "n"           }, "<ESC>",      "<cmd>nohlsearch | redraw | :<CR>",        opts("tt", "Clear search highlights and command line"))
 kmap({ "i"           }, "jj",         "<ESC>",                                   opts("tt", "Exit insert mode"))
 kmap({ "i"           }, "っｊ",       "<ESC>",                                   opts("tt", "Exit insert mode"))
+kmap({ "n"           }, "q:",         "<Nop>",                                   opts("tt", "Typo prevention"))
 kmap({ "n", "x"      }, "H",          "0",                                       opts("tt", "Move to line start (0"))
 kmap({ "n", "x"      }, "L",          "$",                                       opts("tt", "Move to line end ($"))
 kmap({ "n", "x"      }, "J",          "<C-d>",                                   opts("tt", "Scroll half page down"))

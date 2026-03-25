@@ -1,7 +1,8 @@
 ## Neovim キーマップ
 
-### 1. 基本操作 (Core Layer)
+### 1. Core Layer<a name="why-push-key"></a>
 
+## Why use f.push_key_is? <a name="keymap-lua"></a>
 Neovim内で定義されているすべてのキーバインド。Leaderキーは `Space` に設定。
 
 | モード                | キー                 | 機能                                        | 設定ファイル                                                |

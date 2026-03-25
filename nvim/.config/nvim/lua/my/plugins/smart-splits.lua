@@ -1,3 +1,6 @@
+-- Documents
+-- (~/dotfiles/readmes/toc_nvim.md)
+-- (~/dotfiles/readmes/toc_ALLKeyMap.md)
 return {
   'mrjones2014/smart-splits.nvim',
   lazy = false,

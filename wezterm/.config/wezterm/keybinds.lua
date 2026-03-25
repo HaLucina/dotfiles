@@ -178,15 +178,16 @@ local M = {}
 M.keys = {}
 M.key_tables = {}
 
+-- 前半：これは標準的なループが最も読みやすいです
 for mode, key in pairs(mode_definitions) do
-	table.insert(M.keys, key.trigger)
-	M.key_tables[mode] = key.map
+    table.insert(M.keys, key.trigger)
+    M.key_tables[mode] = key.map
 end
 
+-- 後半：table.move を使うと、内側の ipairs ループを消去できます
 for _, keys in pairs(triggerless_keys) do
-	for _, key in ipairs(keys) do
-		table.insert(M.keys, key)
-	end
+    -- keys の中身を M.keys の末尾に一括で流し込む
+    table.move(keys, 1, #keys, #M.keys + 1, M.keys)
 end
 
 return M

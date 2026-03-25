@@ -1,3 +1,6 @@
+-- Documents
+-- (~/dotfiles/readmes/toc_nvim.md)
+-- (~/dotfiles/readmes/toc_ALLKeyMap.md)
 return {
   "kdheepak/lazygit.nvim",
   cmd = {
