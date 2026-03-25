@@ -23,6 +23,9 @@ vim.opt.termguicolors = true
 vim.opt.winblend = 0 -- window opacity
 vim.opt.pumblend = 0 -- popup menu opacity
 
+
+vim.opt.colorcolumn = { 80, 100, 120 }
+
 -- line numbers
 opt.relativenumber = true -- show relative line numbers
 opt.number = true -- shows absolute line number on cursor line (when relative number is on)
