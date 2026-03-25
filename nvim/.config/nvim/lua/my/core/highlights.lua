@@ -1,6 +1,6 @@
 -- Documents
--- (~/dotfiles/readmes/toc_nvim.md)
--- (~/dotfiles/readmes/toc_ALLKeyMap.md)
+-- (~/dotfiles/readmes/toc_nvim.md #highlights-lua)
+
 local Zenkaku = "IdeographicSpace"
 local highlights = {
 	Normal      = { bg = "none" },
@@ -20,8 +20,6 @@ local function render_appearance()
 
 	vim.fn.matchadd(Zenkaku, "　")
 end
-
-vim.opt.colorcolumn = { 80, 100, 120 }
 
 -- 3. 自動実行の集約
 -- ColorScheme: カラースキーム変更時
