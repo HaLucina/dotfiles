@@ -1,6 +1,6 @@
 -- Documents
--- (~/dotfiles/readmes/toc_nvim.md)
--- (~/dotfiles/readmes/toc_ALLKeyMap.md)
+-- (~/dotfiles/readmes/toc_nvim.md #options-lua)
+
 vim.cmd("let g:netrw_liststyle = 3")
 
 local opt = vim.opt -- for conciseness
