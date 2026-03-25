@@ -1,6 +1,6 @@
 -- Documents
--- (~/dotfiles/readmes/toc_nvim.md)
--- (~/dotfiles/readmes/toc_ALLKeyMap.md)
+-- (~/dotfiles/readmes/toc_nvim.md #functions-lua)
+
 -- M is a table to store functions exposed by this module.
 local M = {}
 
