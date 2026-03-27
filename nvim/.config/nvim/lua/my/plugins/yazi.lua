@@ -6,11 +6,12 @@
 
 return {
   "mikavilpas/yazi.nvim",
-    opts = {
-      open_for_directories = true,
-      keymaps = { show_help = "<f1>", },
-	},
-	keys = {
-		{ "<leader>ff",　"<cmd>Yazi<cr>",　desc = "Open yazi at current file", },
-	},
+  lazy = false,
+  opts = {
+    open_for_directories = true,
+    keymaps = { show_help = "<f1>" },
+  },
+  keys = {
+    { "<leader>ff", "<cmd>Yazi<cr>", desc = "Open yazi at current file" },
+  },
 }

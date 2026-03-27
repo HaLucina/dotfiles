@@ -4,6 +4,7 @@
 
 # 個人的に追加したパッケージを優先的に扱うため /usr/local/bin にパスを通す
 export PATH=/usr/local/bin:$PATH
+export PATH="$HOME/.local/bin:$PATH"
 
 # .dotfiles 内のすべての bin ディレクトリをPATHに追加
 # 例としてfzfのプレビュー内で実行された新規シェルにも自作ラッパーが反映させたい
