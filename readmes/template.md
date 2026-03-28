@@ -1,3 +1,36 @@
+### 📂 Project Structure
+
+<pre>
+<b><a href="./">.</a></b>
+├──  <b><a href="./ahk">ahk</a></b>
+│   └──  <a href="./ahk/bin">bin</a>
+├──  <b><a href="./bash">bash</a></b>
+│   └──  <a href="./bash/bin">bin</a>
+├──  <b><a href="./chgkey">chgkey</a></b>
+├──  <b><a href="./nvim">nvim</a></b>
+│   └──  <a href="./nvim/lua">lua</a>
+│       └──  <a href="./nvim/lua/my">my</a>
+│           ├──  <a href="./nvim/lua/my/core">core</a>
+│           └──  <a href="./nvim/lua/my/plugins">plugins</a>
+├──  <b><a href="./obsidian">obsidian</a></b>
+│   └──  <a href="./obsidian/plugins">plugins</a>
+├──  <b><a href="./openbox">openbox</a></b>
+│   ├──  <a href="./openbox/bk">bk</a>
+│   ├──  <a href="./openbox/default">default</a>
+│   └── 󱧼 <a href="./openbox/src">src</a>
+├──  <b><a href="./vim">vim</a></b>
+│   ├──  <a href="./vim/autoload">autoload</a>
+│   ├──  <a href="./vim/dein">dein</a>
+│   ├──  <a href="./vim/init">init</a>
+│   ├──  <a href="./vim/plugged">plugged</a>
+│   └──  <a href="./vim/plugins">plugins</a>
+├──  <b><a href="./wsl">wsl</a></b>
+│   └──  <a href="./wsl/bin">bin</a>
+└──  <b><a href="./zsh">zsh</a></b>
+</pre>
+
+
+
 ```markdown
 # 📂 [Category Name] Configuration
 
