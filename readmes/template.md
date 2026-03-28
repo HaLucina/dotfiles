@@ -1,14 +1,31 @@
-### 📂 Project Structure
+### 📂 Directory Tree Index
 
-> [dotfiles](./)  
->  ├── [ahk](./ahk)  
->  │   └── [bin](./ahk/bin)  
->  ├── [bash](./bash)  
->  │   └── [bin](./bash/bin)  
->  ├── [nvim](./nvim)  
->  │   └── [lua](./nvim/lua)  
->  ...
-
+`📂` [**dotfiles**](./)  
+`├──  ` [**ahk**](./ahk)  
+`│   └──  ` [bin](./ahk/bin)  
+`├──  ` [**bash**](./bash)  
+`│   └──  ` [bin](./bash/bin)  
+`├──  ` [**chgkey**](./chgkey)  
+`├──  ` [**nvim**](./nvim)  
+`│   └──  ` [lua](./nvim/lua)  
+`│       └──  ` [my](./nvim/lua/my)  
+`│           ├──  ` [core](./nvim/lua/my/core)  
+`│           └──  ` [plugins](./nvim/lua/my/plugins)  
+`├──  ` [**obsidian**](./obsidian)  
+`│   └──  ` [plugins](./obsidian/plugins)  
+`├──  ` [**openbox**](./openbox)  
+`│   ├──  ` [bk](./openbox/bk)  
+`│   ├──  ` [default](./openbox/default)  
+`│   └── 󱧼 ` [src](./openbox/src)  
+`├──  ` [**vim**](./vim)  
+`│   ├──  ` [autoload](./vim/autoload)  
+`│   ├──  ` [dein](./vim/dein)  
+`│   ├──  ` [init](./vim/init)  
+`│   ├──  ` [plugged](./vim/plugged)  
+`│   └──  ` [plugins](./vim/plugins)  
+`├──  ` [**wsl**](./wsl)  
+`│   └──  ` [bin](./wsl/bin)  
+`└──  ` [**zsh**](./zsh)
 
 ```markdown
 # 📂 [Category Name] Configuration
