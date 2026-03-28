@@ -1,12 +1,12 @@
 ### 📂 Project Structure
 
-- [dotfiles](./)
-  ├── [ahk](./ahk)
-  │   └── [bin](./ahk/bin)
-  ├── [bash](./bash)
-  │   └── [bin](./bash/bin)
-  ├── [nvim](./nvim)
-  │   └── [lua](./nvim/lua)
+- [dotfiles](./)  
+  ├── [ahk](./ahk)  
+  │   └── [bin](./ahk/bin)  
+  ├── [bash](./bash)  
+  │   └── [bin](./bash/bin)  
+  ├── [nvim](./nvim)  
+  │   └── [lua](./nvim/lua)  
   ...
 
 
