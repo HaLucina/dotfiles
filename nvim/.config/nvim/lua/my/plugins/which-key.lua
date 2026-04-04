@@ -5,7 +5,6 @@
 return {
 	"folke/which-key.nvim",
 	event = "VeryLazy",
-
 	init = function() 
     vim.o.timeout    = true 
     vim.o.timeoutlen = 500 
@@ -13,11 +12,9 @@ return {
 
 	opts = {
 		delay   = 0,
-
 		plugins = {
 			marks     = false, -- m などのマーク一覧を非表示
 			registers = false, -- " などのレジスタ一覧を非表示
-
 			presets   = {
 				operators    = false,  -- d, y などのオペレータを非表示
 				motions      = false,  -- h, j, k, l などの移動を非表示
