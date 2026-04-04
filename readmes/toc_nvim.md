@@ -49,12 +49,11 @@
 
 ## TOC
 
-1. [Init.lua](##Init.lua)
+1. [Init.lua](#init.lua)
   1. [bash](#bash)
-
-1. [Core Dirctory](##CoreDirctory)
+1. [Core Directory](#core-directory)
   1. [bash](#bash)
-1. [Plugins](##PluginsDirctory)
+1. [Plugins](#plugins-directory)
   1. [bash](#bash)
   1. [chgkey](#chgkey)
   1. [nvim](#nvim)
@@ -67,10 +66,87 @@
 ## Init.lua
 
 
-## Core Dirctory
+## Core Directory
+#### functions.lua  
+path:  
+ - [nvim/lua/my/lazy.lua](../nvim/lua/my/lazy.lua)
+
+目的と機能:  
+ - Neovimのプラグインマネージャー。プラグインのインストール、更新、個別設定の管理を一括して行う。
+
+設定と操作:  
+ - `:Lazy`と入力し、`Enter`を押すとlazy.nvimのUIが開く。
+ - 不足しているプラグインをインストールするには、`大文字のI`を押す。
+ - UIを閉じるには、`Q`を押します。
+ - Neovimを再起動せずにプラグインをロードするには、`:Lazy reload <プラグイン名>`と入力。
+
+#### highlights.lua  
+path:  
+ - [nvim/lua/my/lazy.lua](../nvim/lua/my/lazy.lua)
+
+目的と機能:  
+ - Neovimのプラグインマネージャー。プラグインのインストール、更新、個別設定の管理を一括して行う。
+
+設定と操作:  
+ - `:Lazy`と入力し、`Enter`を押すとlazy.nvimのUIが開く。
+ - 不足しているプラグインをインストールするには、`大文字のI`を押す。
+ - UIを閉じるには、`Q`を押します。
+ - Neovimを再起動せずにプラグインをロードするには、`:Lazy reload <プラグイン名>`と入力。
+
+#### ime.lua    
+path:  
+ - [nvim/lua/my/lazy.lua](../nvim/lua/my/lazy.lua)
+
+目的と機能:  
+ - Neovimのプラグインマネージャー。プラグインのインストール、更新、個別設定の管理を一括して行う。
+
+設定と操作:  
+ - `:Lazy`と入力し、`Enter`を押すとlazy.nvimのUIが開く。
+ - 不足しているプラグインをインストールするには、`大文字のI`を押す。
+ - UIを閉じるには、`Q`を押します。
+ - Neovimを再起動せずにプラグインをロードするには、`:Lazy reload <プラグイン名>`と入力。
+
+#### init.lua    
+path:  
+ - [nvim/lua/my/lazy.lua](../nvim/lua/my/lazy.lua)
+
+目的と機能:  
+ - Neovimのプラグインマネージャー。プラグインのインストール、更新、個別設定の管理を一括して行う。
+
+設定と操作:  
+ - `:Lazy`と入力し、`Enter`を押すとlazy.nvimのUIが開く。
+ - 不足しているプラグインをインストールするには、`大文字のI`を押す。
+ - UIを閉じるには、`Q`を押します。
+ - Neovimを再起動せずにプラグインをロードするには、`:Lazy reload <プラグイン名>`と入力。
+
+#### keymaps.lua  
+path:  
+ - [nvim/lua/my/lazy.lua](../nvim/lua/my/lazy.lua)
+
+目的と機能:  
+ - Neovimのプラグインマネージャー。プラグインのインストール、更新、個別設定の管理を一括して行う。
+
+設定と操作:  
+ - `:Lazy`と入力し、`Enter`を押すとlazy.nvimのUIが開く。
+ - 不足しているプラグインをインストールするには、`大文字のI`を押す。
+ - UIを閉じるには、`Q`を押します。
+ - Neovimを再起動せずにプラグインをロードするには、`:Lazy reload <プラグイン名>`と入力。
+
+#### options.lua  
+path:  
+ - [nvim/lua/my/lazy.lua](../nvim/lua/my/lazy.lua)
+
+目的と機能:  
+ - Neovimのプラグインマネージャー。プラグインのインストール、更新、個別設定の管理を一括して行う。
+
+設定と操作:  
+ - `:Lazy`と入力し、`Enter`を押すとlazy.nvimのUIが開く。
+ - 不足しているプラグインをインストールするには、`大文字のI`を押す。
+ - UIを閉じるには、`Q`を押します。
+ - Neovimを再起動せずにプラグインをロードするには、`:Lazy reload <プラグイン名>`と入力。
 
 
-## Plugins Dirctory
+## Plugins Directory
 
 Note
 
