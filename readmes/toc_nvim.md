@@ -49,7 +49,7 @@
 
 ## TOC
 
-1. [Init.lua](#init.lua)
+1. [Init.lua](#initlua)
   1. [bash](#bash)
 1. [Core Directory](#core-directory)
   1. [bash](#bash)
@@ -63,10 +63,15 @@
   1. [wsl](#wsl)
   1. [zsh](#zsh)
 
-## Init.lua
+## Entry Points 
+(init.lua / lazy.lua)
+init.lua: 全体の読み込み順序を定義する、Neovimの玄関口。
 
+lazy.lua: プラグインマネージャー（lazy.nvim）の初期化と、プラグインディレクトリの読み込み設定。
 
 ## Core Directory
+options.lua や keymaps.lua など、プラグインに依存しないエディタ自体の基本設定。
+
 #### functions.lua  
 path:  
  - [nvim/lua/my/lazy.lua](../nvim/lua/my/lazy.lua)
@@ -147,6 +152,7 @@ path:
 
 
 ## Plugins Directory
+各プラグインごとの詳細設定。init.lua でこれらを一括読み込みする仕組み。
 
 Note
 
