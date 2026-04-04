@@ -63,11 +63,35 @@
   1. [wsl](#wsl)
   1. [zsh](#zsh)
 
-## Entry Points 
-(init.lua / lazy.lua)
-init.lua: 全体の読み込み順序を定義する、Neovimの玄関口。
+## Entry Points
+#### init.nvim  
+path:  
+ - [nvim/init.lua](../nvim/init.lua)
 
-lazy.lua: プラグインマネージャー（lazy.nvim）の初期化と、プラグインディレクトリの読み込み設定。
+目的と機能:  
+ - Neovimの設定におけるエントリーポイント。具体的な設定は「Core」と「Plugins」の外部モジュールに分離して呼び出している。
+
+設定:  
+ - 仕様変更が無い限り`require`関数で以下の通り呼び出すだけ。
+    ```lua
+    require("my.core")
+    require("my.lazy")
+    ```
+ 
+#### lazy.nvim  
+path:  
+ - [nvim/lua/my/lazy.lua](../nvim/lua/my/lazy.lua)
+
+目的と機能:  
+ - Neovimのプラグインマネージャー。プラグインのインストール、更新、個別設定の管理を一括して行う。
+
+設定と操作:  
+ - `:Lazy`と入力し、`Enter`を押すとlazy.nvimのUIが開く。
+ - 不足しているプラグインをインストールするには、`大文字のI`を押す。
+ - UIを閉じるには、`Q`を押します。
+ - Neovimを再起動せずにプラグインをロードするには、`:Lazy reload <プラグイン名>`と入力。
+
+---
 
 ## Core Directory
 options.lua や keymaps.lua など、プラグインに依存しないエディタ自体の基本設定。
@@ -170,18 +194,6 @@ Note
 
 ### 1. Plugin Management Platform
 
-#### lazy.nvim  
-path:  
- - [nvim/lua/my/lazy.lua](../nvim/lua/my/lazy.lua)
-
-目的と機能:  
- - Neovimのプラグインマネージャー。プラグインのインストール、更新、個別設定の管理を一括して行う。
-
-設定と操作:  
- - `:Lazy`と入力し、`Enter`を押すとlazy.nvimのUIが開く。
- - 不足しているプラグインをインストールするには、`大文字のI`を押す。
- - UIを閉じるには、`Q`を押します。
- - Neovimを再起動せずにプラグインをロードするには、`:Lazy reload <プラグイン名>`と入力。
 
 #### plenary.nvim
 path:   
@@ -195,7 +207,7 @@ path:
 
 ---
 
-## 2. UI・外観改善
+### 2. UI・外観改善
 
 #### alpha.nvim
 path:  
