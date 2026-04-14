@@ -80,7 +80,7 @@ path:
  
 #### lazy.nvim  
 path:  
- - [nvim/lua/my/lazy.lua](../nvim/lua/my/lazy.lua)
+ - [nvim/lua/my/lazy.lua](../nvim/.config/nvim/lua/my/lazy.lua)
 
 目的と機能:  
  - Neovimのプラグインマネージャー。プラグインのインストール、更新、個別設定の管理を一括して行う。
@@ -193,22 +193,20 @@ Note
 ---
 
 ### 1. Plugin Management Platform
-
-
 #### plenary.nvim
 path:   
  - [lua/my/plugins/init.lua](lua/my/plugins/init.lua)
 
 目的と機能:  
-　- Luaプラグインが共通で利用するユーティリティライブラリ。利用しているプラグインは以下の通り。
-  　- lazygit.nvim
-  　- Telescope
-  　- todo-comments
+ - Luaプラグインが共通で利用するユーティリティライブラリ。利用しているプラグインは以下の通り。
+   - lazygit.nvim
+   - Telescope
+   - todo-comments
 
 ---
 
-### 2. UI・外観改善
 
+### 2. UI・外観改善
 #### alpha.nvim
 path:  
  - [lua/my/plugins/alpha.nvim](lua/my/plugins/alpha.nvim)
@@ -257,7 +255,7 @@ path:
 
 
 #### tokyonight (カラースキーム)
-　- path:   [lua/josean/plugins/color-scheme.lua](lua/josean/plugins/color-scheme.lua)
+ - path:   [lua/josean/plugins/color-scheme.lua](lua/josean/plugins/color-scheme.lua)
 
 目的と機能:  
  - Neovimのカラースキームを設定。ダークテーマにしたかっただけでオススメに出てきたこれを使ってみた。
