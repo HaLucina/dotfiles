@@ -49,8 +49,9 @@
 
 ## TOC
 
-1. [Init.lua](#initlua)
-  1. [bash](#bash)
+1. [Entry Points](#entrypoints)
+  1. [init.lua](#initlua)
+  1. [lazy.nvim](#lazynvim)
 1. [Core Directory](#core-directory)
   1. [bash](#bash)
 1. [Plugins](#plugins-directory)
@@ -63,10 +64,12 @@
   1. [wsl](#wsl)
   1. [zsh](#zsh)
 
+---
+
 ## Entry Points
-#### init.nvim  
+### init.nvim  
 path:  
- - [nvim/init.lua](../nvim/init.lua)
+ - [nvim/init.lua](../nvim/.config/nvim/init.lua)
 
 目的と機能:  
  - Neovimの設定におけるエントリーポイント。具体的な設定は「Core」と「Plugins」の外部モジュールに分離して呼び出している。
@@ -78,7 +81,7 @@ path:
     require("my.lazy")
     ```
  
-#### lazy.nvim  
+### lazy.nvim  
 path:  
  - [nvim/lua/my/lazy.lua](../nvim/.config/nvim/lua/my/lazy.lua)
 
@@ -96,9 +99,9 @@ path:
 ## Core Directory
 options.lua や keymaps.lua など、プラグインに依存しないエディタ自体の基本設定。
 
-#### functions.lua  
+### functions.lua  
 path:  
- - [nvim/lua/my/lazy.lua](../nvim/lua/my/lazy.lua)
+ - [nvim/lua/my/lazy.lua](../nvim/.config/nvim/lua/my/lazy.lua)
 
 目的と機能:  
  - Neovimのプラグインマネージャー。プラグインのインストール、更新、個別設定の管理を一括して行う。
@@ -109,9 +112,9 @@ path:
  - UIを閉じるには、`Q`を押します。
  - Neovimを再起動せずにプラグインをロードするには、`:Lazy reload <プラグイン名>`と入力。
 
-#### highlights.lua  
+### highlights.lua  
 path:  
- - [nvim/lua/my/lazy.lua](../nvim/lua/my/lazy.lua)
+ - [nvim/lua/my/lazy.lua](../nvim/.config/nvim/lua/my/lazy.lua)
 
 目的と機能:  
  - Neovimのプラグインマネージャー。プラグインのインストール、更新、個別設定の管理を一括して行う。
@@ -122,9 +125,9 @@ path:
  - UIを閉じるには、`Q`を押します。
  - Neovimを再起動せずにプラグインをロードするには、`:Lazy reload <プラグイン名>`と入力。
 
-#### ime.lua    
+### ime.lua    
 path:  
- - [nvim/lua/my/lazy.lua](../nvim/lua/my/lazy.lua)
+ - [nvim/lua/my/lazy.lua](../nvim/.config/nvim/lua/my/lazy.lua)
 
 目的と機能:  
  - Neovimのプラグインマネージャー。プラグインのインストール、更新、個別設定の管理を一括して行う。
@@ -135,9 +138,9 @@ path:
  - UIを閉じるには、`Q`を押します。
  - Neovimを再起動せずにプラグインをロードするには、`:Lazy reload <プラグイン名>`と入力。
 
-#### init.lua    
+### init.lua    
 path:  
- - [nvim/lua/my/lazy.lua](../nvim/lua/my/lazy.lua)
+ - [nvim/lua/my/lazy.lua](../nvim/.config/nvim/lua/my/lazy.lua)
 
 目的と機能:  
  - Neovimのプラグインマネージャー。プラグインのインストール、更新、個別設定の管理を一括して行う。
@@ -148,9 +151,9 @@ path:
  - UIを閉じるには、`Q`を押します。
  - Neovimを再起動せずにプラグインをロードするには、`:Lazy reload <プラグイン名>`と入力。
 
-#### keymaps.lua  
+### keymaps.lua  
 path:  
- - [nvim/lua/my/lazy.lua](../nvim/lua/my/lazy.lua)
+ - [nvim/lua/my/lazy.lua](../nvim/.config/nvim/lua/my/lazy.lua)
 
 目的と機能:  
  - Neovimのプラグインマネージャー。プラグインのインストール、更新、個別設定の管理を一括して行う。
@@ -161,9 +164,9 @@ path:
  - UIを閉じるには、`Q`を押します。
  - Neovimを再起動せずにプラグインをロードするには、`:Lazy reload <プラグイン名>`と入力。
 
-#### options.lua  
+### options.lua  
 path:  
- - [nvim/lua/my/lazy.lua](../nvim/lua/my/lazy.lua)
+ - [nvim/lua/my/lazy.lua](../nvim/.config/nvim/lua/my/lazy.lua)
 
 目的と機能:  
  - Neovimのプラグインマネージャー。プラグインのインストール、更新、個別設定の管理を一括して行う。
@@ -193,9 +196,9 @@ Note
 ---
 
 ### 1. Plugin Management Platform
-#### plenary.nvim
+### plenary.nvim
 path:   
- - [lua/my/plugins/init.lua](lua/my/plugins/init.lua)
+ - [lua/my/plugins/init.lua](../nvim/.config/nvim/lua/my/plugins/init.lua)
 
 目的と機能:  
  - Luaプラグインが共通で利用するユーティリティライブラリ。利用しているプラグインは以下の通り。
@@ -207,9 +210,9 @@ path:
 
 
 ### 2. UI・外観改善
-#### alpha.nvim
+### alpha.nvim
 path:  
- - [lua/my/plugins/alpha.nvim](lua/my/plugins/alpha.nvim)
+ - [lua/my/plugins/alpha.nvim](../nvim/.config/nvim/lua/my/plugins/alpha.nvim)
 
 目的と機能:   
  - Neovimの起動時に表示されるグリーター（ダッシュボード）を設定します。
@@ -223,9 +226,9 @@ path:
  - `Q`: Neovimを終了します。
 
 
-#### lualine.nvim
+### lualine.nvim
 path:    
- - [lua/my/plugins/lualine.lua](lua/my/plugins/lualine.lua)
+ - [lua/my/plugins/lualine.lua](../nvim/.config/nvim/lua/my/plugins/lualine.lua)
 
 目的と機能:    
 - Neovimウィンドウの下部にあるステータスラインの見た目を改善。
@@ -239,9 +242,9 @@ path:
  - lazy.nvimとの統合: ステータスラインに保留中のプラグイン更新の数を表示します。`lazy.status`モジュールを使用し、`section X`をカスタマイズします。
 
 
-#### smart-splits.lua
+### smart-splits.lua
 path:   
- - [nvim/lua/my/plugins/smart-splits.lua](nvim/lua/my/plugins/smart-splits.lua)
+ - [nvim/lua/my/plugins/smart-splits.lua](../nvim/.config/nvim/lua/my/plugins/smart-splits.lua)
 
 目的と機能:  
  - Neovim内の分割画面へ簡単に移動できるようする。
@@ -254,8 +257,9 @@ path:
  - `Ctrl + L`: 右のペインに移動。
 
 
-#### tokyonight (カラースキーム)
- - path:   [lua/josean/plugins/color-scheme.lua](lua/josean/plugins/color-scheme.lua)
+### tokyonight (カラースキーム)
+path: 
+ - [lua/josean/plugins/color-scheme.lua](../nvim/.config/nvim/lua/josean/plugins/color-scheme.lua)
 
 目的と機能:  
  - Neovimのカラースキームを設定。ダークテーマにしたかっただけでオススメに出てきたこれを使ってみた。
@@ -269,9 +273,9 @@ path:
 
 ## 3. 検索・ナビゲーション
 
-#### which-key
+### which-key
 path:   
- - [lua/my/plugins/which-key.lua](lua/my/plugins/which-key.lua)
+ - [lua/my/plugins/which-key.lua](../nvim/.config/nvim/lua/my/plugins/which-key.lua)
 
 目的と機能:  
  - 設定で定義したキーマップ一覧を表示してくれる。例えばリーダーキー（Space）などを押した後に、次に押せるキーとその説明をポップアップ表示できる。
@@ -284,9 +288,9 @@ path:
  - リーダーキー（`Space`）を押すとした画面に利用可能なオプションが表示される。
 
 
-#### telescope
+### telescope
 path:   
- - [lua/my/plugins/telescope.lua](lua/my/plugins/telescope.lua)
+ - [lua/my/plugins/telescope.lua](../nvim/.config/nvim/lua/my/plugins/telescope.lua)
 
 目的と機能:  
  - プロジェクト全体でファイルやテキストを簡単に検索できるファジーファインダーです。右側にファイルプレビューが表示されます。
@@ -340,10 +344,10 @@ end, {})
 
 
 
-#### auto-session.lua
+### auto-session.lua
 
 path:  
-[lua/my/plugins/auto-session.lua](lua/my/plugins/auto-session.lua)
+[lua/my/plugins/auto-session.lua](../nvim/.config/nvim/lua/my/plugins/auto-session.lua)
 
 - 目的: Neovimを閉じて特定のプロジェクトでの作業を停止した後でも、Neovimのセッションを簡単に復元できるようにします。セッションは定期的に自動保存されます。
 - 設定と操作:  
@@ -355,9 +359,9 @@ path:
 - 機能: 現在の作業ディレクトリごとに機能します。
 
 
-#### bufferline.nvim
+### bufferline.nvim
 path:  
- - [lua/my/plugins/bufferline.lua](lua/my/plugins/bufferline.lua)
+ - [lua/my/plugins/bufferline.lua](../nvim/.config/nvim/lua/my/plugins/bufferline.lua)
 
 目的と機能:    
  - タブの見た目を改善します。
@@ -368,9 +372,9 @@ path:
  - `separator_style`を`slant`に設定します。
 
 
-#### dressing.nvim
+### dressing.nvim
 path:  
- - [lua/my/plugins/dressing.nvim](lua/my/plugins/dressing.nvim)
+ - [lua/my/plugins/dressing.nvim](../nvim/.config/nvim/lua/my/plugins/dressing.nvim)
 目的と機能:  
 - UIの改善に役立ちます。例えば、ファイルの名前変更時の入力ボックスの見た目を良くします。
 - 遅延ロード: `VeryLazy`イベントを使用します。初期UIにとって重要ではないため、後でロードされます。
@@ -379,9 +383,9 @@ path:
  - ファイルエクスプローラーで`R`を押してファイル名を変更すると、入力ボックスの表示が変わります。
  - LSPの修正に関するUIも改善されます。
 
-#### vim-maximizer
+### vim-maximizer
 path:    
- - [lua/my/plugins/vim-maximizer.lua](lua/my/plugins/vim-maximizer.lua)
+ - [lua/my/plugins/vim-maximizer.lua](../nvim/.config/nvim/lua/my/plugins/vim-maximizer.lua)
 
 目的と機能:    
  - 分割されたウィンドウを最大化できるようにします。
@@ -391,10 +395,10 @@ path:
  - `Space SM`: 現在の分割ウィンドウを最大化します。再度押せば元のサイズに戻す。
 
 
-#### nvim-treesitter
+### nvim-treesitter
 
 path:  
- - [lua/my/plugins/nvim-treesitter.lua](lua/my/plugins/nvim-treesitter.lua)
+ - [lua/my/plugins/nvim-treesitter.lua](../nvim/.config/nvim/lua/my/plugins/nvim-treesitter.lua)
 
 目的と機能:    
  - 構文ハイライト、インデント他の機能を提供します。構文ツリーにアクセスできます。
@@ -412,18 +416,18 @@ path:
  - `Ctrl + Space`: ノードを選択し、再度押すとその親も選択するなど、増分選択を行います。
  - 自動タグ付け: H1タグなどを追加すると、自動的にタグが閉じられます。
 
-#### indent-blankline.nvim
+### indent-blankline.nvim
 path:  
- - [lua/my/plugins/which-key.lua](lua/my/plugins/which-key.lua)
+ - [lua/my/plugins/which-key.lua](../nvim/.config/nvim/lua/my/plugins/which-key.lua)
 
 目的と機能:    
 -  インデントガイドを追加します。
 - 遅延ロード: オープンバッファのコンテキスト内で適用されるため、イベント（`BufEnter`、`BufNewFile`、`BufRead`など）で遅延ロードされます。
 - 設定と操作:   インデントガイドに使用する特定の文字を指定します。Tree-sitterの助けを借りて、カーソルの現在のスコープもハイライトします。
 
-#### nvim-cmp (補完)
+### nvim-cmp (補完)
 path:    
- - [lua/my/plugins/nvim-cmp.lua](lua/my/plugins/nvim-cmp.lua)
+ - [lua/my/plugins/nvim-cmp.lua](../nvim/.config/nvim/lua/my/plugins/nvim-cmp.lua)
 
 目的:
 - Neovimで入力中に自動補完の候補を表示します。
@@ -453,10 +457,10 @@ path:
  - `Ctrl + F`: プレビューを下にスクロールします。
  - `Ctrl + B`: プレビューを上にスクロールします。
 
-#### nvim-autopairs
+### nvim-autopairs
 
 path:    
- - [lua/my/plugins/nvim-autopairs.lua](lua/my/plugins/nvim-autopairs.lua)
+ - [lua/my/plugins/nvim-autopairs.lua](../nvim/.config/nvim/lua/my/plugins/nvim-autopairs.lua)
 
 目的と機能:    
   ― 自動閉じペア機能（波括弧、角括弧、丸括弧、引用符）を追加します。
@@ -470,9 +474,9 @@ path:
  - 開き波括弧（`{`）を入力すると、自動的に閉じ波括弧（`}`）が追加されます。
  - 角括弧（`[]`）、丸括弧（`()`）、二重引用符（`""`）、単一引用符（`''`）でも同様に機能します。
 
-#### comment.nvim
+### comment.nvim
 path:  
- - [lua/my/plugins/which-key.lua](lua/my/plugins/which-key.lua)
+ - [lua/my/plugins/which-key.lua](../nvim/.config/nvim/lua/my/plugins/which-key.lua)
 
 目的と機能:    
  - コードをコメントアウトする機能を提供します。
@@ -485,9 +489,9 @@ path:
  - `GC`に続けてモーション（例: `G`でファイルの終わりまで、`2J`で2行下まで）を使用すると、コードがコメントアウトされます。
  - `GCC`: 現在の行をコメントアウトします。
 
-#### todo-comments.nvim
+### todo-comments.nvim
 path:  
- - [lua/my/plugins/which-key.lua](lua/my/plugins/which-key.lua)
+ - [lua/my/plugins/which-key.lua](../nvim/.config/nvim/lua/my/plugins/which-key.lua)
 
 目的と機能:    
 - TODOコメントを管理します。特定のキーワード（TODO、HACK、BUG）をハイライトします。
@@ -502,9 +506,9 @@ path:
  - `TODO:`、`HACK:`、`BUG:`などのキーワード（TODOはすべて大文字でコロンを続ける）を使用すると、プラグインによって認識され、ハイライトされます。
  - `Space XT` (Troubleプラグイン) でプロジェクト内のTODOを表示することもできます。
 
-#### nvim-surround
+### nvim-surround
 path:  
- - [lua/my/plugins/which-key.lua](lua/my/plugins/which-key.lua)
+ - [lua/my/plugins/which-key.lua](../nvim/.config/nvim/lua/my/plugins/which-key.lua)
 
 目的と機能:    
  - 周囲の記号（引用符、括弧、タグなど）を追加するのに役立ちます。
@@ -520,9 +524,9 @@ path:
  - `CST` (Change Surround Tag) + 古いタグ + 新しいタグ: タグを変更します。
 - 機能: 波括弧、丸括弧、角括弧、二重引用符、単一引用符、タグなどの一般的な周囲の文字で機能します。
 
-#### mason.nvim
+### mason.nvim
 path:  
- - [lua/my/plugins/which-key.lua](lua/my/plugins/which-key.lua)
+ - [lua/my/plugins/which-key.lua](../nvim/.config/nvim/lua/my/plugins/which-key.lua)
 
 目的と機能:    
  - 作業する言語のLSP機能（言語サーバー、リンター、フォーマッター）を有効にするために必要なものをインストールします。
@@ -541,9 +545,9 @@ path:
  - `I`: 手動でインストールします。
  - `X`: インストールしたものを削除します。
 
-#### nvim-lspconfig (言語サーバープロトコル)
+### nvim-lspconfig (言語サーバープロトコル)
 path:  
- - [lua/my/plugins/which-key.lua](lua/my/plugins/which-key.lua)
+ - [lua/my/plugins/which-key.lua](../nvim/.config/nvim/lua/my/plugins/which-key.lua)
 
 目的と機能:    
 -  言語サーバーを構成するためのプラグインです。
@@ -570,9 +574,9 @@ path:
  - `Space RS`: 言語サーバーを再起動します。
 - ファイル設定と操作:   `nvim-lsp-file-operations`プラグインのおかげで、ファイル名が変更されるとインポートが更新されます（例: `nvim-tree`で`R`を使用）。
 
-#### trouble.nvim
+### trouble.nvim
 path:  
- - [lua/my/plugins/which-key.lua](lua/my/plugins/which-key.lua)
+ - [lua/my/plugins/which-key.lua](../nvim/.config/nvim/lua/my/plugins/which-key.lua)
 
 目的: 
  - LSPとの連携を非常に便利にするプラグインです。
@@ -586,9 +590,9 @@ path:
  - `Space XD`: 現在のバッファの診断のみを表示します。
  - `Space XT`: プロジェクトのTODOを表示します。
 
-#### nvim-lint (リンティング)
+### nvim-lint (リンティング)
 path:  
- - [lua/my/plugins/which-key.lua](lua/my/plugins/which-key.lua)
+ - [lua/my/plugins/which-key.lua](../nvim/.config/nvim/lua/my/plugins/which-key.lua)
 
 目的と機能:     
  - コードのリンティングを行います。
@@ -604,9 +608,9 @@ path:
  - `]D`: エラーを順に移動します。
  - `Space XD` (Troubleプラグイン): 現在のドキュメントまたはバッファのリンティングエラーを表示できます。
 
-#### gitsigns.nvim
+### gitsigns.nvim
 path:  
- - [lua/my/plugins/gitsigns.lua](lua/my/plugins/gitsigns.lua)
+ - [lua/my/plugins/gitsigns.lua](../nvim/.config/nvim/lua/my/plugins/gitsigns.lua)
 
 目的と機能:    
  - Neovim内でGitと連携し、新しい行、削除された行、変更された行（ハンク）を表示します。
@@ -627,9 +631,9 @@ path:
  - `Space HD`: ファイルと元のファイルとの差分を新しい分割画面で表示します。
  - テキストオブジェクト: ハンクのテキストオブジェクトを設定することもできます。
 
-#### lazygit.nvim
+### lazygit.nvim
 path:  
-[lua/my/plugins/lazygit.lua](lua/my/plugins/lazygit.lua)
+[lua/my/plugins/lazygit.lua](../nvim/.config/nvim/lua/my/plugins/lazygit.lua)
 
 目的と機能:    
  - Neovim内でLazyGit (Git用のTUI) を使用できるようにします。
