@@ -1,0 +1,9 @@
+[Desktop Entry]
+Type=Application
+Name=Obsidian
+Exec=/home/halucina/.local/bin/obsidian --no-sandbox %u
+Icon=obsidian
+Terminal=false
+Categories=Office;Utility;TextEditor;
+MimeType=text/markdown;x-scheme-handler/obsidian;
+StartupWMClass=obsidian
