@@ -1,34 +1,10 @@
 return {
-  "williamboman/mason.nvim",
-  dependencies = {
+  {
     "williamboman/mason-lspconfig.nvim",
-    "WhoIsSethDaniel/mason-tool-installer.nvim", -- LSP以外のツール管理用に追加
-  },
-  config = function()
-    -- import mason
-    local mason = require("mason")
-
-    -- import mason-lspconfig
-    local mason_lspconfig = require("mason-lspconfig")
-
-    -- import mason-tool-installer
-    local mason_tool_installer = require("mason-tool-installer")
-
-    -- enable mason and configure icons
-    mason.setup({
-      ui = {
-        icons = {
-          package_installed = "✓",
-          package_pending = "➜",
-          package_uninstalled = "✗",
-        },
-      },
-    })
-
-    -- LSPサーバーの設定
-    mason_lspconfig.setup({
+    opts = {
       -- list of servers for mason to install
       ensure_installed = {
+        "ts_ls",
         "html",
         "cssls",
         "tailwindcss",
@@ -37,19 +13,40 @@ return {
         "graphql",
         "emmet_ls",
         "prismals",
-        "pyright", -- Python用LSP
+        "pyright",
+        "eslint",
       },
-    })
-
-    -- LSP以外のツール（Linter/Formatter）の自動インストール設定
-    mason_tool_installer.setup({
+    },
+    dependencies = {
+      {
+        "williamboman/mason.nvim",
+        opts = {
+          ui = {
+            icons = {
+              package_installed = "✓",
+              package_pending = "➜",
+              package_uninstalled = "✗",
+            },
+          },
+        },
+      },
+      "neovim/nvim-lspconfig",
+    },
+  },
+  {
+    "WhoIsSethDaniel/mason-tool-installer.nvim",
+    opts = {
       ensure_installed = {
-        "pylint",   -- Pythonエラーチェック（エラーの原因となっていたツール）
-        "black",    -- Pythonコード整形
-        "isort",    -- Pythonインポート順序整理
-        "prettier", -- HTML/CSS/JS用整形
-        "stylua",   -- Lua用整形
+        "prettier", -- prettier formatter
+        "stylua", -- lua formatter
+        "isort", -- python formatter
+        "black", -- python formatter
+        "pylint",
+        "eslint_d",
       },
-    })
-  end,
+    },
+    dependencies = {
+      "williamboman/mason.nvim",
+    },
+  },
 }
