@@ -164,6 +164,16 @@ path:
  - UIを閉じるには、`Q`を押します。
  - Neovimを再起動せずにプラグインをロードするには、`:Lazy reload <プラグイン名>`と入力。
 
+Note:  
+- Why use `f.push_key_is`? <a name="keymap-lua"></a>
+  1. This is for operations where I need to pass `Keys` as an argument.
+  2. To achieve this, I'd normally have to write an anonymous function directly in the keymap command.
+     example: `vim.keymap.set('n', 'j', function() myfunc('j') end)`
+  3. Therefore, I created a wrapper function `push_key_is` to shorten and simplify this.
+- Usage of `f.push_key_is`
+  `f.push_key_is('Keys', f.myfunc)` is used when `f.myfunc` needs arguments (`Keys`).
+  The `f` prefix indicates that `myfunc` is defined within the `functions.lua` module.
+
 ### options.lua  
 path:  
  - [nvim/lua/my/lazy.lua](../nvim/.config/nvim/lua/my/core/options.lua)
@@ -180,18 +190,6 @@ path:
 
 ## Plugins Directory
 各プラグインごとの詳細設定。init.lua でこれらを一括読み込みする仕組み。
-
-Note
-
-- Why use `f.push_key_is`? <a name="keymap-lua"></a>
-  1. This is for operations where I need to pass `Keys` as an argument.
-  2. To achieve this, I'd normally have to write an anonymous function directly in the keymap command.
-     example: `vim.keymap.set('n', 'j', function() myfunc('j') end)`
-  3. Therefore, I created a wrapper function `push_key_is` to shorten and simplify this.
-
-- Usage of `f.push_key_is`
-  `f.push_key_is('Keys', f.myfunc)` is used when `f.myfunc` needs arguments (`Keys`).
-  The `f` prefix indicates that `myfunc` is defined within the `functions.lua` module.
 
 ---
 
@@ -425,7 +423,7 @@ path:
 - 遅延ロード: オープンバッファのコンテキスト内で適用されるため、イベント（`BufEnter`、`BufNewFile`、`BufRead`など）で遅延ロードされます。
 - 設定と操作:   インデントガイドに使用する特定の文字を指定します。Tree-sitterの助けを借りて、カーソルの現在のスコープもハイライトします。
 
-### nvim-cmp (補完)
+### nvim-cmp
 path:    
  - [lua/my/plugins/nvim-cmp.lua](../nvim/.config/nvim/lua/my/plugins/nvim-cmp.lua)
 
@@ -476,7 +474,7 @@ path:
 
 ### comment.nvim
 path:  
- - [lua/my/plugins/which-key.lua](../nvim/.config/nvim/lua/my/plugins/which-key.lua)
+ - [lua/my/plugins/comment.lua](../nvim/.config/nvim/lua/my/plugins/comment.lua)
 
 目的と機能:    
  - コードをコメントアウトする機能を提供します。
@@ -491,7 +489,7 @@ path:
 
 ### todo-comments.nvim
 path:  
- - [lua/my/plugins/comment.lua](../nvim/.config/nvim/lua/my/plugins/comment.lua)
+ - [lua/my/plugins/todo-comments.lua](../nvim/.config/nvim/lua/my/plugins/todo-comments.lua)
 
 目的と機能:    
 - TODOコメントを管理します。特定のキーワード（TODO、HACK、BUG）をハイライトします。
@@ -508,7 +506,7 @@ path:
 
 ### nvim-surround
 path:  
- - [lua/my/plugins/which-key.lua](../nvim/.config/nvim/lua/my/plugins/which-key.lua)
+ - [lua/my/plugins/surround.lua](../nvim/.config/nvim/lua/my/plugins/surround.lua)
 
 目的と機能:    
  - 周囲の記号（引用符、括弧、タグなど）を追加するのに役立ちます。
@@ -573,10 +571,12 @@ path:
  - `K`: カーソル下のドキュメントを表示します。
  - `Space RS`: 言語サーバーを再起動します。
 - ファイル設定と操作:   `nvim-lsp-file-operations`プラグインのおかげで、ファイル名が変更されるとインポートが更新されます（例: `nvim-tree`で`R`を使用）。
+- マンソンファイルのうまくいく方法がうまくうきいいいい
+- `kokokara # oaiihgakj cd cdko`
 
 ### trouble.nvim
 path:  
- - [lua/my/plugins/which-key.lua](../nvim/.config/nvim/lua/my/plugins/which-key.lua)
+ - [lua/my/plugins/trouble.lua](../nvim/.config/nvim/lua/my/plugins/trouble.lua)
 
 目的: 
  - LSPとの連携を非常に便利にするプラグインです。
@@ -592,7 +592,7 @@ path:
 
 ### nvim-lint (リンティング)
 path:  
- - [lua/my/plugins/which-key.lua](../nvim/.config/nvim/lua/my/plugins/linting.lua)
+ - [lua/my/plugins/linting.lua](../nvim/.config/nvim/lua/my/plugins/linting.lua)
 
 目的と機能:     
  - コードのリンティングを行います。
