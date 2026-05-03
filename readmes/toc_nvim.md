@@ -60,6 +60,102 @@ vim.api.nvim_create_autocmd('LspAttach', {
 
 > **参考記事:** [Neovim Config Without Plugins in 2025](https://boltless.me/posts/neovim-config-without-plugins-2025/)
 
+Neovim v0.11（開発版）をお使いであれば、LSP周りは非常に進化しており、ブログにあるような「プラグインなし」の運用はむしろ追い風です。Fedora環境であれば、パッケージ管理もしやすいですね。
+
+「使いこなせていないものを一度リセットしてシンプルにする」という方針で、具体的な移行ステップを解説します。
+
+---
+
+### ステップ 1：LSPサーバーをシステム（Fedora）にインストールする
+
+`mason.nvim` を削除すると、Neovimが自動でLSPを拾ってくれなくなります。まずは、普段使う言語のサーバーをターミナルからインストールします。
+
+```bash
+# 例: Python, Lua, Go, C/C++ の場合
+sudo dnf install pyright lua-language-server gopls clang-tools-extra
+```
+*※利用している言語に合わせてインストールしてください。*
+
+---
+
+### ステップ 2：既存設定の無効化（削除）
+
+現在の設定ファイルを削除、または読み込まないようにします。
+
+1.  **ファイルの削除:**
+    *   `nvim/lua/my/plugins/lsp/lsp.lua`
+    *   `nvim/lua/my/plugins/lsp/mason.lua`
+    *   `nvim/lua/my/plugins/lsp.lua` (または `my/lsp.lua`)
+2.  **プラグインマネージャ（lazy.nvim等）からの削除:**
+    *   `init.lua` やプラグインリストを記述しているファイルから、`nvim-lspconfig` や `mason` に関連する行を削除してください。
+
+---
+
+### ステップ 3：`init.lua` に最小限の設定を記述する
+
+Neovim標準の `vim.lsp.start` を使った設定を `init.lua` （または `lua/my/lsp_simple.lua` などを新規作成して `require`）に記述します。
+
+v0.11であれば、以下のようなシンプルな記述で十分動きます。
+
+```lua
+-- LSPが起動した時のキーマップ設定 (共通)
+vim.api.nvim_create_autocmd('LspAttach', {
+  callback = function(args)
+    local opts = { buffer = args.buf }
+    vim.keymap.set('n', 'gd', vim.lsp.buf.definition, opts)    -- 定義ジャンプ
+    vim.keymap.set('n', 'K',  vim.lsp.buf.hover, opts)         -- ホバー表示
+    vim.keymap.set('n', 'gr', vim.lsp.buf.references, opts)    -- 参照一覧
+    vim.keymap.set('n', '<space>rn', vim.lsp.buf.rename, opts) -- リネーム
+  end,
+})
+
+-- 各言語サーバーの起動設定
+vim.api.nvim_create_autocmd('FileType', {
+  pattern = { 'python', 'lua', 'go', 'c', 'cpp' }, -- 対象の言語
+  callback = function(args)
+    local server_cmds = {
+      python = { 'pyright-langserver', '--stdio' },
+      lua    = { 'lua-language-server' },
+      go     = { 'gopls' },
+      c      = { 'clangd' },
+      cpp    = { 'clangd' },
+    }
+
+    local cmd = server_cmds[vim.bo.filetype]
+    if cmd then
+      vim.lsp.start({
+        name = vim.bo.filetype .. '-server',
+        cmd = cmd,
+        root_dir = vim.fs.root(args.buf, { '.git', 'pyproject.toml', 'go.mod', '.luaurc' }),
+      })
+    end
+  end,
+})
+```
+
+---
+
+### ステップ 4：不要なバイナリの掃除
+
+`mason.nvim` がインストールしたバイナリは、Fedoraのシステムとは別に `~/.local/share/nvim/mason` に保存されています。これらはもう不要なので、ディスク容量確保のために削除して構いません。
+
+```bash
+rm -rf ~/.local/share/nvim/mason
+```
+
+---
+
+### ステップ 5：動作確認
+
+1.  Neovimを再起動します。
+2.  対象のファイル（例: `test.py`）を開きます。
+3.  少し待ってから `:LspInfo` を実行し、`Active clients: ...` と表示されていれば成功です。
+
+### Fedoraユーザーへのアドバイス
+Fedoraはパッケージが比較的新しいため、多くのLSPサーバーを `dnf` で管理できます。しかし、一部の特殊なサーバーや最新版が必要な場合は `npm -g` や `go install` を使う必要があります。
+
+**「動かなくなったらターミナルで `which サーバー名` を打ってパスが通っているか確認する」**。これさえ覚えておけば、プラグインなしの管理は驚くほど楽になりますよ。
+
 
 
 ## File Tree
