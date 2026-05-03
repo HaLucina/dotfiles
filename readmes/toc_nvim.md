@@ -1,6 +1,7 @@
 # Neovim
 
-これまでのやり取りを、Neovim v0.11への移行とプラグイン削減のための「ロードマップ」としてまとめました。設定ファイル（`init.lua`）を整理する際のガイドとしてお使いください。
+まじで参考になるサイト[https://eiji.page/blog/tag/neovim/]
+
 
 ---
 
@@ -14,7 +15,7 @@
 | **編集補助** | `comment.nvim` | 標準の **`gc` / `gcc`**（v0.10+） |
 | **外観** | `indent-blankline.nvim` | **`listchars`** 設定 |
 | **Git** | `gitsigns.nvim` | **`vim.diff`** および標準の **`signcolumn`** |
-| **補完** | `nvim-cmp` | **`vim.lsp.completion`** (v0.11+) |
+| **補完** | `nvim-cmp` | blink.cmp |
 | **検索** | `telescope.nvim` | **`:find`**, **`:terminal` + `fzf`** |
 | **管理** | `mason.nvim` | OSのパッケージマネージャ (brew, apt等) |
 
