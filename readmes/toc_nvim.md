@@ -1,5 +1,67 @@
 # Neovim
 
+これまでのやり取りを、Neovim v0.11への移行とプラグイン削減のための「ロードマップ」としてまとめました。設定ファイル（`init.lua`）を整理する際のガイドとしてお使いください。
+
+---
+
+# 🛠 Neovim v0.11 移行＆プラグイン削減メモ
+
+## 1. 削減対象のプラグイン候補
+以下のプラグインは、Neovim v0.10/v0.11の標準機能で置き換え可能です。
+
+| カテゴリ | 削除可能なプラグイン | 移行先の標準機能 / 設定 |
+| :--- | :--- | :--- |
+| **編集補助** | `comment.nvim` | 標準の **`gc` / `gcc`**（v0.10+） |
+| **外観** | `indent-blankline.nvim` | **`listchars`** 設定 |
+| **Git** | `gitsigns.nvim` | **`vim.diff`** および標準の **`signcolumn`** |
+| **補完** | `nvim-cmp` | **`vim.lsp.completion`** (v0.11+) |
+| **検索** | `telescope.nvim` | **`:find`**, **`:terminal` + `fzf`** |
+| **管理** | `mason.nvim` | OSのパッケージマネージャ (brew, apt等) |
+
+---
+
+## 2. 実践：標準機能の活用テクニック
+
+### A. 標準補完（ins-completion）の使い分け
+プラグインを使わず、挿入モード（Insert mode）で以下のキーを使用します。
+*   `CTRL-X CTRL-O`: **オムニ補完**。LSPに基づく変数・メソッド名の補完。
+*   `CTRL-X CTRL-L`: **行補完**。ファイル内にある既存の「一行」を丸ごと入力。
+*   `CTRL-X CTRL-F`: **パス補完**。ファイルパスを補完。
+*   `CTRL-N` / `CTRL-P`: **キーワード補完**。全バッファから単語を検索。
+
+### B. v0.11特有の「自動補完」設定
+`nvim-cmp` を使わずに、入力中に補完候補を出す設定（LSP連携）：
+```lua
+vim.api.nvim_create_autocmd('LspAttach', {
+  callback = function(args)
+    -- v0.11以降: 入力中に自動でLSP補完をトリガーする
+    vim.lsp.completion.enable(true, args.data.client_id)
+  end,
+})
+```
+
+### C. Telescopeの代用（ミニマル検索）
+プラグインを使わず、`fzf` をフローティングウィンドウで呼び出す例：
+*   `:terminal fzf` を実行するだけでも十分高速。
+*   Luaで `vim.fn.termopen` を使い、選択結果を `edit` する関数を作れば自作Telescopeになる。
+
+---
+
+## 3. 移行のステップ案
+1.  **Level 1 (即実行可能):** `comment.nvim` と `indent-blankline` を削除し、標準設定に置き換える。
+2.  **Level 2 (学習が必要):** `nvim-cmp` を無効化し、`CTRL-X` 系の補完操作に慣れる（または v0.11 の `lsp.completion` を試す）。
+3.  **Level 3 (究極):** `Telescope` を削除し、必要な時だけターミナルで `fzf` や `rg` を叩く運用に変える。
+
+---
+
+## 4. 参考指針（哲学）
+*   **Less is More:** プラグインが減るほど、起動速度が上がり、本体のアップデートによる不具合（破壊的変更）の影響を受けにくくなる。
+*   **UNIX哲学:** 「1つのツールには1つのことをさせる」。検索は専用ツール（fzf/rg）に任せ、エディタはテキスト編集に集中させる。
+
+> **参考記事:** [Neovim Config Without Plugins in 2025](https://boltless.me/posts/neovim-config-without-plugins-2025/)
+
+
+
 ## File Tree
 <details>
     
