@@ -1,4 +1,6 @@
--- 1. ハイライト定義
+-- (~/dotfiles/readmes/toc_nvim.md)
+-- (~/dotfiles/readmes/toc_nvim.md #highlights-lua)
+
 local Zenkaku = "IdeographicSpace"
 local highlights = {
 	Normal      = { bg = "none" },
@@ -27,15 +29,14 @@ end
 -- 初期生成
 local winhl_str = generate_winhl_str()
 
--- 3. 外観レンダリング
+
 local function render_appearance()
-	vim.iter(highlights):each(function(name, val)
-		vim.api.nvim_set_hl(0, name, val)
-	end)
+	vim.iter(highlights)
+    :each(function(name, val) vim.api.nvim_set_hl(0, name, val) end)
 
 	vim.iter(vim.fn.getmatches())
-		:filter(function(getm) return getm.group == Zenkaku end)
-		:each(function(getm) vim.fn.matchdelete(getm.id) end)
+    :filter(function(getm)	return getm.group == Zenkaku end)
+		:each(function(getm)	vim.fn.matchdelete(getm.id) end)
 
 	vim.fn.matchadd(Zenkaku, "　")
 end
@@ -46,13 +47,8 @@ vim.api.nvim_create_autocmd(
 	{
 		desc = "Dynamic Universal Gray-out",
 		callback = function(args)
-			render_appearance()
-			
-			-- カラースキームが変わった時はリストを再生成
-			if args.event == "ColorScheme" then
-				winhl_str = generate_winhl_str()
-			end
-
+			render_appearance()	
+			if args.event == "ColorScheme" then winhl_str = generate_winhl_str() end
 			vim.wo.winhighlight = (args.event == "WinLeave") and winhl_str or ""
 		end
 	}
