@@ -12,12 +12,12 @@
 
 | カテゴリ | 削除可能なプラグイン | 移行先の標準機能 / 設定 |
 | :--- | :--- | :--- |
-| **編集補助** | `comment.nvim` | 標準の **`gc` / `gcc`**（v0.10+） |
-| **外観** | `indent-blankline.nvim` | **`listchars`** 設定 |
-| **Git** | `gitsigns.nvim` | **`vim.diff`** および標準の **`signcolumn`** |
-| **補完** | `nvim-cmp` | blink.cmp |
-| **検索** | `telescope.nvim` | **`:find`**, **`:terminal` + `fzf`** |
-| **管理** | `mason.nvim` | OSのパッケージマネージャ (brew, apt等) |
+| 編集補助 | `comment.nvim` | 標準の `gc` / `gcc`（v0.10+） |
+| 外観 | `indent-blankline.nvim` | `listchars` 設定 |
+| Git | `gitsigns.nvim` | `vim.diff` および標準の `signcolumn` |
+| 補完 | `nvim-cmp` | blink.cmp |
+| 検索 | `telescope.nvim` | `:find`, `:terminal` + `fzf` |
+| 管理 | `mason.nvim` | OSのパッケージマネージャ (brew, apt等) |
 
 ---
 
@@ -31,17 +31,17 @@
 ---
 
 ## 3. 移行のステップ案
-1.  **Level 1 (即実行可能):** `comment.nvim` と `indent-blankline` を削除し、標準設定に置き換える。
-2.  **Level 2 (学習が必要):** `nvim-cmp` を無効化し、`CTRL-X` 系の補完操作に慣れる（または v0.11 の `lsp.completion` を試す）。
-3.  **Level 3 (究極):** `Telescope` を削除し、必要な時だけターミナルで `fzf` や `rg` を叩く運用に変える。
+1.  Level 1 (即実行可能): `comment.nvim` と `indent-blankline` を削除し、標準設定に置き換える。
+2.  Level 2 (学習が必要): `nvim-cmp` を無効化し、`CTRL-X` 系の補完操作に慣れる（または v0.11 の `lsp.completion` を試す）。
+3.  Level 3 (究極): `Telescope` を削除し、必要な時だけターミナルで `fzf` や `rg` を叩く運用に変える。
 
 ---
 
 ## 4. 参考指針（哲学）
-*   **Less is More:** プラグインが減るほど、起動速度が上がり、本体のアップデートによる不具合（破壊的変更）の影響を受けにくくなる。
-*   **UNIX哲学:** 「1つのツールには1つのことをさせる」。検索は専用ツール（fzf/rg）に任せ、エディタはテキスト編集に集中させる。
+*   Less is More: プラグインが減るほど、起動速度が上がり、本体のアップデートによる不具合（破壊的変更）の影響を受けにくくなる。
+*   UNIX哲学: 「1つのツールには1つのことをさせる」。検索は専用ツール（fzf/rg）に任せ、エディタはテキスト編集に集中させる。
 
-> **参考記事:** [Neovim Config Without Plugins in 2025](https://boltless.me/posts/neovim-config-without-plugins-2025/)
+> 参考記事: [Neovim Config Without Plugins in 2025](https://boltless.me/posts/neovim-config-without-plugins-2025/)
 
 Neovim v0.11（開発版）をお使いであれば、LSP周りは非常に進化しており、ブログにあるような「プラグインなし」の運用はむしろ追い風です。Fedora環境であれば、パッケージ管理もしやすいですね。
 
@@ -175,15 +175,17 @@ path:
  - [nvim/lua/my/lazy.lua](../nvim/.config/nvim/lua/my/core/highlights.lua)
 
 目的と機能:  
- - Neovimのプラグインマネージャー。プラグインのインストール、更新、個別設定の管理を一括して行う。
+ - Window Focusの視覚的識別: カレントウィンドウ以外のハイライトを動的に制御し、操作対象の明示化と視認性の向上を図る。マルチレイヤー・シンタックスの一括制御: Tree-sitter、LSP Semantic Tokens、および標準のSyntaxハイライト（Markdown/HTML等）を包括的に対象とし、非アクティブウィンドウにおいて一貫した減色処理（Gray-out）を適用する。
 
-設定と操作:  
- - `:Lazy`と入力し、`Enter`を押すとlazy.nvimのUIが開く。
- - 不足しているプラグインをインストールするには、`大文字のI`を押す。
- - UIを閉じるには、`Q`を押します。
- - Neovimを再起動せずにプラグインをロードするには、`:Lazy reload <プラグイン名>`と入力。
+設定:  
+ - 変数 `highlights`: `NormalNC`（非アクティブ時の標準ハイライト）の `fg`（文字色）を `#666666` に、`bg`（背景色）を `none` に定義。その他、全角スペース（`Zenkaku`）や `ColorColumn` などの基本となる色定数を保持する。
+ - 関数 `generate_winhl_str()`: `vim.api.nvim_get_hl(0, {})` を実行してランタイム上の全ハイライトグループを取得。`vim.iter` を用いてそれらを走査し、`ignore_patterns`（`Normal`, `StatusLine` 等の除外対象）に合致しない全グループ名を `[グループ名]:NormalNC` という形式の文字列に結合して返す。
+ - 関数 `render_appearance()`: `highlights` テーブルの内容を `vim.api.nvim_set_hl` で適用し、同時に `matchadd` を用いて全角スペースの可視化等の外観レンダリングを一括実行する。
+ - `:Inspect` コマンドによる依存関係の解析: Markdown等の複雑なリンク構造（例: `markdownH1` -> `htmlH1`）を持つ要素に対し、`:Inspect` コマンドを用いて各トークンの所属グループを特定。末端のグループだけでなく、継承元となる親グループを含めて制御対象とすることで、意図しない発色を完全に抑制する手法を確立した。
+ - autocmd による動的制御: `WinEnter`, `WinLeave` をトリガーに `winhighlight` オプションを操作。`WinLeave` 時には `generate_winhl_str()` で生成した一括リンク文字列を適用し、`ColorScheme` イベント発生時にはリストを再生成することで、カラースキームの変更に対しても動的に追従する。### ime.lua    
 
-### ime.lua    
+### ime.lua
+
 path:  
  - [nvim/lua/my/lazy.lua](../nvim/.config/nvim/lua/my/core/ime.lua)
 
@@ -373,7 +375,7 @@ path:
   ```
 
 そのまま `Ctrl + q` を叩く
-（画面が閉じ、代わりに画面の一番下に「文字のリスト」が並びます。これが**Quickfix**に転送された状態です）
+（画面が閉じ、代わりに画面の一番下に「文字のリスト」が並びます。これがQuickfixに転送された状態です）
 
 ファイルに書き出す
 

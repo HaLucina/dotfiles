@@ -34,6 +34,13 @@ desc = "Move selected files to trash"
 # 環境に依存しないパスコピー
 # shellコマンドを使わず、Yazi標準の `copy path` を使うのがベストです
 [[mgr.prepend_keymap]]
+on   = [ "y", "y" ]
+run  = "yank"
+desc = "Copy file"
+
+# 環境に依存しないパスコピー
+# shellコマンドを使わず、Yazi標準の `copy path` を使うのがベストです
+[[mgr.prepend_keymap]]
 on   = [ "y", "p" ]
 run  = "copy path"
 desc = "Copy path to clipboard"
