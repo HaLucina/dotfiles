@@ -174,15 +174,26 @@ path:
 path:  
  - [nvim/lua/my/lazy.lua](../nvim/.config/nvim/lua/my/core/highlights.lua)
 
-目的と機能:  
- - Window Focusの視覚的識別: カレントウィンドウ以外のハイライトを動的に制御し、操作対象の明示化と視認性の向上を図る。マルチレイヤー・シンタックスの一括制御: Tree-sitter、LSP Semantic Tokens、および標準のSyntaxハイライト（Markdown/HTML等）を包括的に対象とし、非アクティブウィンドウにおいて一貫した減色処理（Gray-out）を適用する。
+#### 目的と機能
+本スクリプトは、ウィンドウのフォーカス状態に応じた外観の動的制御、および全角スペースの可視化を目的とする。
+- フォーカス外ウィンドウのグレイアウト: カレントウィンドウ以外（非アクティブ）の全ハイライトを強制的に減色し、編集対象を視覚的に強調する。
+- 包括的なハイライト制御: 標準のSyntaxだけでなく、Tree-sitterやLSP Semantic Tokensを含むすべての表示要素を一括して制御対象とする。
+- 全角スペースの視覚化: 編集ミスを防ぐため、全角スペースを特定の背景色で常時ハイライトする。
 
-設定:  
- - 変数 `highlights`: `NormalNC`（非アクティブ時の標準ハイライト）の `fg`（文字色）を `#666666` に、`bg`（背景色）を `none` に定義。その他、全角スペース（`Zenkaku`）や `ColorColumn` などの基本となる色定数を保持する。
- - 関数 `generate_winhl_str()`: `vim.api.nvim_get_hl(0, {})` を実行してランタイム上の全ハイライトグループを取得。`vim.iter` を用いてそれらを走査し、`ignore_patterns`（`Normal`, `StatusLine` 等の除外対象）に合致しない全グループ名を `[グループ名]:NormalNC` という形式の文字列に結合して返す。
- - 関数 `render_appearance()`: `highlights` テーブルの内容を `vim.api.nvim_set_hl` で適用し、同時に `matchadd` を用いて全角スペースの可視化等の外観レンダリングを一括実行する。
- - `:Inspect` コマンドによる依存関係の解析: Markdown等の複雑なリンク構造（例: `markdownH1` -> `htmlH1`）を持つ要素に対し、`:Inspect` コマンドを用いて各トークンの所属グループを特定。末端のグループだけでなく、継承元となる親グループを含めて制御対象とすることで、意図しない発色を完全に抑制する手法を確立した。
- - autocmd による動的制御: `WinEnter`, `WinLeave` をトリガーに `winhighlight` オプションを操作。`WinLeave` 時には `generate_winhl_str()` で生成した一括リンク文字列を適用し、`ColorScheme` イベント発生時にはリストを再生成することで、カラースキームの変更に対しても動的に追従する。### ime.lua    
+#### 設定と操作
+ソースコード内の各定義および関数の役割は以下の通り。
+- ハイライト定義 (highlights)
+  - NormalNC の文字色（#666666）を定義し、非アクティブ時のグレイアウト色として指定。
+  - 全角スペース（Zenkaku）やカラム強調（ColorColumn）の色彩設定を保持。
+- 動的リンク生成 (generate_winhl_str)
+  - 実行時に存在するすべてのハイライトグループをスキャンし、それらを NormalNC へリダイレクトするための設定文字列を作成する。
+  - Normal や WinBar など、グレイアウトから除外すべきグループをパターンマッチングでフィルタリングする。
+- 外観反映 (render_appearance)
+  - 定義されたハイライト色をシステムに登録する。
+  - matchadd を使用し、バッファ上の全角スペースに対して視覚効果を適用する。
+- 自動コマンド (autocmd)
+  - WinEnter / WinLeave: ウィンドウのフォーカス移動に合わせて winhighlight オプションを動的に書き換える。
+  - ColorScheme: ユーザーによるカラースキーム変更を検知し、グレイアウト用のグループリストを最新の状態に更新（再生成）する。    
 
 ### ime.lua
 
