@@ -20,6 +20,7 @@ M.highlight_text = function()
     local pattern
     local text
     local mode = vim.fn.mode()
+
     if mode == "v" or mode == "V" or mode == "\22" then
         vim.cmd('normal! "zy')
         text = tostring(vim.fn.getreg('z'))
@@ -38,7 +39,8 @@ M.open_cmdline_for_substitute = function()
     M.highlight_text()
     local pattern = vim.fn.getreg("/")
     local rep = string.format("%%s/%s/", pattern)
-    local left3 = string.rep(vim.api.nvim_replace_termcodes("<Left>", true, false, true), 3)
+    local left3 = string.rep(vim.api.nvim_replace_termcodes(
+      "<Left>", true, false, true), 3)
     vim.api.nvim_feedkeys(":" .. rep .. "/gc" .. left3, "n", false)
 end
 

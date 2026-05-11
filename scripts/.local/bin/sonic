@@ -1,5 +1,7 @@
 #!/bin/bash
 
+# Constants -----------------------------------------------------------
+
 ENV_DIR="${XDG_CONFIG_HOME:-$HOME/.config}/env"
 ENV_FILE="$ENV_DIR/BTearphones.env"
 DEVICE_NAME="SOUNDPEATS Sonic"
@@ -9,31 +11,92 @@ RED='\033[0;31m'
 YELLOW='\033[1;33m'
 NC='\033[0m'
 
-if [ ! -s "$ENV_FILE" ]; then
-    printf "${YELLOW}[System]${NC} Generating $ENV_FILE...\n"
-    mkdir -p "$ENV_DIR" && chmod 700 "$ENV_DIR"
-    
-    MAC=$(bluetoothctl devices | grep "$DEVICE_NAME" | awk '{print $2}')
-    
-    if [ -n "$MAC" ]; then
-        echo "MY_EARPHONE_MAC=\"$MAC\"" > "$ENV_FILE" && chmod 600 "$ENV_FILE"
-        printf "${GREEN}[Success]${NC} Registered $MAC\n"
-    else
-        printf "${RED}[Error]${NC} $DEVICE_NAME not found.\n" >&2
-        exit 1
-    fi
-fi
+# Helpers -------------------------------------------------------------
 
-MAC_ADDRESS=$(grep '^MY_EARPHONE_MAC=' "$ENV_FILE" | cut -d '"' -f 2)
+log_info() {
+  printf "${YELLOW}[System]${NC} %s\n" "$1"
+}
 
-printf "${GREEN}󰂯${NC} Reconnecting $DEVICE_NAME...\n"
+log_success() {
+  printf "${GREEN}[Success]${NC} %s\n" "$1"
+}
 
-{
+log_error() {
+  printf "${RED}[Error]${NC} %s\n" "$1" >&2
+}
+
+find_device_mac() {
+  bluetoothctl devices |
+    grep "$DEVICE_NAME" |
+    awk '{print $2}'
+}
+
+initialize_env_file() {
+  [ -s "$ENV_FILE" ] && return
+
+  log_info "Generating $ENV_FILE..."
+
+  mkdir -p "$ENV_DIR"
+  chmod 700 "$ENV_DIR"
+
+  local mac
+  mac=$(find_device_mac)
+
+  if [ -z "$mac" ]; then
+    log_error "$DEVICE_NAME not found."
+    exit 1
+  fi
+
+  echo "MY_EARPHONE_MAC=\"$mac\"" > "$ENV_FILE"
+  chmod 600 "$ENV_FILE"
+
+  log_success "Registered $mac"
+}
+
+load_mac_address() {
+  grep '^MY_EARPHONE_MAC=' "$ENV_FILE" |
+    cut -d '"' -f 2
+}
+
+disconnect_device() {
+  printf "${RED}󰂲${NC} Disconnecting $DEVICE_NAME...\n"
+
+  if bluetoothctl disconnect "$MAC_ADDRESS" > /dev/null 2>&1; then
+    log_success "Disconnected."
+  else
+    log_error "Failed to disconnect."
+  fi
+}
+
+reconnect_device() {
+  printf "${GREEN}󰂯${NC} Reconnecting $DEVICE_NAME...\n"
+
+  {
     bluetoothctl disconnect "$MAC_ADDRESS" > /dev/null 2>&1
+
     sleep 1
+
     if ! bluetoothctl connect "$MAC_ADDRESS" > /dev/null 2>&1; then
-        printf "\n${RED}[Error]${NC} Failed to connect $DEVICE_NAME\n" > $(tty)
+      printf "\n${RED}[Error]${NC} Failed to connect $DEVICE_NAME\n" > "$(tty)"
     fi
-} &
+  } &
+}
+
+# Initialize ----------------------------------------------------------
+
+initialize_env_file
+
+MAC_ADDRESS=$(load_mac_address)
+
+# Events --------------------------------------------------------------
+
+case "$1" in
+  off)
+    disconnect_device
+    ;;
+  *)
+    reconnect_device
+    ;;
+esac
 
 exit 0

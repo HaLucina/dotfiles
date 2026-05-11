@@ -1,88 +1,70 @@
 -- (~/dotfiles/readmes/toc_nvim.md)
 -- (~/dotfiles/readmes/toc_nvim.md #highlights-lua)
 
-
--- ==========================================================================
--- 1. 定数・設定データ
--- ==========================================================================
-local Zenkaku = "IdeographicSpace"
-
-local UI_HIGHLIGHTS = {
-    Normal      = { bg = "none" },
-    NormalNC    = { fg = "#666666", bg = "none" },
-    NonText     = { bg = "none" },
-    [Zenkaku]   = { bg = "#00FFAA" },
-    ColorColumn = { bg = "#454545" },
+-- ============================================================================
+--  Constants 
+-- ============================================================================
+local hl_parameters = {
+  Normal           = { bg = "none" },                 -- active window
+  NormalNC         = { fg = "#666666", bg = "none" }, -- inactive window
+  ColorColumn      = { bg = "#454545" },              -- colum 80/100/120 marker
+  IdeographicSpace = { bg = "#00FFAA" }               -- zenkaku space
 }
 
--- ==========================================================================
--- 2. ユーティリティ関数（純粋なロジック）
--- ==========================================================================
+local screen_update_events = {
+  "BufWinEnter",  -- buffer displayed in window
+  "ColorScheme",  -- colorscheme changed
+  "VimEnter",     -- nvim startup completed
+  "WinEnter",
+  "WinLeave",
+}
 
---- グレーアウトの対象外とするグループか判定
-local function is_ignored_group(name)
-    local ignores = { Normal = true, NormalNC = true }
-    return ignores[name] or name:match("^WinBar")
+-- ============================================================================
+--  Helpers 
+-- ============================================================================
+local function generate_inactive_hl_tbl()
+  return vim.iter(vim.api.nvim_get_hl(0, {}))
+    :filter(function(name) return name ~= "NormalNC" end)
+    :map(function(name) return name .. ":NormalNC" end)
+    :join(",")
 end
 
---- 非アクティブウィンドウ用の winhighlight 文字列を生成
-local function generate_grayout_string()
-    return vim.iter(vim.api.nvim_get_hl(0, {}))
-        :filter(function(name) return not is_ignored_group(name) end)
-        :map(function(name) return name .. ":NormalNC" end)
-        :join(",")
+local function render_appearance()
+  vim.iter(hl_parameters)
+    :each(function(name, val) vim.api.nvim_set_hl(0, name, val) end)
+
+  vim.iter(vim.fn.getmatches())
+    :filter(function(match) return match.group == "IdeographicSpace" end)
+    :each(function(match) vim.fn.matchdelete(match.id) end)
+  vim.fn.matchadd("IdeographicSpace", "　")
 end
 
--- ==========================================================================
--- 3. アクション関数（副作用を伴う処理）
--- ==========================================================================
+-- ============================================================================
+--  Events 
+-- ============================================================================
+do
+  local set_inactive_hl   = generate_inactive_hl_tbl()
+  local unset_inactive_hl = ""
 
---- 基本的なハイライトグループを適用
-local function apply_ui_highlights()
-    for name, val in pairs(UI_HIGHLIGHTS) do
-        vim.api.nvim_set_hl(0, name, val)
+  vim.api.nvim_create_autocmd(screen_update_events, {
+    callback = function(trigger)
+      local event = trigger.event
+
+      if event == "VimEnter" or event == "ColorScheme" then
+        set_inactive_hl = generate_inactive_hl_tbl() end
+
+      if event == "WinLeave" then 
+        vim.wo.winhighlight = set_inactive_hl
+      else 
+        vim.wo.winhighlight = unset_inactive_hl
+      end
+
+      render_appearance()
     end
+  })
 end
 
---- 全角スペースのマッチを更新
-local function refresh_zenkaku_match()
-    for _, m in ipairs(vim.fn.getmatches()) do
-        if m.group == Zenkaku then
-            vim.fn.matchdelete(m.id)
-        end
-    end
-    vim.fn.matchadd(Zenkaku, "　")
-end
-
--- ==========================================================================
--- 4. 実行・自動実行設定
--- ==========================================================================
-
--- 起動時およびColorScheme変更時に使い回すキャッシュ
-local cached_grayout_str = generate_grayout_string()
-
-vim.api.nvim_create_autocmd(
-    { "ColorScheme", "WinEnter", "WinLeave", "BufWinEnter", "VimEnter" },
-    {
-        desc = "Dynamic Universal Gray-out and UI Highlights",
-        callback = function(args)
-            -- 常に実行する処理
-            apply_ui_highlights()
-            refresh_zenkaku_match()
-
-            -- カラースキーム変更時のみキャッシュを更新
-            if args.event == "ColorScheme" then
-                cached_grayout_str = generate_grayout_string()
-            end
-
-            -- ウィンドウ状態に応じたハイライトの切り替え
-            local is_inactive = (args.event == "WinLeave")
-            vim.wo.winhighlight = is_inactive and cached_grayout_str or ""
-        end
-    }
-)
-
--- 起動時の初期化実行
-apply_ui_highlights()
-refresh_zenkaku_match()
-
+-- ============================================================================
+--  Initialize 
+-- ============================================================================
+render_appearance()

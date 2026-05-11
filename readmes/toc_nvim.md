@@ -12,9 +12,6 @@
 
 | カテゴリ | 削除可能なプラグイン | 移行先の標準機能 / 設定 |
 | :--- | :--- | :--- |
-| 編集補助 | `comment.nvim` | 標準の `gc` / `gcc`（v0.10+） |
-| 外観 | `indent-blankline.nvim` | `listchars` 設定 |
-| Git | `gitsigns.nvim` | `vim.diff` および標準の `signcolumn` |
 | 補完 | `nvim-cmp` | blink.cmp |
 | 検索 | `telescope.nvim` | `:find`, `:terminal` + `fzf` |
 | 管理 | `mason.nvim` | OSのパッケージマネージャ (brew, apt等) |

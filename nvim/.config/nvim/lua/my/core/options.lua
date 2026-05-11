@@ -1,12 +1,13 @@
 -- Documents
 -- (~/dotfiles/readmes/toc_nvim.md #options-lua)
 
-vim.cmd("let g:netrw_liststyle = 3")
+-- ============================================================================
+--  General Environment & Fixes
+-- ============================================================================
+-- システム全体やエンコーディング、特定バグへの対策
 
-local opt = vim.opt -- for conciseness
-
-opt.encoding = "utf-8"
-opt.fileencoding = "utf-8"
+vim.opt.encoding     = "utf-8"
+vim.opt.fileencoding = "utf-8"
 
 -- Error detected while processing CursorMoved Autocommands for
 -- "<buffer=1>"..function <SNR>22_preview_color[41]..<SNR>22_get_hi_str:
@@ -17,53 +18,64 @@ opt.fileencoding = "utf-8"
 -- いちいち出てきた。
 -- 解決策は以下をnvim.luaに追記すること。
 -- 参考 ＞ https://github.com/neovim/neovim/issues/32097
-
--- set opacity with colorscheme(tokyonight-night)
 vim.opt.termguicolors = true
-vim.opt.winblend = 0 -- window opacity
-vim.opt.pumblend = 0 -- popup menu opacity
+
+-- Netrw: リストスタイルを Tree 形式 (3) に固定
+vim.cmd("let g:netrw_liststyle = 3")
 
 
-vim.opt.colorcolumn = { 80, 100, 120 }
+-- ============================================================================
+--  Layout & UI Representation
+-- ============================================================================
+-- 画面分割、サインカラム、不透明度などの構造的設定
 
--- line numbers
-opt.relativenumber = true -- show relative line numbers
-opt.number = true -- shows absolute line number on cursor line (when relative number is on)
+vim.opt.splitright = true -- 垂直分割時に右に開く
+vim.opt.splitbelow = true -- 水平分割時に下に開く
+vim.opt.signcolumn = "yes" -- テキストの横揺れ防止のため常時表示
+vim.opt.background = "dark"
 
--- tabs & indentation
-opt.tabstop = 2 -- 2 spaces for tabs (prettier default)
-opt.shiftwidth = 2 -- 2 spaces for indent width
-opt.expandtab = true -- expand tab to spaces
-opt.autoindent = true -- copy indent from current line when starting new one
+-- Opacity (Transparency)
+vim.opt.winblend = 0 -- ウィンドウの透過度
+vim.opt.pumblend = 0 -- ポップアップメニューの透過度
 
--- line wrapping
-opt.wrap = false -- enable line wrapping
 
--- search settings
-opt.ignorecase = true -- ignore case when searching
-opt.smartcase = true -- if you include mixed case in your search, assumes you want case-sensitive
+-- ============================================================================
+--  Indentation & Text Rules
+-- ============================================================================
+-- タブ、インデント、折り返し、文字数の目安
 
--- cursor line
-opt.cursorline = true -- highlight the current cursor line
+local TEXT_WIDTH_GUIDE = { 80, 100, 120 }
 
--- appearance
+vim.opt.tabstop     = 2     -- タブ幅
+vim.opt.shiftwidth  = 2     -- 自動インデント幅
+vim.opt.expandtab   = true  -- タブをスペースに展開
+vim.opt.autoindent  = true  -- 前行のインデントを継続
+vim.opt.wrap        = false -- 行の折り返しを無効化
+vim.opt.colorcolumn = TEXT_WIDTH_GUIDE
 
--- turn on termguicolors for nightfly colorscheme to work
--- (have to use iterm2 or any other true color terminal)
-opt.termguicolors = true
-opt.background = "dark" -- colorschemes that can be light or dark will be made dark
-opt.signcolumn = "yes" -- show sign column so that text doesn't shift
 
--- backspace
-opt.backspace = "indent,eol,start" -- allow backspace on indent, end of line or insert mode start position
+-- ============================================================================
+--  Section 4: Navigation & Visual Feedback
+-- ============================================================================
+-- 行番号、カーソル行、検索挙動、仮想編集
 
--- clipboard
-opt.clipboard:append("unnamedplus") -- use system clipboard as default register
+vim.opt.number         = true  -- 行番号表示
+vim.opt.relativenumber = true  -- 相対行番号（現在行以外）
+vim.opt.cursorline     = true  -- カーソル行の強調
+vim.opt.virtualedit    = "block" -- 文字がない場所にも矩形選択で入れるようにする
 
--- split windows
-opt.splitright = true -- split vertical window to the right
-opt.splitbelow = true -- split horizontal window to the bottom
+-- Search
+vim.opt.ignorecase = true -- 検索時に大文字小文字を区別しない
+vim.opt.smartcase  = true -- 大文字が含まれる場合は区別する
 
--- turn off swapfile
-opt.swapfile = false
-vim.opt.virtualedit = "block" -- もしくは "all"
+
+-- ============================================================================
+--  System Integration & Performance
+-- ============================================================================
+-- クリップボード、スワップファイル、後退キーの挙動
+
+vim.opt.clipboard:append("unnamedplus") -- システムクリップボードと同期
+vim.opt.swapfile  = false              -- スワップファイルを作成しない
+vim.opt.backspace = "indent,eol,start" -- 削除キーの挙動を標準的にする
+
+
