@@ -1,0 +1,10 @@
+[Desktop Entry]
+Type=Application
+Name=Obsidian
+Comment=Start Obsidian on Login
+# 既に作成済みのバイナリパスを指定
+Exec=/home/halucina/.local/bin/obsidian --no-sandbox %u
+Icon=obsidian
+Terminal=false
+StartupNotify=false
+Categories=Office;TextEditor;

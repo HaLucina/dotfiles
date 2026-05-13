@@ -52,7 +52,9 @@ alias vz='f_vz' # Fuzzy open and edit zsh config parts
 alias vn='f_vn' # Fuzzy open and edit Neovim config parts
 alias sz='source ~/.zshrc'
 
-alias o='(nohup /mnt/z/launchers/obsidian/Obsidian.exe &> /dev/null &)'
+alias o='nohup /home/halucina/.local/bin/obsidian --no-sandbox >/dev/null 2>&1 &'
+# Legacy command from the WSL era; updated for the current native Linux environment.
+# alias o='(nohup /mnt/z/launchers/obsidian/Obsidian.exe &> /dev/null &)'
 
 # Custom utility functions
 alias pss='f_pss'         # Search for processes by pattern
